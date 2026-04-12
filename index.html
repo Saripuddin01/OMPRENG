@@ -5,255 +5,264 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Distribusi Ompreng</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&family=Helvetica+Neue:wght@400;500;700&display=swap');
+
+:root {
+  /* WhatsApp Color Palette */
+  --wa-teal: #008069;         /* WA Header Green */
+  --wa-teal-light: #00a884;   /* WA Accent Green */
+  --wa-teal-dark: #075E54;
+  --wa-bg: #efeae2;           /* WA Chat Background */
+  --wa-bubble-out: #d9fdd3;   /* WA Outgoing Message */
+  --wa-card: #ffffff;
+  --text-main: #111b21;       /* WA Primary Text */
+  --text-muted: #667781;      /* WA Secondary Text */
+  --border: #d1d7db;
+  --border-light: #e9edef;
+  --success: #00a884;
+  --danger: #ea0038;
+  --blue-tick: #53bdeb;       /* WA Read Receipt Blue */
+}
 
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#f0f4f8;color:#1a2332;padding-bottom:90px;min-height:100vh}
+/* Menggunakan font standar sistem agar terasa seperti aplikasi native */
+body{font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background:var(--wa-bg);color:var(--text-main);padding-bottom:90px;min-height:100vh}
 
-/* HEADER */
-.hdr{background:linear-gradient(160deg,#fff9ee,#fffdf8);border-bottom:2px solid #f5a62328;padding:18px 16px 14px;text-align:center;box-shadow:0 2px 12px #f5a62314}
-.hdr-icon{font-size:1.8rem;margin-bottom:3px}
-.hdr h1{font-size:1.2rem;font-weight:900;color:#d4860a;line-height:1.2}
-.hdr-sub{color:#8a9bb0;font-size:.7rem;margin-top:3px;font-weight:500}
+/* HEADER WA STYLE */
+.hdr{background:var(--wa-teal);padding:16px 16px 8px;text-align:left; color:white; display:flex; align-items:center; gap:12px;}
+.hdr-icon{font-size:1.8rem; background:white; border-radius:50%; width:40px; height:40px; display:flex; align-items:center; justify-content:center; padding:5px;}
+.hdr-text{flex:1;}
+.hdr h1{font-size:1.15rem;font-weight:600;line-height:1.2;color:white;}
+.hdr-sub{color:rgba(255,255,255,0.85);font-size:.75rem;margin-top:2px;font-weight:400}
+
+/* TABS WA STYLE (Menyatu dengan header) */
+.tabs{display:flex; background:var(--wa-teal); box-shadow:0 1px 3px rgba(0,0,0,0.1); position:sticky; top:0; z-index:10;}
+.tab-btn{flex:1;padding:12px 4px;border:none;cursor:pointer;font-weight:600;font-size:.85rem;background:transparent;color:rgba(255,255,255,0.7);transition:all .2s;font-family:inherit; text-transform:uppercase; border-bottom: 3px solid transparent;}
+.tab-btn.active{color:white; border-bottom: 3px solid white;}
 
 /* CHIP */
-.chip{display:flex;align-items:center;gap:8px;background:#fff8e8;border:1.5px solid #f5c96338;border-radius:30px;padding:5px 13px;margin:10px 14px 0;font-size:.7rem;color:#c47d0a;font-weight:600}
+.chip{display:flex;align-items:center;gap:8px;background:var(--wa-bubble-out);border-radius:8px;padding:8px 12px;margin:12px 14px 0;font-size:.75rem;color:var(--text-main);font-weight:500; box-shadow:0 1px 1px rgba(0,0,0,0.05);}
 
 /* SUMMARY */
-.sum-row{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:10px 14px 0}
-.sum-card{background:#fff;border:1.5px solid #e8eef5;border-radius:12px;padding:9px 4px;text-align:center;box-shadow:0 2px 6px #1a23320c}
-.sum-card .lbl{font-size:.55rem;color:#8a9bb0;text-transform:uppercase;letter-spacing:.4px;margin-bottom:2px;font-weight:600}
-.sum-card .val{font-weight:900;font-size:1.15rem;line-height:1}
-.sum-card .sub{font-size:.55rem;color:#a0aec0;margin-top:1px;font-weight:500}
+.sum-row{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:12px 14px 0}
+.sum-card{background:var(--wa-card);border-radius:8px;padding:10px 4px;text-align:center;box-shadow:0 1px 2px rgba(0,0,0,0.05);}
+.sum-card .lbl{font-size:.6rem;color:var(--text-muted);margin-bottom:2px;font-weight:600}
+.sum-card .val{font-weight:700;font-size:1.1rem;line-height:1;color:var(--text-main)}
+.sum-card .sub{font-size:.55rem;color:var(--text-muted);margin-top:4px;}
 
 /* PROGRESS */
-.prog-wrap{margin:8px 14px 0;background:#fff;border:1.5px solid #e8eef5;border-radius:12px;padding:9px 12px;box-shadow:0 2px 6px #1a23320c}
-.prog-top{display:flex;justify-content:space-between;margin-bottom:5px}
-.prog-top .pl{font-size:.62rem;color:#8a9bb0;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
-.prog-top .pc{font-size:.68rem;color:#16a05f;font-weight:800}
-.prog-bg{background:#edf2f7;border-radius:20px;height:7px;overflow:hidden}
-.prog-fill{height:100%;border-radius:20px;background:linear-gradient(90deg,#22b573,#16a05f);transition:width .35s;width:0%}
-
-/* TABS */
-.tabs{display:flex;gap:5px;margin:10px 14px 0;background:#fff;border-radius:12px;padding:5px;border:1.5px solid #e8eef5;box-shadow:0 2px 6px #1a23320c}
-.tab-btn{flex:1;padding:8px 4px;border:none;cursor:pointer;font-weight:700;font-size:.7rem;border-radius:9px;background:transparent;color:#8a9bb0;transition:all .2s;font-family:inherit}
-.tab-btn.active{background:#f5a623;color:#fff;box-shadow:0 2px 8px #f5a62338}
+.prog-wrap{margin:8px 14px 0;background:var(--wa-card);border-radius:8px;padding:12px;box-shadow:0 1px 2px rgba(0,0,0,0.05);}
+.prog-top{display:flex;justify-content:space-between;margin-bottom:8px}
+.prog-top .pl{font-size:.7rem;color:var(--text-main);font-weight:600;}
+.prog-top .pc{font-size:.7rem;color:var(--wa-teal-light);font-weight:600}
+.prog-bg{background:var(--border-light);border-radius:10px;height:6px;overflow:hidden}
+.prog-fill{height:100%;border-radius:10px;background:var(--wa-teal-light);transition:width .35s;width:0%}
 
 /* SECTION TITLE */
-.sec-title{padding:12px 14px 6px;font-size:.62rem;color:#8a9bb0;text-transform:uppercase;letter-spacing:1.2px;font-weight:700}
+.sec-title{padding:16px 14px 8px;font-size:.8rem;color:var(--text-muted);font-weight:600}
 
 /* LIST */
-.card-list{padding:0 14px;display:flex;flex-direction:column;gap:9px}
+.card-list{padding:0 14px;display:flex;flex-direction:column;gap:12px}
 
 /* CARD */
-.sc{background:#fff;border:1.5px solid #e8eef5;border-radius:16px;overflow:hidden;transition:border-color .25s,box-shadow .25s;box-shadow:0 2px 8px #1a233210}
-.sc.done{border-color:#22b57338;background:linear-gradient(135deg,#fff 70%,#edfaf5 100%)}
+.sc{background:var(--wa-card);border-radius:10px;overflow:hidden;transition:all .25s;box-shadow:0 1px 2px rgba(0,0,0,0.08);}
+.sc.done{background:#f9fbfb; opacity:0.85;}
 
 /* HEAD */
-.sc-head{display:flex;align-items:center;gap:9px;padding:10px 12px 0}
-.sc-icon{width:32px;height:32px;border-radius:9px;flex-shrink:0;background:linear-gradient(135deg,#f5a623,#e8793a);display:flex;align-items:center;justify-content:center;font-size:.9rem}
-.sc-name{flex:1;font-size:.78rem;font-weight:700;color:#1a2332;line-height:1.25}
-.sc.done .sc-name{text-decoration:line-through;opacity:.4}
-.sc-badge{font-size:.56rem;padding:2px 7px;border-radius:20px;font-weight:800;white-space:nowrap}
-.b-ra {background:#e8f5ea;color:#2d8a40}
-.b-tk {background:#e8f2ff;color:#2563eb}
-.b-mis{background:#fff8e8;color:#d4860a}
-.b-sd {background:#fff8e8;color:#d4860a}
-.b-mts{background:#fff0f0;color:#dc2626}
-.b-smp{background:#e8faf3;color:#16a05f}
-.b-pky{background:#f3e8ff;color:#7c3aed}
+.sc-head{display:flex;align-items:center;gap:10px;padding:12px 12px 0}
+.sc-icon{width:40px;height:40px;border-radius:50%;flex-shrink:0;background:var(--wa-bg);display:flex;align-items:center;justify-content:center;font-size:1rem;}
+.sc-name{flex:1;font-size:.95rem;font-weight:600;color:var(--text-main);line-height:1.2}
+.sc.done .sc-name{color:var(--text-muted)}
+.sc-badge{font-size:.65rem;padding:3px 8px;border-radius:12px;font-weight:500;white-space:nowrap;background:var(--border-light);color:var(--text-muted);}
 
-/* ── INFO COMPACT (3 col kecil) ── */
-.info-compact{display:flex;gap:5px;padding:7px 12px 5px;align-items:stretch}
-.ic-box{flex:1;background:#f7f9fc;border:1px solid #e8eef5;border-radius:8px;padding:5px 4px;text-align:center}
-.ic-box .ic-l{font-size:.48rem;color:#8a9bb0;text-transform:uppercase;letter-spacing:.3px;font-weight:600;margin-bottom:1px}
-.ic-box .ic-v{font-size:.78rem;font-weight:800;line-height:1}
-.ic-box .ic-s{font-size:.45rem;color:#a0aec0;font-weight:500;margin-top:1px}
+/* ── INFO COMPACT ── */
+.info-compact{display:flex;gap:1px;padding:12px 12px 6px;align-items:stretch; background:var(--wa-card);}
+.ic-box{flex:1;background:var(--wa-card); border-top:1px solid var(--border-light); border-bottom:1px solid var(--border-light); padding:8px 4px; text-align:center}
+.ic-box:first-child{border-left:1px solid var(--border-light); border-top-left-radius:8px; border-bottom-left-radius:8px;}
+.ic-box:last-child{border-right:1px solid var(--border-light); border-top-right-radius:8px; border-bottom-right-radius:8px;}
+.ic-box .ic-l{font-size:.55rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.3px;font-weight:600;margin-bottom:4px}
+.ic-box .ic-v{font-size:1rem;font-weight:700;line-height:1;color:var(--text-main)}
+.ic-box .ic-s{font-size:.55rem;color:var(--text-muted);margin-top:4px}
 /* edit penerima */
 .ic-edit{display:flex;align-items:center;justify-content:center;gap:2px}
-.ic-n-inp{width:36px;font-size:.78rem;font-weight:800;text-align:center;border:none;background:transparent;outline:none;color:#d4860a;font-family:inherit;-webkit-appearance:none;appearance:none}
-.ic-edit-btn{font-size:.6rem;cursor:pointer;color:#d4860a;opacity:.6;line-height:1;background:none;border:none;padding:0;font-family:inherit}
-.ic-edit-btn:hover{opacity:1}
+.ic-n-inp{width:42px;font-size:1rem;font-weight:700;text-align:center;border:none;background:transparent;outline:none;color:var(--text-main);font-family:inherit;-webkit-appearance:none;appearance:none; border-bottom: 2px solid var(--wa-teal-light); border-radius: 0; padding-bottom: 2px;}
+.ic-n-inp:focus{border-bottom-color:var(--wa-teal-dark)}
+.ic-edit-btn{font-size:.7rem;cursor:pointer;color:var(--text-muted);line-height:1;background:none;border:none;padding:0;font-family:inherit;}
 
 /* ── SUDAH / SISA BESAR ── */
-.ss-row{display:grid;grid-template-columns:1fr 1fr;gap:7px;padding:4px 12px 8px}
-.ss-box{border-radius:12px;padding:10px 8px 9px;text-align:center;position:relative}
-.ss-box.sudah{background:linear-gradient(135deg,#e8faf3,#f0fdf7);border:1.5px solid #22b57328}
-.ss-box.sisa{background:linear-gradient(135deg,#fff5f5,#fff0f0);border:1.5px solid #fca5a528}
-.ss-box.sisa.ok{background:linear-gradient(135deg,#e8faf3,#f0fdf7);border-color:#22b57328}
-.ss-lbl{font-size:.55rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px}
-.ss-box.sudah .ss-lbl{color:#16a05f}
-.ss-box.sisa  .ss-lbl{color:#dc2626}
-.ss-box.sisa.ok .ss-lbl{color:#16a05f}
-.ss-main{font-size:1.7rem;font-weight:900;line-height:1;margin-bottom:2px}
-.ss-box.sudah .ss-main{color:#16a05f}
-.ss-box.sisa  .ss-main{color:#dc2626}
-.ss-box.sisa.ok .ss-main{color:#16a05f}
-.ss-sub{font-size:.6rem;font-weight:600;opacity:.7}
-.ss-ikat{font-size:.65rem;font-weight:700;margin-top:3px;padding:2px 8px;border-radius:20px;display:inline-block}
-.ss-box.sudah .ss-ikat{background:#22b57318;color:#16a05f}
-.ss-box.sisa  .ss-ikat{background:#dc262612;color:#dc2626}
-.ss-box.sisa.ok .ss-ikat{background:#22b57318;color:#16a05f}
+.ss-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:6px 12px 10px}
+.ss-box{border-radius:8px;padding:12px 8px 10px;text-align:center;background:var(--wa-bg);}
+.ss-lbl{font-size:.65rem;font-weight:600;margin-bottom:6px;color:var(--text-muted)}
+.ss-main{font-size:1.8rem;font-weight:700;line-height:1;margin-bottom:4px;color:var(--text-main)}
+.ss-sub{font-size:.65rem;color:var(--text-muted)}
+.ss-ikat{font-size:.65rem;font-weight:500;margin-top:6px;padding:3px 8px;border-radius:12px;display:inline-block;background:var(--border-light);color:var(--text-main)}
+
+.ss-box.sisa .ss-main { color: var(--danger); }
+.ss-box.sudah .ss-main { color: var(--wa-teal-light); }
+.ss-box.sisa.ok .ss-main { color: var(--blue-tick); }
 
 /* STEP SELECTOR */
-.step-row{display:flex;align-items:center;gap:6px;padding:0 12px 6px}
-.step-lbl{font-size:.55rem;color:#8a9bb0;font-weight:700;text-transform:uppercase;letter-spacing:.4px;white-space:nowrap}
-.step-pills{display:flex;gap:3px;flex:1;flex-wrap:wrap}
-.step-pill{padding:3px 8px;border-radius:20px;border:1px solid #e8eef5;background:#f7f9fc;color:#8a9bb0;font-size:.62rem;font-weight:700;cursor:pointer;transition:all .15s}
-.step-pill.active{background:#f5a623;border-color:#f5a623;color:#fff}
-.step-custom{width:46px;padding:3px 5px;border-radius:7px;border:1px solid #e8eef5;background:#f7f9fc;color:#1a2332;font-size:.65rem;font-weight:700;text-align:center;outline:none;-webkit-appearance:none;font-family:inherit}
-.step-custom:focus{border-color:#f5a623}
+.step-row{display:flex;align-items:center;gap:6px;padding:4px 12px 10px}
+.step-lbl{font-size:.65rem;color:var(--text-muted);font-weight:600;white-space:nowrap}
+.step-pills{display:flex;gap:6px;flex:1;flex-wrap:wrap}
+.step-pill{padding:5px 12px;border-radius:16px;border:1px solid var(--border-light);background:var(--wa-card);color:var(--text-main);font-size:.7rem;font-weight:600;cursor:pointer;transition:all .15s}
+.step-pill.active{background:var(--wa-teal-light);color:white; border-color:var(--wa-teal-light);}
+.step-custom{width:50px;padding:5px 6px;border-radius:16px;border:1px solid var(--border);background:var(--wa-card);color:var(--text-main);font-size:.7rem;font-weight:600;text-align:center;outline:none;-webkit-appearance:none;font-family:inherit}
+.step-custom:focus{border-color:var(--wa-teal-light)}
 
 /* COUNTER */
-.sc-counter{padding:0 12px 0}
-.cnt-row{display:flex;align-items:center;gap:4px}
-.cbtn{height:36px;border-radius:8px;border:none;font-weight:800;cursor:pointer;transition:all .15s;flex-shrink:0;font-family:inherit}
-.cbtn:active{transform:scale(.92)}
-.cbtn.minus{background:#fff0f0;border:1.5px solid #fca5a545;color:#dc2626}
-.cbtn.plus {background:#e8faf3;border:1.5px solid #22b57345;color:#16a05f}
-.cbtn.step-btn{min-width:44px;font-size:.68rem;padding:0 7px}
-.cnt-input{flex:1;min-width:0;text-align:center;font-weight:900;font-size:1.05rem;background:#f7f9fc;color:#1a2332;border:1.5px solid #e8eef5;border-radius:9px;padding:7px 4px;outline:none;-webkit-appearance:none;appearance:none;font-family:inherit}
-.cnt-input:focus{border-color:#f5a623}
-.cnt-input.full{border-color:#22b57355 !important;color:#16a05f;background:#edfaf5}
+.sc-counter{padding:0 12px}
+.cnt-row{display:flex;align-items:center;gap:8px}
+.cbtn{height:44px;border-radius:50%;width:44px;border:none;background:var(--wa-bg);color:var(--wa-teal-dark);font-weight:700;font-size:1rem;cursor:pointer;transition:all .15s;flex-shrink:0;font-family:inherit; display:flex; align-items:center; justify-content:center;}
+.cbtn:active{background:var(--border-light)}
+.cbtn.step-btn{border-radius:8px; width:auto; min-width:44px;font-size:.8rem;padding:0 8px}
+.cnt-input{flex:1;min-width:0;text-align:center;font-weight:700;font-size:1.3rem;background:var(--wa-card);color:var(--text-main);border:1px solid var(--border);border-radius:8px;padding:8px 4px;outline:none;-webkit-appearance:none;appearance:none;font-family:inherit}
+.cnt-input:focus{border-color:var(--wa-teal-light);}
 
 /* PROG BAR mini */
-.cnt-bar-wrap{padding:5px 12px 0}
-.cnt-bar-bg{background:#edf2f7;border-radius:20px;height:5px;overflow:hidden}
-.cnt-bar-fill{height:100%;border-radius:20px;transition:width .25s}
-.cnt-pct{font-size:.55rem;font-weight:700;text-align:right;margin-top:2px}
+.cnt-bar-wrap{padding:12px 12px 0}
+.cnt-bar-bg{background:var(--border-light);border-radius:10px;height:5px;overflow:hidden}
+.cnt-bar-fill{height:100%;border-radius:10px;transition:width .25s}
+.cnt-pct{font-size:.65rem;font-weight:600;text-align:right;margin-top:4px}
 
 /* DONE */
-.sc-done{display:flex;align-items:center;gap:8px;padding:7px 12px 11px}
-.done-toggle{display:flex;align-items:center;gap:7px;cursor:pointer;flex:1;-webkit-tap-highlight-color:transparent}
-.done-box{width:26px;height:26px;border-radius:7px;flex-shrink:0;border:2px solid #d1dce8;background:#f7f9fc;display:flex;align-items:center;justify-content:center;font-size:.95rem;font-weight:700;color:transparent;transition:all .2s}
-.done-toggle.checked .done-box{background:#22b573;border-color:#22b573;color:#fff;box-shadow:0 0 10px #22b57330}
-.done-lbl{font-size:.72rem;color:#8a9bb0;font-weight:600;transition:color .2s}
-.done-toggle.checked .done-lbl{color:#16a05f;font-weight:700}
-.done-stamp{font-size:.6rem;font-weight:800;color:#16a05f;background:#e8faf3;border:1.5px solid #22b57328;border-radius:20px;padding:2px 9px;display:none}
-.done-stamp.show{display:inline}
+.sc-done{display:flex;align-items:center;gap:8px;padding:12px 12px 14px}
+.done-toggle{display:flex;align-items:center;gap:10px;cursor:pointer;flex:1;-webkit-tap-highlight-color:transparent}
+.done-box{width:22px;height:22px;border-radius:4px;flex-shrink:0;border:2px solid var(--border);background:var(--wa-card);display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;color:transparent;transition:all .2s}
+.done-toggle.checked .done-box{background:var(--blue-tick);border-color:var(--blue-tick);color:white;}
+.done-lbl{font-size:.85rem;color:var(--text-main);font-weight:500;}
+.done-toggle.checked .done-lbl{color:var(--text-muted);}
+.done-stamp{font-size:.7rem;font-weight:600;color:var(--blue-tick);display:none; align-items:center; gap:4px;}
+.done-stamp.show{display:flex}
 
 /* REKAP TABLE */
 .rekap-wrap{padding:0 14px}
-.rekap{background:#fff;border:1.5px solid #f5a62322;border-radius:14px;overflow:hidden;margin-bottom:10px;box-shadow:0 2px 8px #1a23320e}
-.rekap.purple{border-color:#7c3aed1a}
-.rekap-title{padding:9px 13px;font-size:.62rem;text-transform:uppercase;letter-spacing:1px;font-weight:800;border-bottom:1px solid #f5a62315;background:#fff9ee}
-.rekap.purple .rekap-title{border-bottom-color:#7c3aed12;background:#faf5ff}
-.rekap table{width:100%;border-collapse:collapse;font-size:.66rem}
-.rekap th{padding:5px 5px;text-align:center;color:#8a9bb0;font-weight:700;font-size:.54rem;text-transform:uppercase}
+.rekap{background:var(--wa-card);border-radius:8px;overflow:hidden;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,0.05);}
+.rekap-title{padding:14px;font-size:.8rem;color:var(--wa-teal-dark);font-weight:600;border-bottom:1px solid var(--border-light);background:var(--wa-card)}
+.rekap table{width:100%;border-collapse:collapse;font-size:.75rem}
+.rekap th{padding:12px 8px;text-align:center;color:var(--text-muted);font-weight:500;font-size:.65rem;}
 .rekap th:first-child{text-align:left}
-.rekap td{padding:6px 5px;border-top:1px solid #f0f4f8;text-align:center;vertical-align:middle}
-.rekap td:first-child{text-align:left;font-weight:600;color:#1a2332}
-.rekap tfoot td{border-top:2px solid #f5a62320;font-weight:900;font-size:.76rem;background:#fafbfc}
-.rekap.purple tfoot td{border-top-color:#7c3aed18}
+.rekap td{padding:12px 8px;border-top:1px solid var(--border-light);text-align:center;vertical-align:middle;color:var(--text-main);}
+.rekap td:first-child{text-align:left;font-weight:500;color:var(--text-main)}
+.rekap tfoot td{border-top:1px solid var(--border);font-weight:600;font-size:.8rem;background:var(--wa-bg)}
 
 /* GRAND TOTAL */
-.grand{background:linear-gradient(135deg,#fff9ee,#fff);border:1.5px solid #f5a62330;border-radius:14px;padding:13px 15px;margin-bottom:10px;box-shadow:0 2px 8px #f5a62310}
-.grand-title{font-size:.62rem;color:#d4860a;text-transform:uppercase;letter-spacing:1px;font-weight:800;margin-bottom:9px}
-.grand-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
-.grand-box{background:#f7f9fc;border:1.5px solid #e8eef5;border-radius:10px;padding:9px 5px;text-align:center}
-.grand-box .gl{font-size:.54rem;color:#8a9bb0;text-transform:uppercase;letter-spacing:.3px;margin-bottom:2px;font-weight:600}
-.grand-box .gv{font-weight:900;font-size:1.25rem;line-height:1}
-.grand-box .gs{font-size:.54rem;color:#a0aec0;margin-top:2px;font-weight:500}
-.grand-info{margin-top:9px;padding:7px 11px;border-radius:9px;background:#fff8e8;border:1.5px solid #f5a62318;font-size:.68rem;color:#d4860a;text-align:center;font-weight:700}
+.grand{background:var(--wa-card);border-radius:8px;padding:16px;margin-bottom:10px;box-shadow:0 1px 2px rgba(0,0,0,0.05);}
+.grand-title{font-size:.8rem;color:var(--wa-teal-dark);font-weight:600;margin-bottom:14px; text-align:center;}
+.grand-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.grand-box{background:var(--wa-bg);border-radius:8px;padding:14px 6px;text-align:center}
+.grand-box .gl{font-size:.6rem;color:var(--text-muted);margin-bottom:4px;font-weight:500}
+.grand-box .gv{font-weight:700;font-size:1.3rem;line-height:1;color:var(--text-main)}
+.grand-box .gs{font-size:.65rem;color:var(--text-muted);margin-top:6px;}
+.grand-info{margin-top:14px;padding:12px;border-radius:8px;background:var(--wa-bubble-out);color:var(--text-main);font-size:.8rem;text-align:center;font-weight:500}
 
 /* RESET */
 .btn-reset-wrap{padding:14px 14px 0}
-.btn-reset{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px;border-radius:13px;border:1.5px solid #fca5a545;background:linear-gradient(135deg,#fff5f5,#fff0f0);color:#dc2626;font-weight:800;font-size:.82rem;cursor:pointer;font-family:inherit;box-shadow:0 2px 8px #dc262614;transition:all .2s}
-.btn-reset:active{opacity:.8;transform:scale(.98)}
+.btn-reset{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:14px;border-radius:24px;border:none;background:var(--wa-card);color:var(--danger);font-weight:600;font-size:.9rem;cursor:pointer;font-family:inherit; box-shadow:0 1px 2px rgba(0,0,0,0.05);}
+.btn-reset:active{background:var(--border-light)}
 
 /* POSYANDU SUBSUMMARY */
-.psy-sum{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:0 14px 8px}
-.psy-box{background:#fff;border:1.5px solid #7c3aed18;border-radius:11px;padding:7px 4px;text-align:center}
-.psy-box .pl{font-size:.54rem;color:#8a9bb0;text-transform:uppercase;letter-spacing:.4px;margin-bottom:2px;font-weight:600}
-.psy-box .pv{font-weight:900;font-size:1.05rem;line-height:1}
+.psy-sum{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0 14px 14px}
+.psy-box{background:var(--wa-card);border-radius:8px;padding:12px 4px;text-align:center;box-shadow:0 1px 2px rgba(0,0,0,0.05);}
+.psy-box .pl{font-size:.6rem;color:var(--text-muted);margin-bottom:4px;font-weight:600}
+.psy-box .pv{font-weight:700;font-size:1.2rem;line-height:1;color:var(--text-main)}
 
 .tab-content{display:none}
 .tab-content.active{display:block}
+
+/* Utility Text Colors */
+.text-success { color: var(--success) !important; }
+.text-danger { color: var(--danger) !important; }
+.text-main { color: var(--text-main) !important; }
+.text-accent { color: var(--wa-teal-light) !important; }
+.text-done { color: var(--blue-tick) !important; }
 </style>
 </head>
 <body>
 
 <div class="hdr">
   <div class="hdr-icon">🍱</div>
-  <h1>Distribusi Ompreng · Program Makan</h1>
-  <div class="hdr-sub">Makassar · 1 Ikatan = 10 ompreng</div>
+  <div class="hdr-text">
+    <h1>Distribusi Ompreng</h1>
+    <div class="hdr-sub">Makassar · 1 Ikatan = 10 ompreng</div>
+  </div>
 </div>
 
-<div class="chip">📦 <span>Data penerima bisa diubah langsung di tiap kartu ✏️</span></div>
+<div class="tabs">
+  <button class="tab-btn active" onclick="switchTab('sekolah',this)">Sekolah (10)</button>
+  <button class="tab-btn" onclick="switchTab('posyandu',this)">Posyandu (4)</button>
+  <button class="tab-btn" onclick="switchTab('rekap',this)">Rekap</button>
+</div>
+
+<div class="chip">💡 <span>Data penerima bisa diedit langsung pada kartu</span></div>
 
 <div class="sum-row">
-  <div class="sum-card"><div class="lbl">Total</div><div class="val" id="g-total" style="color:#d4860a">—</div><div class="sub">penerima</div></div>
-  <div class="sum-card"><div class="lbl">Ikatan</div><div class="val" id="g-ikat" style="color:#16a05f">—</div><div class="sub">ikatan</div></div>
-  <div class="sum-card"><div class="lbl">Sisa pcs</div><div class="val" id="g-sisa" style="color:#dc2626">—</div><div class="sub">pcs</div></div>
-  <div class="sum-card"><div class="lbl">Selesai</div><div class="val" id="g-done" style="color:#2563eb">0/14</div><div class="sub">lokasi</div></div>
+  <div class="sum-card"><div class="lbl">Total</div><div class="val text-accent" id="g-total">—</div><div class="sub">penerima</div></div>
+  <div class="sum-card"><div class="lbl">Ikatan</div><div class="val" id="g-ikat">—</div><div class="sub">ikatan</div></div>
+  <div class="sum-card"><div class="lbl">Sisa</div><div class="val text-danger" id="g-sisa">—</div><div class="sub">pcs</div></div>
+  <div class="sum-card"><div class="lbl">Selesai</div><div class="val" id="g-done">0/14</div><div class="sub">lokasi</div></div>
 </div>
 
 <div class="prog-wrap">
   <div class="prog-top">
-    <span class="pl">✅ Progres Distribusi</span>
-    <span class="pc" id="prog-txt">0 / 14 lokasi</span>
+    <span class="pl">Progres Hari Ini</span>
+    <span class="pc" id="prog-txt">0 / 14</span>
   </div>
   <div class="prog-bg"><div class="prog-fill" id="prog-fill"></div></div>
 </div>
 
-<div class="tabs">
-  <button class="tab-btn active" onclick="switchTab('sekolah',this)">🏫 Sekolah (10)</button>
-  <button class="tab-btn" onclick="switchTab('posyandu',this)">🏥 Posyandu (4)</button>
-  <button class="tab-btn" onclick="switchTab('rekap',this)">📋 Rekap</button>
-</div>
-
 <div id="tab-sekolah" class="tab-content active">
-  <div class="sec-title" id="sec-sekolah">Sekolah / Lembaga</div>
+  <div class="sec-title" id="sec-sekolah">Daftar Sekolah / Lembaga</div>
   <div class="card-list" id="list-sekolah"></div>
 </div>
 
 <div id="tab-posyandu" class="tab-content">
-  <div class="sec-title">Posyandu Asoka</div>
+  <div class="sec-title">Ringkasan Posyandu Asoka</div>
   <div class="psy-sum">
-    <div class="psy-box"><div class="pl">Penerima</div><div class="pv" style="color:#7c3aed" id="ps-total">—</div></div>
-    <div class="psy-box"><div class="pl">Ikatan</div><div class="pv" style="color:#16a05f" id="ps-ikat">—</div></div>
-    <div class="psy-box"><div class="pl">Sisa pcs</div><div class="pv" id="ps-sisa">—</div></div>
+    <div class="psy-box"><div class="pl">Penerima</div><div class="pv text-accent" id="ps-total">—</div></div>
+    <div class="psy-box"><div class="pl">Ikatan</div><div class="pv" id="ps-ikat">—</div></div>
+    <div class="psy-box"><div class="pl">Sisa pcs</div><div class="pv text-danger" id="ps-sisa">—</div></div>
   </div>
   <div class="card-list" id="list-posyandu"></div>
 </div>
 
 <div id="tab-rekap" class="tab-content">
-  <div style="padding-top:10px"></div>
+  <div style="padding-top:14px"></div>
   <div class="rekap-wrap">
     <div class="rekap">
-      <div class="rekap-title" style="color:#d4860a">🏫 Rekap Sekolah</div>
+      <div class="rekap-title">Rekap Sekolah</div>
       <table>
-        <thead><tr><th>Nama</th><th>Penerima</th><th>Ikatan</th><th>Sisa</th><th>Status</th></tr></thead>
+        <thead><tr><th>Nama</th><th>Terima</th><th>Ikat</th><th>Sisa</th><th>Status</th></tr></thead>
         <tbody id="rek-sekolah"></tbody>
         <tfoot><tr>
-          <td style="color:#d4860a">TOTAL</td>
-          <td style="color:#d4860a" id="rf-stotal">—</td>
-          <td style="color:#16a05f" id="rf-sikat">—</td>
+          <td>TOTAL</td>
+          <td id="rf-stotal">—</td>
+          <td id="rf-sikat">—</td>
           <td id="rf-ssisa">—</td>
-          <td style="color:#2563eb" id="rf-sdone">—</td>
+          <td id="rf-sdone">—</td>
         </tr></tfoot>
       </table>
     </div>
-    <div class="rekap purple">
-      <div class="rekap-title" style="color:#7c3aed">🏥 Rekap Posyandu</div>
+    <div class="rekap">
+      <div class="rekap-title">Rekap Posyandu</div>
       <table>
-        <thead><tr><th>Nama</th><th>Penerima</th><th>Ikatan</th><th>Sisa</th><th>Status</th></tr></thead>
+        <thead><tr><th>Nama</th><th>Terima</th><th>Ikat</th><th>Sisa</th><th>Status</th></tr></thead>
         <tbody id="rek-posyandu"></tbody>
         <tfoot><tr>
-          <td style="color:#7c3aed">TOTAL</td>
-          <td style="color:#7c3aed" id="rf-ptotal">—</td>
-          <td style="color:#16a05f" id="rf-pikat">—</td>
+          <td>TOTAL</td>
+          <td id="rf-ptotal">—</td>
+          <td id="rf-pikat">—</td>
           <td id="rf-psisa">—</td>
-          <td style="color:#2563eb" id="rf-pdone">—</td>
+          <td id="rf-pdone">—</td>
         </tr></tfoot>
       </table>
     </div>
     <div class="grand">
-      <div class="grand-title">🏆 Grand Total</div>
+      <div class="grand-title">Total Keseluruhan</div>
       <div class="grand-grid">
-        <div class="grand-box"><div class="gl">Total Penerima</div><div class="gv" style="color:#d4860a" id="gf-total">—</div><div class="gs">orang</div></div>
-        <div class="grand-box"><div class="gl">Total Ikatan</div><div class="gv" style="color:#16a05f" id="gf-ikat">—</div><div class="gs">ikatan</div></div>
-        <div class="grand-box"><div class="gl">Sisa Ompreng</div><div class="gv" id="gf-sisa">—</div><div class="gs">pcs</div></div>
+        <div class="grand-box"><div class="gl">Penerima</div><div class="gv text-accent" id="gf-total">—</div><div class="gs">orang</div></div>
+        <div class="grand-box"><div class="gl">Ikatan</div><div class="gv" id="gf-ikat">—</div><div class="gs">ikatan</div></div>
+        <div class="grand-box"><div class="gl">Sisa</div><div class="gv text-danger" id="gf-sisa">—</div><div class="gs">pcs</div></div>
       </div>
       <div class="grand-info" id="gf-info">—</div>
     </div>
@@ -261,39 +270,36 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#f0f4f8;col
 </div>
 
 <div class="btn-reset-wrap">
-  <button class="btn-reset" onclick="resetAll()">🔄 Reset Semua Counter &amp; Centang</button>
+  <button class="btn-reset" onclick="resetAll()">Mulai Ulang Penghitung</button>
 </div>
 
 <script>
-// ── DATA AWAL ──
 const SCHOOLS_DEFAULT = [
-  {name:"RA Nurul Hasanah",                    icon:"🏫",badge:"RA",  bc:"b-ra",  n:31 },
-  {name:"TK Negeri Aba Cabang Parang Tambung", icon:"🏫",badge:"TK",  bc:"b-tk",  n:81 },
-  {name:"TK Negeri Tamalate",                  icon:"🏫",badge:"TK",  bc:"b-tk",  n:109},
-  {name:"TK Rezky Syafaat",                    icon:"🏫",badge:"TK",  bc:"b-tk",  n:108},
-  {name:"MIS Nurul Hasanah",                   icon:"🕌",badge:"MIS", bc:"b-mis", n:165},
-  {name:"SD Rezky Syafaat",                    icon:"🏫",badge:"SD",  bc:"b-sd",  n:72 },
-  {name:"MTs Ra Tabaria",                      icon:"🕌",badge:"MTs", bc:"b-mts", n:105},
-  {name:"MTs Ra Pettarani",                    icon:"🕌",badge:"MTs", bc:"b-mts", n:75 },
-  {name:"SMPN 18 Makassar",                    icon:"🏫",badge:"SMP", bc:"b-smp", n:996},
-  {name:"SMPN 26 Makassar",                    icon:"🏫",badge:"SMP", bc:"b-smp", n:752},
+  {name:"RA Nurul Hasanah",                    icon:"🏫",badge:"RA",  n:31 },
+  {name:"TK Negeri Aba Cabang Parang Tambung", icon:"🏫",badge:"TK",  n:81 },
+  {name:"TK Negeri Tamalate",                  icon:"🏫",badge:"TK",  n:109},
+  {name:"TK Rezky Syafaat",                    icon:"🏫",badge:"TK",  n:108},
+  {name:"MIS Nurul Hasanah",                   icon:"🕌",badge:"MIS", n:165},
+  {name:"SD Rezky Syafaat",                    icon:"🏫",badge:"SD",  n:72 },
+  {name:"MTs Ra Tabaria",                      icon:"🕌",badge:"MTs", n:105},
+  {name:"MTs Ra Pettarani",                    icon:"🕌",badge:"MTs", n:75 },
+  {name:"SMPN 18 Makassar",                    icon:"🏫",badge:"SMP", n:996},
+  {name:"SMPN 26 Makassar",                    icon:"🏫",badge:"SMP", n:752},
 ];
 const POSYANDU_DEFAULT = [
-  {name:"Posyandu Asoka I",   icon:"🏥",badge:"PKY",bc:"b-pky",n:24 },
-  {name:"Posyandu Asoka II",  icon:"🏥",badge:"PKY",bc:"b-pky",n:53 },
-  {name:"Posyandu Asoka III", icon:"🏥",badge:"PKY",bc:"b-pky",n:144},
-  {name:"Posyandu Asoka V",   icon:"🏥",badge:"PKY",bc:"b-pky",n:61 },
+  {name:"Posyandu Asoka I",   icon:"🏥",badge:"PKY",n:24 },
+  {name:"Posyandu Asoka II",  icon:"🏥",badge:"PKY",n:53 },
+  {name:"Posyandu Asoka III", icon:"🏥",badge:"PKY",n:144},
+  {name:"Posyandu Asoka V",   icon:"🏥",badge:"PKY",n:61 },
 ];
 
-// Deep clone biar default tidak terpengaruh
 let SCHOOLS  = SCHOOLS_DEFAULT.map(s=>({...s}));
 let POSYANDU = POSYANDU_DEFAULT.map(s=>({...s}));
 
 const ik = n => Math.floor(n/10);
 const si = n => n%10;
 
-// ── LOCAL STORAGE ──
-const LS_KEY = 'distribusi-ompreng-v2';
+const LS_KEY = 'distribusi-ompreng-v5-wa';
 function saveState() {
   try {
     localStorage.setItem(LS_KEY, JSON.stringify({
@@ -329,7 +335,6 @@ loadState();
 
 const PRESET_STEPS = [1,5,10,20,50];
 
-// ── TAB SWITCH ──
 function switchTab(name,btn){
   document.querySelectorAll('.tab-content').forEach(el=>el.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(el=>el.classList.remove('active'));
@@ -337,7 +342,6 @@ function switchTab(name,btn){
   btn.classList.add('active');
 }
 
-// ── SISA INFO ──
 function sisaInfo(cnt,n){
   const sisa_ompreng=n-cnt;
   return {
@@ -346,7 +350,6 @@ function sisaInfo(cnt,n){
   };
 }
 
-// ── BUILD CARD ──
 function buildCard(item,idx,group){
   const n      = item.n;
   const steps  = group==='s'?sSteps:pSteps;
@@ -357,71 +360,66 @@ function buildCard(item,idx,group){
   const isDone = dones[idx];
 
   const pct      = n>0?Math.min(100,Math.round(cnt/n*100)):0;
-  const barColor = cnt>=n?'linear-gradient(90deg,#22b573,#16a05f)':'linear-gradient(90deg,#f5a623,#e8793a)';
-  const pctColor = cnt>=n?'#16a05f':pct>0?'#d4860a':'#a0aec0';
+  const barColor = cnt>=n?'var(--blue-tick)':'var(--wa-teal-light)';
+  const pctColor = cnt>=n?'var(--blue-tick)':pct>0?'var(--wa-teal-light)':'var(--text-muted)';
   const info     = sisaInfo(cnt,n);
-  const sisaDone = cnt;
   const sisaLeft = n-cnt;
   const sisaOk   = sisaLeft===0&&cnt>0;
 
   const pillsHTML = PRESET_STEPS.map(s=>
-    `<span class="step-pill${step===s?' active':''}" onclick="setStep('${group}',${idx},${s})">${s}</span>`
+    `<button class="step-pill${step===s?' active':''}" onclick="setStep('${group}',${idx},${s})">${s}</button>`
   ).join('');
 
   return `
   <div class="sc${isDone?' done':''}" id="sc-${group}-${idx}">
-
     <div class="sc-head">
       <div class="sc-icon">${item.icon}</div>
       <div class="sc-name">${item.name}</div>
-      <span class="sc-badge ${item.bc}">${item.badge}</span>
+      <span class="sc-badge">${item.badge}</span>
     </div>
 
-    <!-- INFO COMPACT: penerima (editable), total ikat, sisa pcs -->
     <div class="info-compact">
-      <div class="ic-box" style="border-color:#f5a62328;background:#fff9ee">
+      <div class="ic-box">
         <div class="ic-l">Penerima</div>
         <div class="ic-edit">
           <input class="ic-n-inp" id="n-inp-${group}-${idx}" type="number" inputmode="numeric" min="1"
-            value="${n}" onchange="changeN('${group}',${idx},this.value)" title="Edit jumlah penerima">
-          <button class="ic-edit-btn" onclick="document.getElementById('n-inp-${group}-${idx}').focus()">✏️</button>
+            value="${n}" onchange="changeN('${group}',${idx},this.value)" title="Edit">
+          <button class="ic-edit-btn" onclick="document.getElementById('n-inp-${group}-${idx}').focus()">✎</button>
         </div>
         <div class="ic-s">orang</div>
       </div>
       <div class="ic-box">
         <div class="ic-l">Total Ikat</div>
-        <div class="ic-v" style="color:#16a05f" id="ic-ikat-${group}-${idx}">${ik(n)}</div>
+        <div class="ic-v" id="ic-ikat-${group}-${idx}">${ik(n)}</div>
         <div class="ic-s">ikatan</div>
       </div>
-      <div class="ic-box" style="${si(n)===0?'border-color:#22b57328;background:#edfaf5':'border-color:#fca5a528;background:#fff5f5'}">
+      <div class="ic-box">
         <div class="ic-l">Sisa pcs</div>
-        <div class="ic-v" style="color:${si(n)===0?'#16a05f':'#dc2626'}" id="ic-sisa-${group}-${idx}">${si(n)===0?'✓':si(n)}</div>
+        <div class="ic-v ${si(n)===0?'text-done':'text-danger'}" id="ic-sisa-${group}-${idx}">${si(n)===0?'✓✓':si(n)}</div>
         <div class="ic-s">${si(n)===0?'pas':'pcs'}</div>
       </div>
     </div>
 
-    <!-- SUDAH / SISA BESAR -->
     <div class="ss-row">
       <div class="ss-box sudah">
-        <div class="ss-lbl">✅ Sudah</div>
+        <div class="ss-lbl">Telah Dibagi</div>
         <div class="ss-main" id="ss-sudah-${group}-${idx}">${cnt}</div>
         <div class="ss-sub">ompreng</div>
-        <div class="ss-ikat" id="ss-sudah-ikat-${group}-${idx}">${info.done_ikat} ikat${info.done_pcs>0?' +'+info.done_pcs+' pcs':''}</div>
+        <div class="ss-ikat" id="ss-sudah-ikat-${group}-${idx}">${info.done_ikat} ikat${info.done_pcs>0?' +'+info.done_pcs+'':''}</div>
       </div>
       <div class="ss-box sisa${sisaOk?' ok':''}" id="ss-sisa-box-${group}-${idx}">
-        <div class="ss-lbl" id="ss-sisa-lbl-${group}-${idx}">${sisaOk?'✓ Lunas':'⏳ Sisa'}</div>
+        <div class="ss-lbl" id="ss-sisa-lbl-${group}-${idx}">${sisaOk?'Lunas':'Sisa'}</div>
         <div class="ss-main" id="ss-sisa-${group}-${idx}">${sisaOk?'0':sisaLeft}</div>
         <div class="ss-sub">ompreng</div>
-        <div class="ss-ikat" id="ss-sisa-ikat-${group}-${idx}">${sisaOk?'semua lunas':info.sisa_ikat+' ikat'+(info.sisa_pcs>0?' +'+info.sisa_pcs+' pcs':'')}</div>
+        <div class="ss-ikat" id="ss-sisa-ikat-${group}-${idx}">${sisaOk?'lunas':info.sisa_ikat+' ikat'+(info.sisa_pcs>0?' +'+info.sisa_pcs+'':'')}</div>
       </div>
     </div>
 
-    <!-- STEP + COUNTER -->
     <div class="step-row">
-      <span class="step-lbl">Langkah:</span>
+      <span class="step-lbl">Tambah:</span>
       <div class="step-pills" id="pills-${group}-${idx}">${pillsHTML}</div>
       <input class="step-custom" type="number" inputmode="numeric" min="1"
-        value="${PRESET_STEPS.includes(step)?'':step}" placeholder="lain"
+        value="${PRESET_STEPS.includes(step)?'':step}" placeholder="..."
         id="step-inp-${group}-${idx}"
         oninput="customStep('${group}',${idx},this.value)">
     </div>
@@ -430,7 +428,7 @@ function buildCard(item,idx,group){
       <div class="cnt-row">
         <button class="cbtn minus step-btn" onclick="adjCtr('${group}',${idx},-1)">−1</button>
         <button class="cbtn minus step-btn" onclick="adjCtr('${group}',${idx},-${step})">−${step}</button>
-        <input class="cnt-input${cnt>=n?' full':''}" type="number" inputmode="numeric" min="0" max="${n}"
+        <input class="cnt-input" type="number" inputmode="numeric" min="0" max="${n}"
           value="${cnt||''}" placeholder="0"
           id="inp-${group}-${idx}"
           oninput="manualCtr('${group}',${idx},this.value)">
@@ -439,7 +437,6 @@ function buildCard(item,idx,group){
       </div>
     </div>
 
-    <!-- PROGRESS BAR mini -->
     <div class="cnt-bar-wrap">
       <div class="cnt-bar-bg">
         <div class="cnt-bar-fill" id="bar-${group}-${idx}" style="width:${pct}%;background:${barColor}"></div>
@@ -447,32 +444,28 @@ function buildCard(item,idx,group){
       <div class="cnt-pct" id="pct-${group}-${idx}" style="color:${pctColor}">${pct}%</div>
     </div>
 
-    <!-- DONE TOGGLE -->
     <div class="sc-done">
       <div class="done-toggle${isDone?' checked':''}" onclick="toggleDone('${group}',${idx})" id="dt-${group}-${idx}">
         <div class="done-box">✓</div>
-        <span class="done-lbl">${isDone?'Sudah diterima':'Tandai sudah diterima'}</span>
+        <span class="done-lbl">${isDone?'Selesai':'Tandai Selesai'}</span>
       </div>
-      <span class="done-stamp${isDone?' show':''}" id="ds-${group}-${idx}">✅ SELESAI</span>
+      <span class="done-stamp${isDone?' show':''}" id="ds-${group}-${idx}">✓✓ Selesai</span>
     </div>
   </div>`;
 }
 
-// ── RENDER LIST ──
 function renderList(group){
   const data=group==='s'?SCHOOLS:POSYANDU;
   const el=document.getElementById(group==='s'?'list-sekolah':'list-posyandu');
   el.innerHTML=data.map((item,i)=>buildCard(item,i,group)).join('');
 }
 
-// ── CHANGE N (penerima) ──
 function changeN(group,idx,val){
   let v=parseInt(val)||1;
   if(v<1) v=1;
   const data=group==='s'?SCHOOLS:POSYANDU;
   const ctrs=group==='s'?sCtrs:pCtrs;
   data[idx].n=v;
-  // clamp counter
   if(ctrs[idx]>v) ctrs[idx]=v;
   updateCardDisplay(group,idx);
   updateGlobal();
@@ -480,7 +473,6 @@ function changeN(group,idx,val){
   saveState();
 }
 
-// ── SET STEP ──
 function setStep(group,idx,step){
   if(group==='s') sSteps[idx]=step; else pSteps[idx]=step;
   const pillsEl=document.getElementById(`pills-${group}-${idx}`);
@@ -493,7 +485,6 @@ function setStep(group,idx,step){
   saveState();
 }
 
-// ── CUSTOM STEP ──
 function customStep(group,idx,val){
   const s=parseInt(val);
   if(!s||s<1) return;
@@ -504,7 +495,6 @@ function customStep(group,idx,val){
   saveState();
 }
 
-// ── REBUILD CARD ──
 function rebuildCard(group,idx,keepCustom){
   const data=group==='s'?SCHOOLS:POSYANDU;
   const el=document.getElementById(`sc-${group}-${idx}`);
@@ -514,7 +504,6 @@ function rebuildCard(group,idx,keepCustom){
   if(keepCustom){const ci=document.getElementById(`step-inp-${group}-${idx}`);if(ci)ci.value=cv;}
 }
 
-// ── ADJUST COUNTER ──
 function adjCtr(group,idx,delta){
   const n=(group==='s'?SCHOOLS:POSYANDU)[idx].n;
   const ctrs=group==='s'?sCtrs:pCtrs;
@@ -525,7 +514,6 @@ function adjCtr(group,idx,delta){
   saveState();
 }
 
-// ── MANUAL INPUT ──
 function manualCtr(group,idx,val){
   const n=(group==='s'?SCHOOLS:POSYANDU)[idx].n;
   let v=parseInt(val)||0;
@@ -539,7 +527,6 @@ function manualCtr(group,idx,val){
   saveState();
 }
 
-// ── UPDATE CARD DISPLAY ──
 function updateCardDisplay(group,idx){
   const data=group==='s'?SCHOOLS:POSYANDU;
   const ctrs=group==='s'?sCtrs:pCtrs;
@@ -550,47 +537,42 @@ function updateCardDisplay(group,idx){
   const sisaLeft=n-cnt;
   const sisaOk=sisaLeft===0&&cnt>0;
 
-  // info compact — penerima (sudah dihandle di changeN via rebuildCard tidak, kita update langsung)
   const icIkat=document.getElementById(`ic-ikat-${group}-${idx}`);
   if(icIkat) icIkat.textContent=ik(n);
   const icSisa=document.getElementById(`ic-sisa-${group}-${idx}`);
-  if(icSisa){ icSisa.textContent=si(n)===0?'✓':si(n); icSisa.style.color=si(n)===0?'#16a05f':'#dc2626'; }
-  const icSisaBox=icSisa?.closest('.ic-box');
-  if(icSisaBox){ icSisaBox.style.borderColor=si(n)===0?'#22b57328':'#fca5a528'; icSisaBox.style.background=si(n)===0?'#edfaf5':'#fff5f5'; }
+  if(icSisa){ 
+    icSisa.textContent=si(n)===0?'✓✓':si(n); 
+    icSisa.className=si(n)===0?'ic-v text-done':'ic-v text-danger';
+  }
 
-  // sudah
   const ssSudah=document.getElementById(`ss-sudah-${group}-${idx}`);
   if(ssSudah) ssSudah.textContent=cnt;
   const ssSudahIkat=document.getElementById(`ss-sudah-ikat-${group}-${idx}`);
-  if(ssSudahIkat) ssSudahIkat.textContent=info.done_ikat+' ikat'+(info.done_pcs>0?' +'+info.done_pcs+' pcs':'');
+  if(ssSudahIkat) ssSudahIkat.textContent=info.done_ikat+' ikat'+(info.done_pcs>0?' +'+info.done_pcs+'':'');
 
-  // sisa box
   const sisaBox=document.getElementById(`ss-sisa-box-${group}-${idx}`);
   if(sisaBox) sisaBox.className='ss-box sisa'+(sisaOk?' ok':'');
   const sisaLbl=document.getElementById(`ss-sisa-lbl-${group}-${idx}`);
-  if(sisaLbl) sisaLbl.textContent=sisaOk?'✓ Lunas':'⏳ Sisa';
+  if(sisaLbl) sisaLbl.textContent=sisaOk?'Lunas':'Sisa';
   const sisaNum=document.getElementById(`ss-sisa-${group}-${idx}`);
   if(sisaNum) sisaNum.textContent=sisaOk?'0':sisaLeft;
   const sisaIkat=document.getElementById(`ss-sisa-ikat-${group}-${idx}`);
-  if(sisaIkat) sisaIkat.textContent=sisaOk?'semua lunas':info.sisa_ikat+' ikat'+(info.sisa_pcs>0?' +'+info.sisa_pcs+' pcs':'');
+  if(sisaIkat) sisaIkat.textContent=sisaOk?'lunas':info.sisa_ikat+' ikat'+(info.sisa_pcs>0?' +'+info.sisa_pcs+'':'');
 
-  // counter input
   const inpEl=document.getElementById(`inp-${group}-${idx}`);
-  if(inpEl){ inpEl.value=cnt===0?'':cnt; inpEl.className='cnt-input'+(cnt>=n?' full':''); }
+  if(inpEl){ inpEl.value=cnt===0?'':cnt; }
 
-  // bar + pct
-  const barColor=cnt>=n?'linear-gradient(90deg,#22b573,#16a05f)':'linear-gradient(90deg,#f5a623,#e8793a)';
+  const barColor=cnt>=n?'var(--blue-tick)':'var(--wa-teal-light)';
+  const pctColor=cnt>=n?'var(--blue-tick)':pct>0?'var(--wa-teal-light)':'var(--text-muted)';
   const barEl=document.getElementById(`bar-${group}-${idx}`);
   if(barEl){ barEl.style.width=pct+'%'; barEl.style.background=barColor; }
   const pctEl=document.getElementById(`pct-${group}-${idx}`);
-  if(pctEl){ pctEl.textContent=pct+'%'; pctEl.style.color=cnt>=n?'#16a05f':pct>0?'#d4860a':'#a0aec0'; }
+  if(pctEl){ pctEl.textContent=pct+'%'; pctEl.style.color=pctColor; }
 
-  // n input clamp display
   const nInp=document.getElementById(`n-inp-${group}-${idx}`);
   if(nInp) nInp.value=n;
 }
 
-// ── TOGGLE DONE ──
 function toggleDone(group,idx){
   if(group==='s') sDone[idx]=!sDone[idx]; else pDone[idx]=!pDone[idx];
   const isDone=(group==='s'?sDone:pDone)[idx];
@@ -598,17 +580,15 @@ function toggleDone(group,idx){
   const dt=document.getElementById(`dt-${group}-${idx}`);
   const ds=document.getElementById(`ds-${group}-${idx}`);
   sc.className='sc'+(isDone?' done':'');
-  sc.querySelector('.sc-name').style.textDecoration=isDone?'line-through':'';
-  sc.querySelector('.sc-name').style.opacity=isDone?'0.4':'';
+  sc.querySelector('.sc-name').style.color=isDone?'var(--text-muted)':'var(--text-main)';
   dt.className='done-toggle'+(isDone?' checked':'');
-  dt.querySelector('.done-lbl').textContent=isDone?'Sudah diterima':'Tandai sudah diterima';
+  dt.querySelector('.done-lbl').textContent=isDone?'Selesai':'Tandai Selesai';
   ds.className='done-stamp'+(isDone?' show':'');
   updateGlobal();
   updateRekap();
   saveState();
 }
 
-// ── UPDATE GLOBAL ──
 function updateGlobal(){
   const totalS=SCHOOLS.reduce((a,s)=>a+s.n,0);
   const totalP=POSYANDU.reduce((a,s)=>a+s.n,0);
@@ -622,49 +602,49 @@ function updateGlobal(){
   document.getElementById('g-total').textContent=grand.toLocaleString('id');
   document.getElementById('g-ikat').textContent=ik(grand);
   document.getElementById('g-sisa').textContent=si(grand);
+  document.getElementById('g-sisa').className = si(grand)===0?'val text-done':'val text-danger';
   document.getElementById('g-done').textContent=dAll+'/'+total;
-  document.getElementById('prog-txt').textContent=dAll+' / '+total+' lokasi ('+pct+'%)';
+  document.getElementById('prog-txt').textContent=dAll+' / '+total+' ('+pct+'%)';
   document.getElementById('prog-fill').style.width=pct+'%';
 
   document.getElementById('ps-total').textContent=totalP;
   document.getElementById('ps-ikat').textContent=ik(totalP);
   const psEl=document.getElementById('ps-sisa');
-  psEl.textContent=si(totalP)===0?'✓ pas':si(totalP)+' pcs';
-  psEl.style.color=si(totalP)===0?'#16a05f':'#dc2626';
+  psEl.textContent=si(totalP)===0?'✓✓ pas':si(totalP)+' pcs';
+  psEl.className = si(totalP)===0?'pv text-done':'pv text-danger';
 
-  document.getElementById('sec-sekolah').textContent='Sekolah / Lembaga — '+dS+'/10 selesai';
+  document.getElementById('sec-sekolah').textContent='Daftar Sekolah / Lembaga ('+dS+'/'+SCHOOLS.length+' Selesai)';
 }
 
-// ── UPDATE REKAP ──
 function updateRekap(){
   const sb=document.getElementById('rek-sekolah');
   let stot=0;
   sb.innerHTML=SCHOOLS.map((s,i)=>{stot+=s.n;return`<tr>
     <td>${s.name}</td>
-    <td style="color:#d4860a;font-weight:700">${s.n}</td>
-    <td style="color:#16a05f;font-weight:700">${ik(s.n)}</td>
-    <td style="color:${si(s.n)===0?'#16a05f':'#dc2626'};font-weight:700">${si(s.n)===0?'✓':'+'+si(s.n)}</td>
-    <td>${sDone[i]?'✅':'⏳'}</td></tr>`;}).join('');
+    <td>${s.n}</td>
+    <td>${ik(s.n)}</td>
+    <td class="${si(s.n)===0?'text-done':'text-danger'}">${si(s.n)===0?'✓✓':'+'+si(s.n)}</td>
+    <td class="${sDone[i]?'text-done':''}">${sDone[i]?'✓✓':'-'}</td></tr>`;}).join('');
   document.getElementById('rf-stotal').textContent=stot;
   document.getElementById('rf-sikat').textContent=ik(stot)+' ikat';
   const rss=document.getElementById('rf-ssisa');
-  rss.textContent=si(stot)===0?'✓ pas':'+'+si(stot)+' pcs';
-  rss.style.color=si(stot)===0?'#16a05f':'#dc2626';
+  rss.textContent=si(stot)===0?'✓✓ pas':'+'+si(stot)+' pcs';
+  rss.className=si(stot)===0?'text-done':'text-danger';
   document.getElementById('rf-sdone').textContent=sDone.filter(Boolean).length+'/10';
 
   const pb=document.getElementById('rek-posyandu');
   let ptot=0;
   pb.innerHTML=POSYANDU.map((s,i)=>{ptot+=s.n;return`<tr>
     <td>${s.name}</td>
-    <td style="color:#7c3aed;font-weight:700">${s.n}</td>
-    <td style="color:#16a05f;font-weight:700">${ik(s.n)}</td>
-    <td style="color:${si(s.n)===0?'#16a05f':'#dc2626'};font-weight:700">${si(s.n)===0?'✓':'+'+si(s.n)}</td>
-    <td>${pDone[i]?'✅':'⏳'}</td></tr>`;}).join('');
+    <td>${s.n}</td>
+    <td>${ik(s.n)}</td>
+    <td class="${si(s.n)===0?'text-done':'text-danger'}">${si(s.n)===0?'✓✓':'+'+si(s.n)}</td>
+    <td class="${pDone[i]?'text-done':''}">${pDone[i]?'✓✓':'-'}</td></tr>`;}).join('');
   document.getElementById('rf-ptotal').textContent=ptot;
   document.getElementById('rf-pikat').textContent=ik(ptot)+' ikat';
   const rps=document.getElementById('rf-psisa');
-  rps.textContent=si(ptot)===0?'✓ pas':'+'+si(ptot)+' pcs';
-  rps.style.color=si(ptot)===0?'#16a05f':'#dc2626';
+  rps.textContent=si(ptot)===0?'✓✓ pas':'+'+si(ptot)+' pcs';
+  rps.className=si(ptot)===0?'text-done':'text-danger';
   document.getElementById('rf-pdone').textContent=pDone.filter(Boolean).length+'/4';
 
   const grand=stot+ptot;
@@ -672,14 +652,13 @@ function updateRekap(){
   document.getElementById('gf-ikat').textContent=ik(grand);
   const gfs=document.getElementById('gf-sisa');
   gfs.textContent=si(grand);
-  gfs.style.color=si(grand)===0?'#16a05f':'#dc2626';
+  gfs.className = si(grand)===0?'gv text-done':'gv text-danger';
   document.getElementById('gf-info').textContent=
-    ik(grand)+' ikatan penuh + '+si(grand)+' ompreng sisa = '+grand.toLocaleString('id')+' penerima total';
+    ik(grand)+' ikatan penuh + '+si(grand)+' ompreng sisa = '+grand.toLocaleString('id')+' penerima';
 }
 
-// ── RESET ──
 function resetAll(){
-  if(!confirm('Reset semua counter dan centang? Jumlah penerima tetap tersimpan.')) return;
+  if(!confirm('Reset semua data penghitung? Jumlah penerima yang telah Anda ubah akan tetap tersimpan.')) return;
   sCtrs=SCHOOLS.map(()=>0);  sDone=SCHOOLS.map(()=>false);  sSteps=SCHOOLS.map(()=>10);
   pCtrs=POSYANDU.map(()=>0); pDone=POSYANDU.map(()=>false); pSteps=POSYANDU.map(()=>10);
   renderList('s'); renderList('p');
@@ -687,7 +666,6 @@ function resetAll(){
   saveState();
 }
 
-// ── INIT ──
 renderList('s');
 renderList('p');
 updateGlobal();
