@@ -5,182 +5,189 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Distribusi Ompreng</title>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
+
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:system-ui,-apple-system,sans-serif;background:#0c1520;color:#e8f0f8;padding-bottom:70px}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#f0f4f8;color:#1a2332;padding-bottom:90px;min-height:100vh}
 
 /* HEADER */
-.hdr{background:linear-gradient(160deg,#1b3050,#0c1520);border-bottom:2px solid rgba(245,166,35,.2);padding:20px 16px 16px;text-align:center}
-.hdr-icon{font-size:2rem;margin-bottom:4px}
-.hdr h1{font-size:1.25rem;font-weight:900;color:#f5a623;line-height:1.2}
-.hdr-sub{color:#6a8aaa;font-size:.72rem;margin-top:4px}
+.hdr{background:linear-gradient(160deg,#fff9ee,#fffdf8);border-bottom:2px solid #f5a62328;padding:18px 16px 14px;text-align:center;box-shadow:0 2px 12px #f5a62314}
+.hdr-icon{font-size:1.8rem;margin-bottom:3px}
+.hdr h1{font-size:1.2rem;font-weight:900;color:#d4860a;line-height:1.2}
+.hdr-sub{color:#8a9bb0;font-size:.7rem;margin-top:3px;font-weight:500}
 
 /* CHIP */
-.chip{display:flex;align-items:center;gap:8px;background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.2);border-radius:30px;padding:6px 14px;margin:12px 14px 0;font-size:.72rem;color:#f5a623;font-weight:500}
+.chip{display:flex;align-items:center;gap:8px;background:#fff8e8;border:1.5px solid #f5c96338;border-radius:30px;padding:5px 13px;margin:10px 14px 0;font-size:.7rem;color:#c47d0a;font-weight:600}
 
 /* SUMMARY */
-.sum-row{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;padding:12px 14px 0}
-.sum-card{background:#131f2e;border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:10px 4px;text-align:center}
-.sum-card .lbl{font-size:.57rem;color:#6a8aaa;text-transform:uppercase;letter-spacing:.4px;margin-bottom:3px}
-.sum-card .val{font-weight:800;font-size:1.2rem;line-height:1}
-.sum-card .sub{font-size:.57rem;color:#6a8aaa;margin-top:2px}
+.sum-row{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:10px 14px 0}
+.sum-card{background:#fff;border:1.5px solid #e8eef5;border-radius:12px;padding:9px 4px;text-align:center;box-shadow:0 2px 6px #1a23320c}
+.sum-card .lbl{font-size:.55rem;color:#8a9bb0;text-transform:uppercase;letter-spacing:.4px;margin-bottom:2px;font-weight:600}
+.sum-card .val{font-weight:900;font-size:1.15rem;line-height:1}
+.sum-card .sub{font-size:.55rem;color:#a0aec0;margin-top:1px;font-weight:500}
 
 /* PROGRESS */
-.prog-wrap{margin:10px 14px 0;background:#131f2e;border:1px solid rgba(255,255,255,.05);border-radius:12px;padding:10px 12px}
-.prog-top{display:flex;justify-content:space-between;margin-bottom:6px}
-.prog-top .pl{font-size:.65rem;color:#6a8aaa;font-weight:600;text-transform:uppercase;letter-spacing:.6px}
-.prog-top .pc{font-size:.7rem;color:#3ecf8e;font-weight:700}
-.prog-bg{background:#192840;border-radius:20px;height:7px;overflow:hidden}
-.prog-fill{height:100%;border-radius:20px;background:linear-gradient(90deg,#3ecf8e,#27a96b);transition:width .35s;width:0%}
+.prog-wrap{margin:8px 14px 0;background:#fff;border:1.5px solid #e8eef5;border-radius:12px;padding:9px 12px;box-shadow:0 2px 6px #1a23320c}
+.prog-top{display:flex;justify-content:space-between;margin-bottom:5px}
+.prog-top .pl{font-size:.62rem;color:#8a9bb0;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.prog-top .pc{font-size:.68rem;color:#16a05f;font-weight:800}
+.prog-bg{background:#edf2f7;border-radius:20px;height:7px;overflow:hidden}
+.prog-fill{height:100%;border-radius:20px;background:linear-gradient(90deg,#22b573,#16a05f);transition:width .35s;width:0%}
 
 /* TABS */
-.tabs{display:flex;gap:6px;margin:12px 14px 0;background:#192840;border-radius:14px;padding:6px;border:1px solid rgba(255,255,255,.05)}
-.tab-btn{flex:1;padding:9px 4px;border:none;cursor:pointer;font-weight:600;font-size:.73rem;border-radius:10px;background:transparent;color:#6a8aaa;transition:all .2s}
-.tab-btn.active{background:#f5a623;color:#1a1000}
+.tabs{display:flex;gap:5px;margin:10px 14px 0;background:#fff;border-radius:12px;padding:5px;border:1.5px solid #e8eef5;box-shadow:0 2px 6px #1a23320c}
+.tab-btn{flex:1;padding:8px 4px;border:none;cursor:pointer;font-weight:700;font-size:.7rem;border-radius:9px;background:transparent;color:#8a9bb0;transition:all .2s;font-family:inherit}
+.tab-btn.active{background:#f5a623;color:#fff;box-shadow:0 2px 8px #f5a62338}
 
 /* SECTION TITLE */
-.sec-title{padding:14px 14px 8px;font-size:.65rem;color:#6a8aaa;text-transform:uppercase;letter-spacing:1.2px;font-weight:600}
+.sec-title{padding:12px 14px 6px;font-size:.62rem;color:#8a9bb0;text-transform:uppercase;letter-spacing:1.2px;font-weight:700}
 
 /* LIST */
-.card-list{padding:0 14px;display:flex;flex-direction:column;gap:10px}
+.card-list{padding:0 14px;display:flex;flex-direction:column;gap:9px}
 
 /* CARD */
-.sc{background:#131f2e;border:1.5px solid rgba(255,255,255,.05);border-radius:16px;overflow:hidden;transition:border-color .25s,background .25s}
-.sc.done{border-color:rgba(62,207,142,.35);background:linear-gradient(135deg,#131f2e 75%,rgba(62,207,142,.06) 100%)}
+.sc{background:#fff;border:1.5px solid #e8eef5;border-radius:16px;overflow:hidden;transition:border-color .25s,box-shadow .25s;box-shadow:0 2px 8px #1a233210}
+.sc.done{border-color:#22b57338;background:linear-gradient(135deg,#fff 70%,#edfaf5 100%)}
 
-.sc-head{display:flex;align-items:center;gap:10px;padding:11px 13px 6px}
-.sc-icon{width:34px;height:34px;border-radius:10px;flex-shrink:0;background:linear-gradient(135deg,#f5a623,#e8793a);display:flex;align-items:center;justify-content:center;font-size:.95rem}
-.sc-name{flex:1;font-size:.79rem;font-weight:600;color:#e8f0f8;line-height:1.3;transition:opacity .2s}
-.sc.done .sc-name{text-decoration:line-through;opacity:.5}
-.sc-badge{font-size:.58rem;padding:2px 7px;border-radius:20px;font-weight:700;white-space:nowrap}
-.b-ra {background:rgba(126,211,133,.18);color:#7ed385}
-.b-tk {background:rgba(130,201,255,.18);color:#82c9ff}
-.b-mis{background:rgba(245,166,35,.18); color:#f5a623}
-.b-sd {background:rgba(245,166,35,.18); color:#f5a623}
-.b-mts{background:rgba(240,106,106,.18);color:#f06a6a}
-.b-smp{background:rgba(62,207,142,.18); color:#3ecf8e}
-.b-pky{background:rgba(180,120,255,.18);color:#b478ff}
+/* HEAD */
+.sc-head{display:flex;align-items:center;gap:9px;padding:10px 12px 0}
+.sc-icon{width:32px;height:32px;border-radius:9px;flex-shrink:0;background:linear-gradient(135deg,#f5a623,#e8793a);display:flex;align-items:center;justify-content:center;font-size:.9rem}
+.sc-name{flex:1;font-size:.78rem;font-weight:700;color:#1a2332;line-height:1.25}
+.sc.done .sc-name{text-decoration:line-through;opacity:.4}
+.sc-badge{font-size:.56rem;padding:2px 7px;border-radius:20px;font-weight:800;white-space:nowrap}
+.b-ra {background:#e8f5ea;color:#2d8a40}
+.b-tk {background:#e8f2ff;color:#2563eb}
+.b-mis{background:#fff8e8;color:#d4860a}
+.b-sd {background:#fff8e8;color:#d4860a}
+.b-mts{background:#fff0f0;color:#dc2626}
+.b-smp{background:#e8faf3;color:#16a05f}
+.b-pky{background:#f3e8ff;color:#7c3aed}
 
-/* STATS 5 col */
-.sc-stats{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;padding:0 13px}
-.stat-box{background:#192840;border-radius:9px;padding:7px 3px;text-align:center}
-.stat-box .sl{font-size:.5rem;color:#6a8aaa;text-transform:uppercase;letter-spacing:.3px;margin-bottom:2px}
-.stat-box .sv{font-weight:800;font-size:.88rem;line-height:1}
-.stat-box .ss{font-size:.5rem;color:#6a8aaa;margin-top:1px}
+/* ── INFO COMPACT (3 col kecil) ── */
+.info-compact{display:flex;gap:5px;padding:7px 12px 5px;align-items:stretch}
+.ic-box{flex:1;background:#f7f9fc;border:1px solid #e8eef5;border-radius:8px;padding:5px 4px;text-align:center}
+.ic-box .ic-l{font-size:.48rem;color:#8a9bb0;text-transform:uppercase;letter-spacing:.3px;font-weight:600;margin-bottom:1px}
+.ic-box .ic-v{font-size:.78rem;font-weight:800;line-height:1}
+.ic-box .ic-s{font-size:.45rem;color:#a0aec0;font-weight:500;margin-top:1px}
+/* edit penerima */
+.ic-edit{display:flex;align-items:center;justify-content:center;gap:2px}
+.ic-n-inp{width:36px;font-size:.78rem;font-weight:800;text-align:center;border:none;background:transparent;outline:none;color:#d4860a;font-family:inherit;-webkit-appearance:none;appearance:none}
+.ic-edit-btn{font-size:.6rem;cursor:pointer;color:#d4860a;opacity:.6;line-height:1;background:none;border:none;padding:0;font-family:inherit}
+.ic-edit-btn:hover{opacity:1}
 
-/* ── SISA IKATAN BOX (highlight) ── */
-.stat-box.sisa-ikat{background:linear-gradient(135deg,rgba(240,106,106,.12),rgba(240,106,106,.06));border:1px solid rgba(240,106,106,.25)}
-.stat-box.sisa-ikat.ok{background:linear-gradient(135deg,rgba(62,207,142,.12),rgba(62,207,142,.06));border-color:rgba(62,207,142,.25)}
+/* ── SUDAH / SISA BESAR ── */
+.ss-row{display:grid;grid-template-columns:1fr 1fr;gap:7px;padding:4px 12px 8px}
+.ss-box{border-radius:12px;padding:10px 8px 9px;text-align:center;position:relative}
+.ss-box.sudah{background:linear-gradient(135deg,#e8faf3,#f0fdf7);border:1.5px solid #22b57328}
+.ss-box.sisa{background:linear-gradient(135deg,#fff5f5,#fff0f0);border:1.5px solid #fca5a528}
+.ss-box.sisa.ok{background:linear-gradient(135deg,#e8faf3,#f0fdf7);border-color:#22b57328}
+.ss-lbl{font-size:.55rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px}
+.ss-box.sudah .ss-lbl{color:#16a05f}
+.ss-box.sisa  .ss-lbl{color:#dc2626}
+.ss-box.sisa.ok .ss-lbl{color:#16a05f}
+.ss-main{font-size:1.7rem;font-weight:900;line-height:1;margin-bottom:2px}
+.ss-box.sudah .ss-main{color:#16a05f}
+.ss-box.sisa  .ss-main{color:#dc2626}
+.ss-box.sisa.ok .ss-main{color:#16a05f}
+.ss-sub{font-size:.6rem;font-weight:600;opacity:.7}
+.ss-ikat{font-size:.65rem;font-weight:700;margin-top:3px;padding:2px 8px;border-radius:20px;display:inline-block}
+.ss-box.sudah .ss-ikat{background:#22b57318;color:#16a05f}
+.ss-box.sisa  .ss-ikat{background:#dc262612;color:#dc2626}
+.ss-box.sisa.ok .ss-ikat{background:#22b57318;color:#16a05f}
 
-/* CUSTOM STEP SELECTOR */
-.step-row{display:flex;align-items:center;gap:7px;padding:9px 13px 5px}
-.step-lbl{font-size:.6rem;color:#6a8aaa;font-weight:600;text-transform:uppercase;letter-spacing:.5px;white-space:nowrap}
-.step-pills{display:flex;gap:4px;flex:1;flex-wrap:wrap}
-.step-pill{padding:4px 9px;border-radius:20px;border:1px solid rgba(255,255,255,.1);background:#192840;color:#6a8aaa;font-size:.68rem;font-weight:600;cursor:pointer;transition:all .15s}
-.step-pill.active{background:#f5a623;border-color:#f5a623;color:#1a1000}
-.step-custom{width:52px;padding:4px 6px;border-radius:8px;border:1px solid rgba(255,255,255,.1);background:#192840;color:#e8f0f8;font-size:.72rem;font-weight:700;text-align:center;outline:none;-webkit-appearance:none}
+/* STEP SELECTOR */
+.step-row{display:flex;align-items:center;gap:6px;padding:0 12px 6px}
+.step-lbl{font-size:.55rem;color:#8a9bb0;font-weight:700;text-transform:uppercase;letter-spacing:.4px;white-space:nowrap}
+.step-pills{display:flex;gap:3px;flex:1;flex-wrap:wrap}
+.step-pill{padding:3px 8px;border-radius:20px;border:1px solid #e8eef5;background:#f7f9fc;color:#8a9bb0;font-size:.62rem;font-weight:700;cursor:pointer;transition:all .15s}
+.step-pill.active{background:#f5a623;border-color:#f5a623;color:#fff}
+.step-custom{width:46px;padding:3px 5px;border-radius:7px;border:1px solid #e8eef5;background:#f7f9fc;color:#1a2332;font-size:.65rem;font-weight:700;text-align:center;outline:none;-webkit-appearance:none;font-family:inherit}
 .step-custom:focus{border-color:#f5a623}
 
 /* COUNTER */
-.sc-counter{padding:5px 13px 0}
-.cnt-lbl{font-size:.63rem;color:#6a8aaa;font-weight:500;margin-bottom:5px}
-.cnt-row{display:flex;align-items:center;gap:5px}
-.cbtn{height:38px;border-radius:8px;border:none;font-weight:700;cursor:pointer;transition:all .15s;flex-shrink:0}
-.cbtn:active{transform:scale(.93)}
-.cbtn.minus{background:rgba(240,106,106,.12);border:1px solid rgba(240,106,106,.3);color:#f06a6a}
-.cbtn.plus {background:rgba(62,207,142,.12);border:1px solid rgba(62,207,142,.3);color:#3ecf8e}
-.cbtn.step-btn{min-width:48px;font-size:.72rem;padding:0 8px}
-.cbtn.one-btn{width:38px;font-size:1.25rem}
-.cnt-input{flex:1;min-width:0;text-align:center;font-weight:800;font-size:1.1rem;background:#192840;color:#e8f0f8;border:1.5px solid rgba(255,255,255,.1);border-radius:10px;padding:8px 4px;outline:none;-webkit-appearance:none;appearance:none}
+.sc-counter{padding:0 12px 0}
+.cnt-row{display:flex;align-items:center;gap:4px}
+.cbtn{height:36px;border-radius:8px;border:none;font-weight:800;cursor:pointer;transition:all .15s;flex-shrink:0;font-family:inherit}
+.cbtn:active{transform:scale(.92)}
+.cbtn.minus{background:#fff0f0;border:1.5px solid #fca5a545;color:#dc2626}
+.cbtn.plus {background:#e8faf3;border:1.5px solid #22b57345;color:#16a05f}
+.cbtn.step-btn{min-width:44px;font-size:.68rem;padding:0 7px}
+.cnt-input{flex:1;min-width:0;text-align:center;font-weight:900;font-size:1.05rem;background:#f7f9fc;color:#1a2332;border:1.5px solid #e8eef5;border-radius:9px;padding:7px 4px;outline:none;-webkit-appearance:none;appearance:none;font-family:inherit}
 .cnt-input:focus{border-color:#f5a623}
-.cnt-input.full{border-color:rgba(62,207,142,.5) !important;color:#3ecf8e}
+.cnt-input.full{border-color:#22b57355 !important;color:#16a05f;background:#edfaf5}
 
-/* STATUS + BAR */
-.cnt-status{margin-top:5px;font-size:.68rem;font-weight:600;text-align:center;min-height:16px;padding:3px 0}
-.cnt-bar-bg{background:#192840;border-radius:20px;height:6px;overflow:hidden;margin-top:4px;margin-bottom:2px}
+/* PROG BAR mini */
+.cnt-bar-wrap{padding:5px 12px 0}
+.cnt-bar-bg{background:#edf2f7;border-radius:20px;height:5px;overflow:hidden}
 .cnt-bar-fill{height:100%;border-radius:20px;transition:width .25s}
-
-/* SISA IKATAN DISPLAY inside counter */
-.sisa-ikat-row{display:flex;gap:6px;margin-top:6px}
-.sib{flex:1;background:#192840;border-radius:9px;padding:6px 4px;text-align:center;border:1px solid rgba(255,255,255,.06)}
-.sib .sl{font-size:.52rem;color:#6a8aaa;text-transform:uppercase;letter-spacing:.3px;margin-bottom:2px}
-.sib .sv{font-weight:800;font-size:.9rem;line-height:1}
-.sib .ss{font-size:.52rem;color:#6a8aaa;margin-top:1px}
-.sib.red-box{border-color:rgba(240,106,106,.25);background:rgba(240,106,106,.07)}
-.sib.green-box{border-color:rgba(62,207,142,.25);background:rgba(62,207,142,.07)}
-.sib.orange-box{border-color:rgba(245,166,35,.25);background:rgba(245,166,35,.07)}
+.cnt-pct{font-size:.55rem;font-weight:700;text-align:right;margin-top:2px}
 
 /* DONE */
-.sc-done{display:flex;align-items:center;gap:8px;padding:8px 13px 12px}
-.done-toggle{display:flex;align-items:center;gap:8px;cursor:pointer;flex:1;-webkit-tap-highlight-color:transparent}
-.done-box{width:28px;height:28px;border-radius:8px;flex-shrink:0;border:2px solid rgba(255,255,255,.12);background:#192840;display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:700;color:transparent;transition:all .2s}
-.done-toggle.checked .done-box{background:#3ecf8e;border-color:#3ecf8e;color:#0c1520;box-shadow:0 0 14px rgba(62,207,142,.35)}
-.done-lbl{font-size:.75rem;color:#6a8aaa;font-weight:500;transition:color .2s}
-.done-toggle.checked .done-lbl{color:#3ecf8e;font-weight:600}
-.done-stamp{font-size:.63rem;font-weight:700;color:#3ecf8e;background:rgba(62,207,142,.1);border:1px solid rgba(62,207,142,.25);border-radius:20px;padding:3px 9px;display:none}
+.sc-done{display:flex;align-items:center;gap:8px;padding:7px 12px 11px}
+.done-toggle{display:flex;align-items:center;gap:7px;cursor:pointer;flex:1;-webkit-tap-highlight-color:transparent}
+.done-box{width:26px;height:26px;border-radius:7px;flex-shrink:0;border:2px solid #d1dce8;background:#f7f9fc;display:flex;align-items:center;justify-content:center;font-size:.95rem;font-weight:700;color:transparent;transition:all .2s}
+.done-toggle.checked .done-box{background:#22b573;border-color:#22b573;color:#fff;box-shadow:0 0 10px #22b57330}
+.done-lbl{font-size:.72rem;color:#8a9bb0;font-weight:600;transition:color .2s}
+.done-toggle.checked .done-lbl{color:#16a05f;font-weight:700}
+.done-stamp{font-size:.6rem;font-weight:800;color:#16a05f;background:#e8faf3;border:1.5px solid #22b57328;border-radius:20px;padding:2px 9px;display:none}
 .done-stamp.show{display:inline}
 
 /* REKAP TABLE */
 .rekap-wrap{padding:0 14px}
-.rekap{background:#131f2e;border:1px solid rgba(245,166,35,.18);border-radius:14px;overflow:hidden;margin-bottom:12px}
-.rekap.purple{border-color:rgba(180,120,255,.2)}
-.rekap-title{padding:10px 13px;font-size:.65rem;text-transform:uppercase;letter-spacing:1px;font-weight:600;border-bottom:1px solid rgba(245,166,35,.15)}
-.rekap.purple .rekap-title{border-bottom-color:rgba(180,120,255,.15)}
-.rekap table{width:100%;border-collapse:collapse;font-size:.68rem}
-.rekap th{padding:6px 6px;text-align:center;color:#6a8aaa;font-weight:500;font-size:.56rem;text-transform:uppercase}
+.rekap{background:#fff;border:1.5px solid #f5a62322;border-radius:14px;overflow:hidden;margin-bottom:10px;box-shadow:0 2px 8px #1a23320e}
+.rekap.purple{border-color:#7c3aed1a}
+.rekap-title{padding:9px 13px;font-size:.62rem;text-transform:uppercase;letter-spacing:1px;font-weight:800;border-bottom:1px solid #f5a62315;background:#fff9ee}
+.rekap.purple .rekap-title{border-bottom-color:#7c3aed12;background:#faf5ff}
+.rekap table{width:100%;border-collapse:collapse;font-size:.66rem}
+.rekap th{padding:5px 5px;text-align:center;color:#8a9bb0;font-weight:700;font-size:.54rem;text-transform:uppercase}
 .rekap th:first-child{text-align:left}
-.rekap td{padding:7px 6px;border-top:1px solid rgba(255,255,255,.04);text-align:center;vertical-align:middle}
-.rekap td:first-child{text-align:left;font-weight:500;color:#e8f0f8}
-.rekap tfoot td{border-top:2px solid rgba(245,166,35,.2);font-weight:800;font-size:.8rem}
-.rekap.purple tfoot td{border-top-color:rgba(180,120,255,.2)}
+.rekap td{padding:6px 5px;border-top:1px solid #f0f4f8;text-align:center;vertical-align:middle}
+.rekap td:first-child{text-align:left;font-weight:600;color:#1a2332}
+.rekap tfoot td{border-top:2px solid #f5a62320;font-weight:900;font-size:.76rem;background:#fafbfc}
+.rekap.purple tfoot td{border-top-color:#7c3aed18}
 
 /* GRAND TOTAL */
-.grand{background:linear-gradient(135deg,#1b3050,#131f2e);border:1.5px solid rgba(245,166,35,.3);border-radius:14px;padding:14px 16px;margin-bottom:12px}
-.grand-title{font-size:.65rem;color:#f5a623;text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:10px}
-.grand-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.grand-box{background:#192840;border-radius:10px;padding:10px 6px;text-align:center}
-.grand-box .gl{font-size:.57rem;color:#6a8aaa;text-transform:uppercase;letter-spacing:.3px;margin-bottom:3px}
-.grand-box .gv{font-weight:900;font-size:1.3rem;line-height:1}
-.grand-box .gs{font-size:.57rem;color:#6a8aaa;margin-top:2px}
-.grand-info{margin-top:10px;padding:8px 12px;border-radius:10px;background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.15);font-size:.72rem;color:#f5a623;text-align:center;font-weight:600}
+.grand{background:linear-gradient(135deg,#fff9ee,#fff);border:1.5px solid #f5a62330;border-radius:14px;padding:13px 15px;margin-bottom:10px;box-shadow:0 2px 8px #f5a62310}
+.grand-title{font-size:.62rem;color:#d4860a;text-transform:uppercase;letter-spacing:1px;font-weight:800;margin-bottom:9px}
+.grand-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+.grand-box{background:#f7f9fc;border:1.5px solid #e8eef5;border-radius:10px;padding:9px 5px;text-align:center}
+.grand-box .gl{font-size:.54rem;color:#8a9bb0;text-transform:uppercase;letter-spacing:.3px;margin-bottom:2px;font-weight:600}
+.grand-box .gv{font-weight:900;font-size:1.25rem;line-height:1}
+.grand-box .gs{font-size:.54rem;color:#a0aec0;margin-top:2px;font-weight:500}
+.grand-info{margin-top:9px;padding:7px 11px;border-radius:9px;background:#fff8e8;border:1.5px solid #f5a62318;font-size:.68rem;color:#d4860a;text-align:center;font-weight:700}
 
 /* RESET */
-.btn-reset{display:block;width:calc(100% - 28px);margin:16px 14px 0;padding:13px;border-radius:13px;border:1px solid rgba(240,106,106,.3);background:rgba(240,106,106,.08);color:#f06a6a;font-weight:600;font-size:.85rem;cursor:pointer}
-.btn-reset:active{opacity:.8}
-
-/* TABS CONTENT */
-.tab-content{display:none}
-.tab-content.active{display:block}
+.btn-reset-wrap{padding:14px 14px 0}
+.btn-reset{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px;border-radius:13px;border:1.5px solid #fca5a545;background:linear-gradient(135deg,#fff5f5,#fff0f0);color:#dc2626;font-weight:800;font-size:.82rem;cursor:pointer;font-family:inherit;box-shadow:0 2px 8px #dc262614;transition:all .2s}
+.btn-reset:active{opacity:.8;transform:scale(.98)}
 
 /* POSYANDU SUBSUMMARY */
-.psy-sum{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;padding:0 14px 10px}
-.psy-box{background:#131f2e;border:1px solid rgba(180,120,255,.15);border-radius:10px;padding:8px 4px;text-align:center}
-.psy-box .pl{font-size:.57rem;color:#6a8aaa;text-transform:uppercase;letter-spacing:.4px;margin-bottom:2px}
-.psy-box .pv{font-weight:800;font-size:1.1rem;line-height:1}
+.psy-sum{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:0 14px 8px}
+.psy-box{background:#fff;border:1.5px solid #7c3aed18;border-radius:11px;padding:7px 4px;text-align:center}
+.psy-box .pl{font-size:.54rem;color:#8a9bb0;text-transform:uppercase;letter-spacing:.4px;margin-bottom:2px;font-weight:600}
+.psy-box .pv{font-weight:900;font-size:1.05rem;line-height:1}
+
+.tab-content{display:none}
+.tab-content.active{display:block}
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <div class="hdr">
   <div class="hdr-icon">🍱</div>
-  <h1>Distribusi Ompreng<br>Program Makan</h1>
-  <div class="hdr-sub">Makassar · Jumlah PM = 2.776 penerima</div>
+  <h1>Distribusi Ompreng · Program Makan</h1>
+  <div class="hdr-sub">Makassar · 1 Ikatan = 10 ompreng</div>
 </div>
 
-<div class="chip">
-  <span>📦</span>
-  <span>1 Ikatan = <strong>10 ompreng</strong> · Data dari papan tulis</span>
-</div>
+<div class="chip">📦 <span>Data penerima bisa diubah langsung di tiap kartu ✏️</span></div>
 
-<!-- GLOBAL SUMMARY -->
 <div class="sum-row">
-  <div class="sum-card"><div class="lbl">Total</div><div class="val" id="g-total" style="color:#f5a623">—</div><div class="sub">penerima</div></div>
-  <div class="sum-card"><div class="lbl">Ikatan</div><div class="val" id="g-ikat" style="color:#3ecf8e">—</div><div class="sub">ikatan</div></div>
-  <div class="sum-card"><div class="lbl">Sisa</div><div class="val" id="g-sisa" style="color:#f06a6a">—</div><div class="sub">pcs</div></div>
-  <div class="sum-card"><div class="lbl">Selesai</div><div class="val" id="g-done" style="color:#5ba3f5">0/14</div><div class="sub">lokasi</div></div>
+  <div class="sum-card"><div class="lbl">Total</div><div class="val" id="g-total" style="color:#d4860a">—</div><div class="sub">penerima</div></div>
+  <div class="sum-card"><div class="lbl">Ikatan</div><div class="val" id="g-ikat" style="color:#16a05f">—</div><div class="sub">ikatan</div></div>
+  <div class="sum-card"><div class="lbl">Sisa pcs</div><div class="val" id="g-sisa" style="color:#dc2626">—</div><div class="sub">pcs</div></div>
+  <div class="sum-card"><div class="lbl">Selesai</div><div class="val" id="g-done" style="color:#2563eb">0/14</div><div class="sub">lokasi</div></div>
 </div>
 
-<!-- PROGRESS -->
 <div class="prog-wrap">
   <div class="prog-top">
     <span class="pl">✅ Progres Distribusi</span>
@@ -189,82 +196,77 @@ body{font-family:system-ui,-apple-system,sans-serif;background:#0c1520;color:#e8
   <div class="prog-bg"><div class="prog-fill" id="prog-fill"></div></div>
 </div>
 
-<!-- TABS -->
 <div class="tabs">
   <button class="tab-btn active" onclick="switchTab('sekolah',this)">🏫 Sekolah (10)</button>
   <button class="tab-btn" onclick="switchTab('posyandu',this)">🏥 Posyandu (4)</button>
   <button class="tab-btn" onclick="switchTab('rekap',this)">📋 Rekap</button>
 </div>
 
-<!-- TAB SEKOLAH -->
 <div id="tab-sekolah" class="tab-content active">
   <div class="sec-title" id="sec-sekolah">Sekolah / Lembaga</div>
   <div class="card-list" id="list-sekolah"></div>
 </div>
 
-<!-- TAB POSYANDU -->
 <div id="tab-posyandu" class="tab-content">
   <div class="sec-title">Posyandu Asoka</div>
   <div class="psy-sum">
-    <div class="psy-box"><div class="pl">Penerima</div><div class="pv" style="color:#b478ff" id="ps-total">—</div></div>
-    <div class="psy-box"><div class="pl">Ikatan</div><div class="pv" style="color:#3ecf8e" id="ps-ikat">—</div></div>
-    <div class="psy-box"><div class="pl">Sisa</div><div class="pv" id="ps-sisa">—</div></div>
+    <div class="psy-box"><div class="pl">Penerima</div><div class="pv" style="color:#7c3aed" id="ps-total">—</div></div>
+    <div class="psy-box"><div class="pl">Ikatan</div><div class="pv" style="color:#16a05f" id="ps-ikat">—</div></div>
+    <div class="psy-box"><div class="pl">Sisa pcs</div><div class="pv" id="ps-sisa">—</div></div>
   </div>
   <div class="card-list" id="list-posyandu"></div>
 </div>
 
-<!-- TAB REKAP -->
 <div id="tab-rekap" class="tab-content">
-  <div style="padding-top:12px"></div>
+  <div style="padding-top:10px"></div>
   <div class="rekap-wrap">
-
     <div class="rekap">
-      <div class="rekap-title" style="color:#f5a623">🏫 Rekap Sekolah</div>
+      <div class="rekap-title" style="color:#d4860a">🏫 Rekap Sekolah</div>
       <table>
-        <thead><tr><th>Nama</th><th>Penerima</th><th>Ikatan</th><th>Sisa pcs</th><th>Status</th></tr></thead>
+        <thead><tr><th>Nama</th><th>Penerima</th><th>Ikatan</th><th>Sisa</th><th>Status</th></tr></thead>
         <tbody id="rek-sekolah"></tbody>
         <tfoot><tr>
-          <td style="color:#f5a623">TOTAL</td>
-          <td style="color:#f5a623" id="rf-stotal">—</td>
-          <td style="color:#3ecf8e" id="rf-sikat">—</td>
+          <td style="color:#d4860a">TOTAL</td>
+          <td style="color:#d4860a" id="rf-stotal">—</td>
+          <td style="color:#16a05f" id="rf-sikat">—</td>
           <td id="rf-ssisa">—</td>
-          <td style="color:#5ba3f5" id="rf-sdone">—</td>
+          <td style="color:#2563eb" id="rf-sdone">—</td>
         </tr></tfoot>
       </table>
     </div>
-
     <div class="rekap purple">
-      <div class="rekap-title" style="color:#b478ff">🏥 Rekap Posyandu Asoka</div>
+      <div class="rekap-title" style="color:#7c3aed">🏥 Rekap Posyandu</div>
       <table>
-        <thead><tr><th>Nama</th><th>Penerima</th><th>Ikatan</th><th>Sisa pcs</th><th>Status</th></tr></thead>
+        <thead><tr><th>Nama</th><th>Penerima</th><th>Ikatan</th><th>Sisa</th><th>Status</th></tr></thead>
         <tbody id="rek-posyandu"></tbody>
         <tfoot><tr>
-          <td style="color:#b478ff">TOTAL</td>
-          <td style="color:#b478ff" id="rf-ptotal">—</td>
-          <td style="color:#3ecf8e" id="rf-pikat">—</td>
+          <td style="color:#7c3aed">TOTAL</td>
+          <td style="color:#7c3aed" id="rf-ptotal">—</td>
+          <td style="color:#16a05f" id="rf-pikat">—</td>
           <td id="rf-psisa">—</td>
-          <td style="color:#5ba3f5" id="rf-pdone">—</td>
+          <td style="color:#2563eb" id="rf-pdone">—</td>
         </tr></tfoot>
       </table>
     </div>
-
     <div class="grand">
-      <div class="grand-title">🏆 Grand Total Keseluruhan</div>
+      <div class="grand-title">🏆 Grand Total</div>
       <div class="grand-grid">
-        <div class="grand-box"><div class="gl">Total Penerima</div><div class="gv" style="color:#f5a623" id="gf-total">—</div><div class="gs">orang</div></div>
-        <div class="grand-box"><div class="gl">Total Ikatan</div><div class="gv" style="color:#3ecf8e" id="gf-ikat">—</div><div class="gs">ikatan</div></div>
+        <div class="grand-box"><div class="gl">Total Penerima</div><div class="gv" style="color:#d4860a" id="gf-total">—</div><div class="gs">orang</div></div>
+        <div class="grand-box"><div class="gl">Total Ikatan</div><div class="gv" style="color:#16a05f" id="gf-ikat">—</div><div class="gs">ikatan</div></div>
         <div class="grand-box"><div class="gl">Sisa Ompreng</div><div class="gv" id="gf-sisa">—</div><div class="gs">pcs</div></div>
       </div>
       <div class="grand-info" id="gf-info">—</div>
     </div>
-
   </div>
 </div>
 
-<button class="btn-reset" onclick="resetAll()">🔄 Reset Semua Counter & Centang</button>
+<div class="btn-reset-wrap">
+  <button class="btn-reset" onclick="resetAll()">🔄 Reset Semua Counter &amp; Centang</button>
+</div>
 
 <script>
-const SCHOOLS = [
+// ── DATA AWAL ──
+const SCHOOLS_DEFAULT = [
   {name:"RA Nurul Hasanah",                    icon:"🏫",badge:"RA",  bc:"b-ra",  n:31 },
   {name:"TK Negeri Aba Cabang Parang Tambung", icon:"🏫",badge:"TK",  bc:"b-tk",  n:81 },
   {name:"TK Negeri Tamalate",                  icon:"🏫",badge:"TK",  bc:"b-tk",  n:109},
@@ -276,72 +278,93 @@ const SCHOOLS = [
   {name:"SMPN 18 Makassar",                    icon:"🏫",badge:"SMP", bc:"b-smp", n:996},
   {name:"SMPN 26 Makassar",                    icon:"🏫",badge:"SMP", bc:"b-smp", n:752},
 ];
-const POSYANDU = [
+const POSYANDU_DEFAULT = [
   {name:"Posyandu Asoka I",   icon:"🏥",badge:"PKY",bc:"b-pky",n:24 },
   {name:"Posyandu Asoka II",  icon:"🏥",badge:"PKY",bc:"b-pky",n:53 },
   {name:"Posyandu Asoka III", icon:"🏥",badge:"PKY",bc:"b-pky",n:144},
   {name:"Posyandu Asoka V",   icon:"🏥",badge:"PKY",bc:"b-pky",n:61 },
 ];
 
+// Deep clone biar default tidak terpengaruh
+let SCHOOLS  = SCHOOLS_DEFAULT.map(s=>({...s}));
+let POSYANDU = POSYANDU_DEFAULT.map(s=>({...s}));
+
 const ik = n => Math.floor(n/10);
 const si = n => n%10;
 
-// State
+// ── LOCAL STORAGE ──
+const LS_KEY = 'distribusi-ompreng-v2';
+function saveState() {
+  try {
+    localStorage.setItem(LS_KEY, JSON.stringify({
+      sN: SCHOOLS.map(s=>s.n), pN: POSYANDU.map(s=>s.n),
+      sCtrs, sDone, sSteps, pCtrs, pDone, pSteps
+    }));
+  } catch(e){}
+}
+function loadState() {
+  try {
+    const raw = localStorage.getItem(LS_KEY);
+    if(!raw) return;
+    const d = JSON.parse(raw);
+    if(d.sN  && d.sN.length  === SCHOOLS.length)  SCHOOLS.forEach((s,i)=>s.n=d.sN[i]);
+    if(d.pN  && d.pN.length  === POSYANDU.length) POSYANDU.forEach((s,i)=>s.n=d.pN[i]);
+    if(d.sCtrs  && d.sCtrs.length  === SCHOOLS.length)  sCtrs  = d.sCtrs;
+    if(d.sDone  && d.sDone.length  === SCHOOLS.length)  sDone  = d.sDone;
+    if(d.sSteps && d.sSteps.length === SCHOOLS.length)  sSteps = d.sSteps;
+    if(d.pCtrs  && d.pCtrs.length  === POSYANDU.length) pCtrs  = d.pCtrs;
+    if(d.pDone  && d.pDone.length  === POSYANDU.length) pDone  = d.pDone;
+    if(d.pSteps && d.pSteps.length === POSYANDU.length) pSteps = d.pSteps;
+  } catch(e){}
+}
+
 let sCtrs  = SCHOOLS.map(()=>0);
 let sDone  = SCHOOLS.map(()=>false);
-let sSteps = SCHOOLS.map(()=>10);   // custom step per sekolah
+let sSteps = SCHOOLS.map(()=>10);
 let pCtrs  = POSYANDU.map(()=>0);
 let pDone  = POSYANDU.map(()=>false);
-let pSteps = POSYANDU.map(()=>10);  // custom step per posyandu
+let pSteps = POSYANDU.map(()=>10);
 
-const PRESET_STEPS = [1, 5, 10, 20, 50];
+loadState();
 
-/* ── TAB SWITCH ── */
-function switchTab(name, btn) {
+const PRESET_STEPS = [1,5,10,20,50];
+
+// ── TAB SWITCH ──
+function switchTab(name,btn){
   document.querySelectorAll('.tab-content').forEach(el=>el.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(el=>el.classList.remove('active'));
   document.getElementById('tab-'+name).classList.add('active');
   btn.classList.add('active');
 }
 
-/* ── SISA IKATAN DETAILS ── */
-// Diberikan counter (sudah diantar) dan total, hitung sisa yang belum diantar
-function sisaInfo(cnt, n) {
-  const sisa_ompreng = n - cnt;           // ompreng yang belum diantar
-  const sisa_ikat    = ik(sisa_ompreng);  // ikatan penuh yang belum
-  const sisa_pcs     = si(sisa_ompreng);  // sisa pcs yang belum
-  const done_ikat    = ik(cnt);           // ikatan yang sudah diantar
-  const done_pcs     = si(cnt);           // pcs yang sudah diantar
-  return { sisa_ompreng, sisa_ikat, sisa_pcs, done_ikat, done_pcs };
+// ── SISA INFO ──
+function sisaInfo(cnt,n){
+  const sisa_ompreng=n-cnt;
+  return {
+    sisa_ompreng, sisa_ikat:ik(sisa_ompreng), sisa_pcs:si(sisa_ompreng),
+    done_ikat:ik(cnt), done_pcs:si(cnt)
+  };
 }
 
-/* ── BUILD CARD ── */
-function buildCard(item, idx, group) {
+// ── BUILD CARD ──
+function buildCard(item,idx,group){
   const n      = item.n;
-  const steps  = group==='s' ? sSteps : pSteps;
-  const ctrs   = group==='s' ? sCtrs  : pCtrs;
-  const dones  = group==='s' ? sDone  : pDone;
+  const steps  = group==='s'?sSteps:pSteps;
+  const ctrs   = group==='s'?sCtrs:pCtrs;
+  const dones  = group==='s'?sDone:pDone;
   const cnt    = ctrs[idx];
   const step   = steps[idx];
   const isDone = dones[idx];
 
-  const pct        = n>0 ? Math.min(100, Math.round(cnt/n*100)) : 0;
-  const barColor   = cnt>=n
-    ? 'linear-gradient(90deg,#3ecf8e,#27a96b)'
-    : 'linear-gradient(90deg,#f5a623,#e8793a)';
-  const inputClass = cnt>=n ? 'cnt-input full' : 'cnt-input';
+  const pct      = n>0?Math.min(100,Math.round(cnt/n*100)):0;
+  const barColor = cnt>=n?'linear-gradient(90deg,#22b573,#16a05f)':'linear-gradient(90deg,#f5a623,#e8793a)';
+  const pctColor = cnt>=n?'#16a05f':pct>0?'#d4860a':'#a0aec0';
+  const info     = sisaInfo(cnt,n);
+  const sisaDone = cnt;
+  const sisaLeft = n-cnt;
+  const sisaOk   = sisaLeft===0&&cnt>0;
 
-  let statusTxt='', statusColor='#6a8aaa';
-  if(cnt===0)      { statusTxt='Belum ada yang diantar'; statusColor='#6a8aaa'; }
-  else if(cnt>=n)  { statusTxt=`✓ Lunas — semua ${n} ompreng sudah diantar`; statusColor='#3ecf8e'; }
-  else             { statusTxt=`Sudah ${cnt} / ${n} · Sisa ${n-cnt} ompreng`; statusColor='#f5a623'; }
-
-  // Info sisa ikatan
-  const info = sisaInfo(cnt, n);
-  const sisaIkatClass = info.sisa_ikat===0 ? 'sib green-box' : 'sib red-box';
-
-  // Step pills HTML
-  const pillsHTML = PRESET_STEPS.map(s =>
+  const pillsHTML = PRESET_STEPS.map(s=>
     `<span class="step-pill${step===s?' active':''}" onclick="setStep('${group}',${idx},${s})">${s}</span>`
   ).join('');
 
@@ -354,87 +377,74 @@ function buildCard(item, idx, group) {
       <span class="sc-badge ${item.bc}">${item.badge}</span>
     </div>
 
-    <!-- STATS: 5 kotak -->
-    <div class="sc-stats">
-      <div class="stat-box">
-        <div class="sl">Penerima</div>
-        <div class="sv" style="color:#f5a623">${n}</div>
-        <div class="ss">orang</div>
+    <!-- INFO COMPACT: penerima (editable), total ikat, sisa pcs -->
+    <div class="info-compact">
+      <div class="ic-box" style="border-color:#f5a62328;background:#fff9ee">
+        <div class="ic-l">Penerima</div>
+        <div class="ic-edit">
+          <input class="ic-n-inp" id="n-inp-${group}-${idx}" type="number" inputmode="numeric" min="1"
+            value="${n}" onchange="changeN('${group}',${idx},this.value)" title="Edit jumlah penerima">
+          <button class="ic-edit-btn" onclick="document.getElementById('n-inp-${group}-${idx}').focus()">✏️</button>
+        </div>
+        <div class="ic-s">orang</div>
       </div>
-      <div class="stat-box">
-        <div class="sl">Total Ikat</div>
-        <div class="sv" style="color:#3ecf8e">${ik(n)}</div>
-        <div class="ss">ikatan</div>
+      <div class="ic-box">
+        <div class="ic-l">Total Ikat</div>
+        <div class="ic-v" style="color:#16a05f" id="ic-ikat-${group}-${idx}">${ik(n)}</div>
+        <div class="ic-s">ikatan</div>
       </div>
-      <div class="stat-box">
-        <div class="sl">Sisa pcs</div>
-        <div class="sv" style="color:${si(n)===0?'#3ecf8e':'#f06a6a'}">${si(n)===0?'✓':si(n)}</div>
-        <div class="ss">${si(n)===0?'pas':'pcs'}</div>
-      </div>
-      <div class="stat-box">
-        <div class="sl">Sudah</div>
-        <div class="sv" style="color:#5ba3f5" id="sv-done-${group}-${idx}">${info.done_ikat>0?info.done_ikat+'ikt':cnt>0?cnt+'pcs':'—'}</div>
-        <div class="ss">${cnt} ompreng</div>
-      </div>
-      <div class="stat-box ${info.sisa_ikat===0&&cnt>0?'sisa-ikat ok':'sisa-ikat'}" id="sv-sisaikat-box-${group}-${idx}">
-        <div class="sl">Sisa Ikat</div>
-        <div class="sv" id="sv-sisaikat-${group}-${idx}" style="color:${info.sisa_ikat===0&&cnt>0?'#3ecf8e':'#f06a6a'}">${cnt===0?ik(n):info.sisa_ikat===0?'✓':info.sisa_ikat}</div>
-        <div class="ss" id="sv-sisaikat-ss-${group}-${idx}">${cnt===0?'belum':'ikatan'}</div>
+      <div class="ic-box" style="${si(n)===0?'border-color:#22b57328;background:#edfaf5':'border-color:#fca5a528;background:#fff5f5'}">
+        <div class="ic-l">Sisa pcs</div>
+        <div class="ic-v" style="color:${si(n)===0?'#16a05f':'#dc2626'}" id="ic-sisa-${group}-${idx}">${si(n)===0?'✓':si(n)}</div>
+        <div class="ic-s">${si(n)===0?'pas':'pcs'}</div>
       </div>
     </div>
 
-    <!-- STEP SELECTOR -->
+    <!-- SUDAH / SISA BESAR -->
+    <div class="ss-row">
+      <div class="ss-box sudah">
+        <div class="ss-lbl">✅ Sudah</div>
+        <div class="ss-main" id="ss-sudah-${group}-${idx}">${cnt}</div>
+        <div class="ss-sub">ompreng</div>
+        <div class="ss-ikat" id="ss-sudah-ikat-${group}-${idx}">${info.done_ikat} ikat${info.done_pcs>0?' +'+info.done_pcs+' pcs':''}</div>
+      </div>
+      <div class="ss-box sisa${sisaOk?' ok':''}" id="ss-sisa-box-${group}-${idx}">
+        <div class="ss-lbl" id="ss-sisa-lbl-${group}-${idx}">${sisaOk?'✓ Lunas':'⏳ Sisa'}</div>
+        <div class="ss-main" id="ss-sisa-${group}-${idx}">${sisaOk?'0':sisaLeft}</div>
+        <div class="ss-sub">ompreng</div>
+        <div class="ss-ikat" id="ss-sisa-ikat-${group}-${idx}">${sisaOk?'semua lunas':info.sisa_ikat+' ikat'+(info.sisa_pcs>0?' +'+info.sisa_pcs+' pcs':'')}</div>
+      </div>
+    </div>
+
+    <!-- STEP + COUNTER -->
     <div class="step-row">
       <span class="step-lbl">Langkah:</span>
       <div class="step-pills" id="pills-${group}-${idx}">${pillsHTML}</div>
       <input class="step-custom" type="number" inputmode="numeric" min="1"
-        value="${PRESET_STEPS.includes(step)?'':step}"
-        placeholder="custom"
+        value="${PRESET_STEPS.includes(step)?'':step}" placeholder="lain"
         id="step-inp-${group}-${idx}"
-        oninput="customStep('${group}',${idx},this.value)"
-        title="Atur langkah custom">
+        oninput="customStep('${group}',${idx},this.value)">
     </div>
 
-    <!-- COUNTER -->
     <div class="sc-counter">
-      <div class="cnt-lbl">🧮 Counter antar — maks: <strong>${n}</strong> ompreng</div>
       <div class="cnt-row">
-        <button class="cbtn minus step-btn" onclick="adjCtr('${group}',${idx},-1)" title="Kurang 1">−1</button>
-        <button class="cbtn minus step-btn" onclick="adjCtr('${group}',${idx},-${step})" title="Kurang ${step}">−${step}</button>
-        <input class="${inputClass}" type="number" inputmode="numeric" min="0" max="${n}"
+        <button class="cbtn minus step-btn" onclick="adjCtr('${group}',${idx},-1)">−1</button>
+        <button class="cbtn minus step-btn" onclick="adjCtr('${group}',${idx},-${step})">−${step}</button>
+        <input class="cnt-input${cnt>=n?' full':''}" type="number" inputmode="numeric" min="0" max="${n}"
           value="${cnt||''}" placeholder="0"
           id="inp-${group}-${idx}"
           oninput="manualCtr('${group}',${idx},this.value)">
-        <button class="cbtn plus step-btn" onclick="adjCtr('${group}',${idx},+${step})" title="Tambah ${step}">+${step}</button>
-        <button class="cbtn plus step-btn" onclick="adjCtr('${group}',${idx},+1)" title="Tambah 1">+1</button>
+        <button class="cbtn plus step-btn" onclick="adjCtr('${group}',${idx},+${step})">+${step}</button>
+        <button class="cbtn plus step-btn" onclick="adjCtr('${group}',${idx},+1)">+1</button>
       </div>
+    </div>
 
-      <!-- Status text -->
-      <div class="cnt-status" id="cst-${group}-${idx}" style="color:${statusColor}">${statusTxt}</div>
-
-      <!-- Progress bar -->
+    <!-- PROGRESS BAR mini -->
+    <div class="cnt-bar-wrap">
       <div class="cnt-bar-bg">
         <div class="cnt-bar-fill" id="bar-${group}-${idx}" style="width:${pct}%;background:${barColor}"></div>
       </div>
-
-      <!-- Sisa Ikatan detail row -->
-      <div class="sisa-ikat-row" id="sib-row-${group}-${idx}">
-        <div class="sib orange-box">
-          <div class="sl">Sudah diantar</div>
-          <div class="sv" style="color:#f5a623" id="sib-done-${group}-${idx}">${cnt} omp</div>
-          <div class="ss" id="sib-done2-${group}-${idx}">${info.done_ikat} ikat${info.done_pcs>0?' +'+info.done_pcs:'  '}</div>
-        </div>
-        <div class="${sisaIkatClass}" id="sib-sisa-${group}-${idx}">
-          <div class="sl">Sisa belum</div>
-          <div class="sv" id="sib-sisa-v-${group}-${idx}" style="color:${info.sisa_ikat===0&&cnt>0?'#3ecf8e':'#f06a6a'}">${info.sisa_ompreng} omp</div>
-          <div class="ss" id="sib-sisa2-${group}-${idx}">${info.sisa_ikat} ikat${info.sisa_pcs>0?' +'+info.sisa_pcs:'  '}</div>
-        </div>
-        <div class="sib">
-          <div class="sl">Progress</div>
-          <div class="sv" style="color:${cnt>=n?'#3ecf8e':'#5ba3f5'}" id="sib-pct-${group}-${idx}">${pct}%</div>
-          <div class="ss">${cnt}/${n}</div>
-        </div>
-      </div>
+      <div class="cnt-pct" id="pct-${group}-${idx}" style="color:${pctColor}">${pct}%</div>
     </div>
 
     <!-- DONE TOGGLE -->
@@ -448,163 +458,158 @@ function buildCard(item, idx, group) {
   </div>`;
 }
 
-/* ── RENDER LIST ── */
-function renderList(group) {
-  const data = group==='s' ? SCHOOLS : POSYANDU;
-  const el   = document.getElementById(group==='s'?'list-sekolah':'list-posyandu');
-  el.innerHTML = data.map((item,i)=>buildCard(item,i,group)).join('');
+// ── RENDER LIST ──
+function renderList(group){
+  const data=group==='s'?SCHOOLS:POSYANDU;
+  const el=document.getElementById(group==='s'?'list-sekolah':'list-posyandu');
+  el.innerHTML=data.map((item,i)=>buildCard(item,i,group)).join('');
 }
 
-/* ── SET STEP (pill) ── */
-function setStep(group, idx, step) {
+// ── CHANGE N (penerima) ──
+function changeN(group,idx,val){
+  let v=parseInt(val)||1;
+  if(v<1) v=1;
+  const data=group==='s'?SCHOOLS:POSYANDU;
+  const ctrs=group==='s'?sCtrs:pCtrs;
+  data[idx].n=v;
+  // clamp counter
+  if(ctrs[idx]>v) ctrs[idx]=v;
+  updateCardDisplay(group,idx);
+  updateGlobal();
+  updateRekap();
+  saveState();
+}
+
+// ── SET STEP ──
+function setStep(group,idx,step){
   if(group==='s') sSteps[idx]=step; else pSteps[idx]=step;
-  // update pills
-  const pillsEl = document.getElementById(`pills-${group}-${idx}`);
-  if(pillsEl) {
-    pillsEl.querySelectorAll('.step-pill').forEach(p=>{
-      p.classList.toggle('active', parseInt(p.textContent)===step);
-    });
-  }
-  // clear custom input
-  const ci = document.getElementById(`step-inp-${group}-${idx}`);
-  if(ci && PRESET_STEPS.includes(step)) ci.value='';
-  // rebuild only the counter buttons (rebuild full card is simpler)
-  rebuildCard(group, idx);
+  const pillsEl=document.getElementById(`pills-${group}-${idx}`);
+  if(pillsEl) pillsEl.querySelectorAll('.step-pill').forEach(p=>{
+    p.classList.toggle('active',parseInt(p.textContent)===step);
+  });
+  const ci=document.getElementById(`step-inp-${group}-${idx}`);
+  if(ci&&PRESET_STEPS.includes(step)) ci.value='';
+  rebuildCard(group,idx);
+  saveState();
 }
 
-/* ── CUSTOM STEP ── */
-function customStep(group, idx, val) {
-  const s = parseInt(val);
+// ── CUSTOM STEP ──
+function customStep(group,idx,val){
+  const s=parseInt(val);
   if(!s||s<1) return;
   if(group==='s') sSteps[idx]=s; else pSteps[idx]=s;
-  // deactivate pills
-  const pillsEl = document.getElementById(`pills-${group}-${idx}`);
+  const pillsEl=document.getElementById(`pills-${group}-${idx}`);
   if(pillsEl) pillsEl.querySelectorAll('.step-pill').forEach(p=>p.classList.remove('active'));
-  rebuildCard(group, idx, true);
+  rebuildCard(group,idx,true);
+  saveState();
 }
 
-/* ── REBUILD CARD ── */
-function rebuildCard(group, idx, keepCustomInput) {
-  const data = group==='s' ? SCHOOLS : POSYANDU;
-  const el   = document.getElementById(`sc-${group}-${idx}`);
+// ── REBUILD CARD ──
+function rebuildCard(group,idx,keepCustom){
+  const data=group==='s'?SCHOOLS:POSYANDU;
+  const el=document.getElementById(`sc-${group}-${idx}`);
   if(!el) return;
-  const customVal = keepCustomInput ? (document.getElementById(`step-inp-${group}-${idx}`)?.value||'') : '';
-  el.outerHTML = buildCard(data[idx], idx, group);
-  if(keepCustomInput) {
-    const ci = document.getElementById(`step-inp-${group}-${idx}`);
-    if(ci) ci.value = customVal;
-  }
+  const cv=keepCustom?(document.getElementById(`step-inp-${group}-${idx}`)?.value||''):'';
+  el.outerHTML=buildCard(data[idx],idx,group);
+  if(keepCustom){const ci=document.getElementById(`step-inp-${group}-${idx}`);if(ci)ci.value=cv;}
 }
 
-/* ── ADJUST COUNTER ── */
-function adjCtr(group, idx, delta) {
-  const n    = (group==='s'?SCHOOLS:POSYANDU)[idx].n;
-  const ctrs = group==='s' ? sCtrs : pCtrs;
-  ctrs[idx]  = Math.max(0, Math.min(n, ctrs[idx]+delta)); // tidak boleh melebihi n
-  updateCardDisplay(group, idx);
+// ── ADJUST COUNTER ──
+function adjCtr(group,idx,delta){
+  const n=(group==='s'?SCHOOLS:POSYANDU)[idx].n;
+  const ctrs=group==='s'?sCtrs:pCtrs;
+  ctrs[idx]=Math.max(0,Math.min(n,ctrs[idx]+delta));
+  updateCardDisplay(group,idx);
   updateGlobal();
   updateRekap();
+  saveState();
 }
 
-/* ── MANUAL INPUT ── */
-function manualCtr(group, idx, val) {
-  const n    = (group==='s'?SCHOOLS:POSYANDU)[idx].n;
-  let   v    = parseInt(val)||0;
-  if(v>n){ v=n; const el=document.getElementById(`inp-${group}-${idx}`); if(el)el.value=n; }
-  if(v<0)  v=0;
-  const ctrs = group==='s' ? sCtrs : pCtrs;
-  ctrs[idx]  = v;
-  updateCardDisplay(group, idx);
+// ── MANUAL INPUT ──
+function manualCtr(group,idx,val){
+  const n=(group==='s'?SCHOOLS:POSYANDU)[idx].n;
+  let v=parseInt(val)||0;
+  if(v>n){v=n;const el=document.getElementById(`inp-${group}-${idx}`);if(el)el.value=n;}
+  if(v<0) v=0;
+  const ctrs=group==='s'?sCtrs:pCtrs;
+  ctrs[idx]=v;
+  updateCardDisplay(group,idx);
   updateGlobal();
   updateRekap();
+  saveState();
 }
 
-/* ── UPDATE CARD DISPLAY (no full rebuild) ── */
-function updateCardDisplay(group, idx) {
-  const data  = group==='s' ? SCHOOLS : POSYANDU;
-  const ctrs  = group==='s' ? sCtrs   : pCtrs;
-  const n     = data[idx].n;
-  const cnt   = ctrs[idx];
-  const pct   = n>0 ? Math.min(100,Math.round(cnt/n*100)) : 0;
-  const info  = sisaInfo(cnt, n);
+// ── UPDATE CARD DISPLAY ──
+function updateCardDisplay(group,idx){
+  const data=group==='s'?SCHOOLS:POSYANDU;
+  const ctrs=group==='s'?sCtrs:pCtrs;
+  const n=data[idx].n;
+  const cnt=ctrs[idx];
+  const pct=n>0?Math.min(100,Math.round(cnt/n*100)):0;
+  const info=sisaInfo(cnt,n);
+  const sisaLeft=n-cnt;
+  const sisaOk=sisaLeft===0&&cnt>0;
 
-  const barColor = cnt>=n
-    ? 'linear-gradient(90deg,#3ecf8e,#27a96b)'
-    : 'linear-gradient(90deg,#f5a623,#e8793a)';
+  // info compact — penerima (sudah dihandle di changeN via rebuildCard tidak, kita update langsung)
+  const icIkat=document.getElementById(`ic-ikat-${group}-${idx}`);
+  if(icIkat) icIkat.textContent=ik(n);
+  const icSisa=document.getElementById(`ic-sisa-${group}-${idx}`);
+  if(icSisa){ icSisa.textContent=si(n)===0?'✓':si(n); icSisa.style.color=si(n)===0?'#16a05f':'#dc2626'; }
+  const icSisaBox=icSisa?.closest('.ic-box');
+  if(icSisaBox){ icSisaBox.style.borderColor=si(n)===0?'#22b57328':'#fca5a528'; icSisaBox.style.background=si(n)===0?'#edfaf5':'#fff5f5'; }
 
-  let statusTxt='', statusColor='#6a8aaa';
-  if(cnt===0)     { statusTxt='Belum ada yang diantar';  statusColor='#6a8aaa'; }
-  else if(cnt>=n) { statusTxt=`✓ Lunas — semua ${n} ompreng sudah diantar`; statusColor='#3ecf8e'; }
-  else            { statusTxt=`Sudah ${cnt} / ${n} · Sisa ${n-cnt} ompreng`; statusColor='#f5a623'; }
+  // sudah
+  const ssSudah=document.getElementById(`ss-sudah-${group}-${idx}`);
+  if(ssSudah) ssSudah.textContent=cnt;
+  const ssSudahIkat=document.getElementById(`ss-sudah-ikat-${group}-${idx}`);
+  if(ssSudahIkat) ssSudahIkat.textContent=info.done_ikat+' ikat'+(info.done_pcs>0?' +'+info.done_pcs+' pcs':'');
 
-  // Status text
-  const cstEl=document.getElementById(`cst-${group}-${idx}`);
-  if(cstEl){ cstEl.textContent=statusTxt; cstEl.style.color=statusColor; }
+  // sisa box
+  const sisaBox=document.getElementById(`ss-sisa-box-${group}-${idx}`);
+  if(sisaBox) sisaBox.className='ss-box sisa'+(sisaOk?' ok':'');
+  const sisaLbl=document.getElementById(`ss-sisa-lbl-${group}-${idx}`);
+  if(sisaLbl) sisaLbl.textContent=sisaOk?'✓ Lunas':'⏳ Sisa';
+  const sisaNum=document.getElementById(`ss-sisa-${group}-${idx}`);
+  if(sisaNum) sisaNum.textContent=sisaOk?'0':sisaLeft;
+  const sisaIkat=document.getElementById(`ss-sisa-ikat-${group}-${idx}`);
+  if(sisaIkat) sisaIkat.textContent=sisaOk?'semua lunas':info.sisa_ikat+' ikat'+(info.sisa_pcs>0?' +'+info.sisa_pcs+' pcs':'');
 
-  // Bar
+  // counter input
+  const inpEl=document.getElementById(`inp-${group}-${idx}`);
+  if(inpEl){ inpEl.value=cnt===0?'':cnt; inpEl.className='cnt-input'+(cnt>=n?' full':''); }
+
+  // bar + pct
+  const barColor=cnt>=n?'linear-gradient(90deg,#22b573,#16a05f)':'linear-gradient(90deg,#f5a623,#e8793a)';
   const barEl=document.getElementById(`bar-${group}-${idx}`);
   if(barEl){ barEl.style.width=pct+'%'; barEl.style.background=barColor; }
+  const pctEl=document.getElementById(`pct-${group}-${idx}`);
+  if(pctEl){ pctEl.textContent=pct+'%'; pctEl.style.color=cnt>=n?'#16a05f':pct>0?'#d4860a':'#a0aec0'; }
 
-  // Input border
-  const inpEl=document.getElementById(`inp-${group}-${idx}`);
-  if(inpEl){
-    inpEl.value = cnt===0?'':cnt;
-    inpEl.className = cnt>=n ? 'cnt-input full' : 'cnt-input';
-  }
-
-  // Stats: sudah & sisa ikat
-  const svDone=document.getElementById(`sv-done-${group}-${idx}`);
-  if(svDone) svDone.textContent = info.done_ikat>0?info.done_ikat+'ikt':cnt>0?cnt+'pcs':'—';
-
-  const svSI=document.getElementById(`sv-sisaikat-${group}-${idx}`);
-  if(svSI){ svSI.textContent=cnt===0?ik(n):info.sisa_ikat===0?'✓':info.sisa_ikat; svSI.style.color=info.sisa_ikat===0&&cnt>0?'#3ecf8e':'#f06a6a'; }
-  const svSIss=document.getElementById(`sv-sisaikat-ss-${group}-${idx}`);
-  if(svSIss) svSIss.textContent = cnt===0?'belum':'ikatan';
-  const svSIbox=document.getElementById(`sv-sisaikat-box-${group}-${idx}`);
-  if(svSIbox) svSIbox.className=`stat-box ${info.sisa_ikat===0&&cnt>0?'sisa-ikat ok':'sisa-ikat'}`;
-
-  // Sisa ikat row (bawah)
-  const sibDone=document.getElementById(`sib-done-${group}-${idx}`);
-  if(sibDone) sibDone.textContent=cnt+' omp';
-  const sibDone2=document.getElementById(`sib-done2-${group}-${idx}`);
-  if(sibDone2) sibDone2.textContent=info.done_ikat+' ikat'+(info.done_pcs>0?' +'+info.done_pcs:'  ');
-
-  const sibSisa=document.getElementById(`sib-sisa-${group}-${idx}`);
-  if(sibSisa) sibSisa.className=(info.sisa_ikat===0&&cnt>0?'sib green-box':'sib red-box');
-  const sibSisaV=document.getElementById(`sib-sisa-v-${group}-${idx}`);
-  if(sibSisaV){ sibSisaV.textContent=info.sisa_ompreng+' omp'; sibSisaV.style.color=info.sisa_ikat===0&&cnt>0?'#3ecf8e':'#f06a6a'; }
-  const sibSisa2=document.getElementById(`sib-sisa2-${group}-${idx}`);
-  if(sibSisa2) sibSisa2.textContent=info.sisa_ikat+' ikat'+(info.sisa_pcs>0?' +'+info.sisa_pcs:'  ');
-
-  const sibPct=document.getElementById(`sib-pct-${group}-${idx}`);
-  if(sibPct){ sibPct.textContent=pct+'%'; sibPct.style.color=cnt>=n?'#3ecf8e':'#5ba3f5'; }
-  const sibPctRow=document.getElementById(`sib-row-${group}-${idx}`);
-  if(sibPctRow) {
-    const cells=sibPctRow.querySelectorAll('.ss');
-    if(cells[2]) cells[2].textContent=cnt+'/'+n;
-  }
+  // n input clamp display
+  const nInp=document.getElementById(`n-inp-${group}-${idx}`);
+  if(nInp) nInp.value=n;
 }
 
-/* ── TOGGLE DONE ── */
-function toggleDone(group, idx) {
+// ── TOGGLE DONE ──
+function toggleDone(group,idx){
   if(group==='s') sDone[idx]=!sDone[idx]; else pDone[idx]=!pDone[idx];
   const isDone=(group==='s'?sDone:pDone)[idx];
   const sc=document.getElementById(`sc-${group}-${idx}`);
   const dt=document.getElementById(`dt-${group}-${idx}`);
   const ds=document.getElementById(`ds-${group}-${idx}`);
-  const nm=sc.querySelector('.sc-name');
   sc.className='sc'+(isDone?' done':'');
+  sc.querySelector('.sc-name').style.textDecoration=isDone?'line-through':'';
+  sc.querySelector('.sc-name').style.opacity=isDone?'0.4':'';
   dt.className='done-toggle'+(isDone?' checked':'');
   dt.querySelector('.done-lbl').textContent=isDone?'Sudah diterima':'Tandai sudah diterima';
   ds.className='done-stamp'+(isDone?' show':'');
-  nm.style.textDecoration=isDone?'line-through':'';
-  nm.style.opacity=isDone?'0.5':'';
   updateGlobal();
   updateRekap();
+  saveState();
 }
 
-/* ── UPDATE GLOBAL ── */
-function updateGlobal() {
+// ── UPDATE GLOBAL ──
+function updateGlobal(){
   const totalS=SCHOOLS.reduce((a,s)=>a+s.n,0);
   const totalP=POSYANDU.reduce((a,s)=>a+s.n,0);
   const grand=totalS+totalP;
@@ -625,47 +630,41 @@ function updateGlobal() {
   document.getElementById('ps-ikat').textContent=ik(totalP);
   const psEl=document.getElementById('ps-sisa');
   psEl.textContent=si(totalP)===0?'✓ pas':si(totalP)+' pcs';
-  psEl.style.color=si(totalP)===0?'#3ecf8e':'#f06a6a';
+  psEl.style.color=si(totalP)===0?'#16a05f':'#dc2626';
 
   document.getElementById('sec-sekolah').textContent='Sekolah / Lembaga — '+dS+'/10 selesai';
 }
 
-/* ── UPDATE REKAP ── */
-function updateRekap() {
+// ── UPDATE REKAP ──
+function updateRekap(){
   const sb=document.getElementById('rek-sekolah');
   let stot=0;
-  sb.innerHTML=SCHOOLS.map((s,i)=>{
-    stot+=s.n;
-    return `<tr>
-      <td>${s.name}</td>
-      <td style="color:#f5a623;font-weight:700">${s.n}</td>
-      <td style="color:#3ecf8e;font-weight:700">${ik(s.n)}</td>
-      <td style="color:${si(s.n)===0?'#3ecf8e':'#f06a6a'};font-weight:700">${si(s.n)===0?'✓':'+'+si(s.n)}</td>
-      <td style="font-size:.9rem">${sDone[i]?'✅':'⏳'}</td></tr>`;
-  }).join('');
+  sb.innerHTML=SCHOOLS.map((s,i)=>{stot+=s.n;return`<tr>
+    <td>${s.name}</td>
+    <td style="color:#d4860a;font-weight:700">${s.n}</td>
+    <td style="color:#16a05f;font-weight:700">${ik(s.n)}</td>
+    <td style="color:${si(s.n)===0?'#16a05f':'#dc2626'};font-weight:700">${si(s.n)===0?'✓':'+'+si(s.n)}</td>
+    <td>${sDone[i]?'✅':'⏳'}</td></tr>`;}).join('');
   document.getElementById('rf-stotal').textContent=stot;
   document.getElementById('rf-sikat').textContent=ik(stot)+' ikat';
   const rss=document.getElementById('rf-ssisa');
   rss.textContent=si(stot)===0?'✓ pas':'+'+si(stot)+' pcs';
-  rss.style.color=si(stot)===0?'#3ecf8e':'#f06a6a';
+  rss.style.color=si(stot)===0?'#16a05f':'#dc2626';
   document.getElementById('rf-sdone').textContent=sDone.filter(Boolean).length+'/10';
 
   const pb=document.getElementById('rek-posyandu');
   let ptot=0;
-  pb.innerHTML=POSYANDU.map((s,i)=>{
-    ptot+=s.n;
-    return `<tr>
-      <td>${s.name}</td>
-      <td style="color:#b478ff;font-weight:700">${s.n}</td>
-      <td style="color:#3ecf8e;font-weight:700">${ik(s.n)}</td>
-      <td style="color:${si(s.n)===0?'#3ecf8e':'#f06a6a'};font-weight:700">${si(s.n)===0?'✓':'+'+si(s.n)}</td>
-      <td style="font-size:.9rem">${pDone[i]?'✅':'⏳'}</td></tr>`;
-  }).join('');
+  pb.innerHTML=POSYANDU.map((s,i)=>{ptot+=s.n;return`<tr>
+    <td>${s.name}</td>
+    <td style="color:#7c3aed;font-weight:700">${s.n}</td>
+    <td style="color:#16a05f;font-weight:700">${ik(s.n)}</td>
+    <td style="color:${si(s.n)===0?'#16a05f':'#dc2626'};font-weight:700">${si(s.n)===0?'✓':'+'+si(s.n)}</td>
+    <td>${pDone[i]?'✅':'⏳'}</td></tr>`;}).join('');
   document.getElementById('rf-ptotal').textContent=ptot;
   document.getElementById('rf-pikat').textContent=ik(ptot)+' ikat';
   const rps=document.getElementById('rf-psisa');
   rps.textContent=si(ptot)===0?'✓ pas':'+'+si(ptot)+' pcs';
-  rps.style.color=si(ptot)===0?'#3ecf8e':'#f06a6a';
+  rps.style.color=si(ptot)===0?'#16a05f':'#dc2626';
   document.getElementById('rf-pdone').textContent=pDone.filter(Boolean).length+'/4';
 
   const grand=stot+ptot;
@@ -673,21 +672,22 @@ function updateRekap() {
   document.getElementById('gf-ikat').textContent=ik(grand);
   const gfs=document.getElementById('gf-sisa');
   gfs.textContent=si(grand);
-  gfs.style.color=si(grand)===0?'#3ecf8e':'#f06a6a';
+  gfs.style.color=si(grand)===0?'#16a05f':'#dc2626';
   document.getElementById('gf-info').textContent=
     ik(grand)+' ikatan penuh + '+si(grand)+' ompreng sisa = '+grand.toLocaleString('id')+' penerima total';
 }
 
-/* ── RESET ── */
-function resetAll() {
-  if(!confirm('Reset semua counter dan centang?')) return;
+// ── RESET ──
+function resetAll(){
+  if(!confirm('Reset semua counter dan centang? Jumlah penerima tetap tersimpan.')) return;
   sCtrs=SCHOOLS.map(()=>0);  sDone=SCHOOLS.map(()=>false);  sSteps=SCHOOLS.map(()=>10);
   pCtrs=POSYANDU.map(()=>0); pDone=POSYANDU.map(()=>false); pSteps=POSYANDU.map(()=>10);
   renderList('s'); renderList('p');
   updateGlobal(); updateRekap();
+  saveState();
 }
 
-/* ── INIT ── */
+// ── INIT ──
 renderList('s');
 renderList('p');
 updateGlobal();
