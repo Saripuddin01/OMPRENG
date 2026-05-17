@@ -4,178 +4,201 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Distribusi Ompreng</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&family=Helvetica+Neue:wght@400;500;700&display=swap');
-
 :root {
-  /* WhatsApp Color Palette */
-  --wa-teal: #008069;         /* WA Header Green */
-  --wa-teal-light: #00a884;   /* WA Accent Green */
-  --wa-teal-dark: #075E54;
-  --wa-bg: #efeae2;           /* WA Chat Background */
-  --wa-bubble-out: #d9fdd3;   /* WA Outgoing Message */
-  --wa-card: #ffffff;
-  --text-main: #111b21;       /* WA Primary Text */
-  --text-muted: #667781;      /* WA Secondary Text */
-  --border: #d1d7db;
-  --border-light: #e9edef;
-  --success: #00a884;
-  --danger: #ea0038;
-  --blue-tick: #53bdeb;       /* WA Read Receipt Blue */
+  --bg:        #0f1117;
+  --bg2:       #181c27;
+  --bg3:       #1e2333;
+  --card:      #232839;
+  --card2:     #2a3047;
+  --accent:    #6c8ef5;
+  --accent2:   #4fd1a8;
+  --accent3:   #f5a623;
+  --danger:    #f55f6c;
+  --done:      #4fd1a8;
+  --text:      #e8ecf4;
+  --text2:     #8a93b0;
+  --text3:     #5a6280;
+  --border:    rgba(255,255,255,0.07);
+  --border2:   rgba(255,255,255,0.12);
+  --glow:      0 0 20px rgba(108,142,245,0.15);
+  --glow2:     0 0 20px rgba(79,209,168,0.15);
 }
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);padding-bottom:100px;min-height:100vh}
 
-*{box-sizing:border-box;margin:0;padding:0}
-/* Menggunakan font standar sistem agar terasa seperti aplikasi native */
-body{font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background:var(--wa-bg);color:var(--text-main);padding-bottom:90px;min-height:100vh}
+/* HEADER */
+.hdr{background:var(--bg2);padding:18px 16px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px}
+.hdr-icon{font-size:1.6rem;background:linear-gradient(135deg,#6c8ef5,#4fd1a8);border-radius:12px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.hdr-text{flex:1}
+.hdr h1{font-size:1.1rem;font-weight:800;color:var(--text);line-height:1.2}
+.hdr-sub{color:var(--text2);font-size:.72rem;margin-top:3px;font-weight:500}
+.hdr-badge{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-size:.7rem;font-weight:700;margin-top:2px}
 
-/* HEADER WA STYLE */
-.hdr{background:var(--wa-teal);padding:16px 16px 8px;text-align:left; color:white; display:flex; align-items:center; gap:12px;}
-.hdr-icon{font-size:1.8rem; background:white; border-radius:50%; width:40px; height:40px; display:flex; align-items:center; justify-content:center; padding:5px;}
-.hdr-text{flex:1;}
-.hdr h1{font-size:1.15rem;font-weight:600;line-height:1.2;color:white;}
-.hdr-sub{color:rgba(255,255,255,0.85);font-size:.75rem;margin-top:2px;font-weight:400}
+/* TABS */
+.tabs{display:flex;background:var(--bg2);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:20}
+.tab-btn{flex:1;padding:13px 4px;border:none;cursor:pointer;font-weight:700;font-size:.78rem;background:transparent;color:var(--text3);font-family:inherit;letter-spacing:.3px;border-bottom:2px solid transparent;transition:all .2s}
+.tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
 
-/* TABS WA STYLE (Menyatu dengan header) */
-.tabs{display:flex; background:var(--wa-teal); box-shadow:0 1px 3px rgba(0,0,0,0.1); position:sticky; top:0; z-index:10;}
-.tab-btn{flex:1;padding:12px 4px;border:none;cursor:pointer;font-weight:600;font-size:.85rem;background:transparent;color:rgba(255,255,255,0.7);transition:all .2s;font-family:inherit; text-transform:uppercase; border-bottom: 3px solid transparent;}
-.tab-btn.active{color:white; border-bottom: 3px solid white;}
+/* INFO CHIP */
+.chip{margin:12px 14px 0;background:rgba(108,142,245,0.1);border:1px solid rgba(108,142,245,0.2);border-radius:10px;padding:9px 12px;font-size:.73rem;color:var(--accent);font-weight:600;display:flex;align-items:center;gap:6px}
 
-/* CHIP */
-.chip{display:flex;align-items:center;gap:8px;background:var(--wa-bubble-out);border-radius:8px;padding:8px 12px;margin:12px 14px 0;font-size:.75rem;color:var(--text-main);font-weight:500; box-shadow:0 1px 1px rgba(0,0,0,0.05);}
-
-/* SUMMARY */
-.sum-row{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:12px 14px 0}
-.sum-card{background:var(--wa-card);border-radius:8px;padding:10px 4px;text-align:center;box-shadow:0 1px 2px rgba(0,0,0,0.05);}
-.sum-card .lbl{font-size:.6rem;color:var(--text-muted);margin-bottom:2px;font-weight:600}
-.sum-card .val{font-weight:700;font-size:1.1rem;line-height:1;color:var(--text-main)}
-.sum-card .sub{font-size:.55rem;color:var(--text-muted);margin-top:4px;}
+/* SUMMARY ROW */
+.sum-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:12px 14px 0}
+.sum-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:11px 4px;text-align:center}
+.sum-card .lbl{font-size:.58rem;color:var(--text3);margin-bottom:3px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.sum-card .val{font-weight:800;font-size:1.2rem;line-height:1}
+.sum-card .sub{font-size:.55rem;color:var(--text3);margin-top:4px}
+.ca{color:var(--accent)}
+.cd{color:var(--danger)}
+.c2{color:var(--accent2)}
+.c3{color:var(--accent3)}
 
 /* PROGRESS */
-.prog-wrap{margin:8px 14px 0;background:var(--wa-card);border-radius:8px;padding:12px;box-shadow:0 1px 2px rgba(0,0,0,0.05);}
-.prog-top{display:flex;justify-content:space-between;margin-bottom:8px}
-.prog-top .pl{font-size:.7rem;color:var(--text-main);font-weight:600;}
-.prog-top .pc{font-size:.7rem;color:var(--wa-teal-light);font-weight:600}
-.prog-bg{background:var(--border-light);border-radius:10px;height:6px;overflow:hidden}
-.prog-fill{height:100%;border-radius:10px;background:var(--wa-teal-light);transition:width .35s;width:0%}
+.prog-wrap{margin:10px 14px 0;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:13px}
+.prog-top{display:flex;justify-content:space-between;margin-bottom:10px}
+.prog-top .pl{font-size:.72rem;color:var(--text2);font-weight:600}
+.prog-top .pc{font-size:.72rem;color:var(--accent2);font-weight:700}
+.prog-bg{background:var(--bg3);border-radius:10px;height:6px;overflow:hidden}
+.prog-fill{height:100%;border-radius:10px;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .35s}
 
-/* SECTION TITLE */
-.sec-title{padding:16px 14px 8px;font-size:.8rem;color:var(--text-muted);font-weight:600}
+/* SEC TITLE */
+.sec-title{padding:16px 14px 8px;font-size:.72rem;color:var(--text3);font-weight:700;text-transform:uppercase;letter-spacing:.6px;display:flex;align-items:center;justify-content:space-between}
+.sec-title-action{display:flex;gap:6px}
+.btn-add-loc{display:flex;align-items:center;gap:5px;padding:6px 12px;border-radius:20px;border:1px solid rgba(108,142,245,0.3);background:rgba(108,142,245,0.1);color:var(--accent);font-size:.72rem;font-weight:700;cursor:pointer;font-family:inherit;transition:all .2s}
+.btn-add-loc:active{background:rgba(108,142,245,0.2)}
 
-/* LIST */
-.card-list{padding:0 14px;display:flex;flex-direction:column;gap:12px}
+/* CARD LIST */
+.card-list{padding:0 14px;display:flex;flex-direction:column;gap:10px}
 
 /* CARD */
-.sc{background:var(--wa-card);border-radius:10px;overflow:hidden;transition:all .25s;box-shadow:0 1px 2px rgba(0,0,0,0.08);}
-.sc.done{background:#f9fbfb; opacity:0.85;}
+.sc{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:all .25s}
+.sc.done{opacity:.75}
 
-/* HEAD */
-.sc-head{display:flex;align-items:center;gap:10px;padding:12px 12px 0}
-.sc-icon{width:40px;height:40px;border-radius:50%;flex-shrink:0;background:var(--wa-bg);display:flex;align-items:center;justify-content:center;font-size:1rem;}
-.sc-name{flex:1;font-size:.95rem;font-weight:600;color:var(--text-main);line-height:1.2}
-.sc.done .sc-name{color:var(--text-muted)}
-.sc-badge{font-size:.65rem;padding:3px 8px;border-radius:12px;font-weight:500;white-space:nowrap;background:var(--border-light);color:var(--text-muted);}
+/* CARD HEAD */
+.sc-head{display:flex;align-items:center;gap:10px;padding:13px 13px 0}
+.sc-icon{width:38px;height:38px;border-radius:10px;flex-shrink:0;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:.95rem}
+.sc-name{flex:1;font-size:.9rem;font-weight:700;color:var(--text);line-height:1.2}
+.sc.done .sc-name{color:var(--text2)}
+.sc-badge{font-size:.6rem;padding:3px 8px;border-radius:8px;font-weight:700;background:var(--bg3);color:var(--text2);border:1px solid var(--border)}
+.sc-del{width:28px;height:28px;border-radius:8px;background:rgba(245,95,108,0.1);border:1px solid rgba(245,95,108,0.2);color:var(--danger);font-size:.85rem;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
+.sc-del:active{background:rgba(245,95,108,0.25)}
 
-/* ── INFO COMPACT ── */
-.info-compact{display:flex;gap:1px;padding:12px 12px 6px;align-items:stretch; background:var(--wa-card);}
-.ic-box{flex:1;background:var(--wa-card); border-top:1px solid var(--border-light); border-bottom:1px solid var(--border-light); padding:8px 4px; text-align:center}
-.ic-box:first-child{border-left:1px solid var(--border-light); border-top-left-radius:8px; border-bottom-left-radius:8px;}
-.ic-box:last-child{border-right:1px solid var(--border-light); border-top-right-radius:8px; border-bottom-right-radius:8px;}
-.ic-box .ic-l{font-size:.55rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.3px;font-weight:600;margin-bottom:4px}
-.ic-box .ic-v{font-size:1rem;font-weight:700;line-height:1;color:var(--text-main)}
-.ic-box .ic-s{font-size:.55rem;color:var(--text-muted);margin-top:4px}
-/* edit penerima */
+/* INFO BOXES */
+.info-compact{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;padding:12px 13px 8px}
+.ic-box{background:var(--bg3);border-radius:0;padding:9px 4px;text-align:center}
+.ic-box:first-child{border-radius:10px 0 0 10px}
+.ic-box:last-child{border-radius:0 10px 10px 0}
+.ic-l{font-size:.55rem;color:var(--text3);text-transform:uppercase;letter-spacing:.4px;font-weight:700;margin-bottom:4px}
+.ic-v{font-size:1rem;font-weight:800;line-height:1;color:var(--text)}
+.ic-s{font-size:.55rem;color:var(--text3);margin-top:3px}
 .ic-edit{display:flex;align-items:center;justify-content:center;gap:2px}
-.ic-n-inp{width:42px;font-size:1rem;font-weight:700;text-align:center;border:none;background:transparent;outline:none;color:var(--text-main);font-family:inherit;-webkit-appearance:none;appearance:none; border-bottom: 2px solid var(--wa-teal-light); border-radius: 0; padding-bottom: 2px;}
-.ic-n-inp:focus{border-bottom-color:var(--wa-teal-dark)}
-.ic-edit-btn{font-size:.7rem;cursor:pointer;color:var(--text-muted);line-height:1;background:none;border:none;padding:0;font-family:inherit;}
+.ic-n-inp{width:44px;font-size:1rem;font-weight:800;text-align:center;border:none;background:transparent;outline:none;color:var(--text);font-family:inherit;-webkit-appearance:none;border-bottom:2px solid var(--accent);padding-bottom:2px}
+.ic-n-inp:focus{border-bottom-color:var(--accent2)}
+.ic-edit-btn{font-size:.65rem;cursor:pointer;color:var(--text3);background:none;border:none;padding:0;font-family:inherit;line-height:1}
 
-/* ── SUDAH / SISA BESAR ── */
-.ss-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:6px 12px 10px}
-.ss-box{border-radius:8px;padding:12px 8px 10px;text-align:center;background:var(--wa-bg);}
-.ss-lbl{font-size:.65rem;font-weight:600;margin-bottom:6px;color:var(--text-muted)}
-.ss-main{font-size:1.8rem;font-weight:700;line-height:1;margin-bottom:4px;color:var(--text-main)}
-.ss-sub{font-size:.65rem;color:var(--text-muted)}
-.ss-ikat{font-size:.65rem;font-weight:500;margin-top:6px;padding:3px 8px;border-radius:12px;display:inline-block;background:var(--border-light);color:var(--text-main)}
+/* SISA/SUDAH */
+.ss-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:4px 13px 10px}
+.ss-box{border-radius:10px;padding:12px 8px;text-align:center;background:var(--bg3)}
+.ss-lbl{font-size:.6rem;font-weight:700;margin-bottom:5px;color:var(--text3);text-transform:uppercase;letter-spacing:.4px}
+.ss-main{font-size:1.7rem;font-weight:800;line-height:1;margin-bottom:3px}
+.ss-sub{font-size:.6rem;color:var(--text3)}
+.ss-ikat{font-size:.6rem;font-weight:700;margin-top:5px;padding:3px 8px;border-radius:8px;display:inline-block;background:var(--card2);color:var(--text2)}
+.ss-box.sisa .ss-main{color:var(--danger)}
+.ss-box.sudah .ss-main{color:var(--accent2)}
+.ss-box.sisa.ok .ss-main{color:var(--done)}
 
-.ss-box.sisa .ss-main { color: var(--danger); }
-.ss-box.sudah .ss-main { color: var(--wa-teal-light); }
-.ss-box.sisa.ok .ss-main { color: var(--blue-tick); }
-
-/* STEP SELECTOR */
-.step-row{display:flex;align-items:center;gap:6px;padding:4px 12px 10px}
-.step-lbl{font-size:.65rem;color:var(--text-muted);font-weight:600;white-space:nowrap}
-.step-pills{display:flex;gap:6px;flex:1;flex-wrap:wrap}
-.step-pill{padding:5px 12px;border-radius:16px;border:1px solid var(--border-light);background:var(--wa-card);color:var(--text-main);font-size:.7rem;font-weight:600;cursor:pointer;transition:all .15s}
-.step-pill.active{background:var(--wa-teal-light);color:white; border-color:var(--wa-teal-light);}
-.step-custom{width:50px;padding:5px 6px;border-radius:16px;border:1px solid var(--border);background:var(--wa-card);color:var(--text-main);font-size:.7rem;font-weight:600;text-align:center;outline:none;-webkit-appearance:none;font-family:inherit}
-.step-custom:focus{border-color:var(--wa-teal-light)}
+/* STEP */
+.step-row{display:flex;align-items:center;gap:6px;padding:2px 13px 10px}
+.step-lbl{font-size:.6rem;color:var(--text3);font-weight:700;white-space:nowrap;text-transform:uppercase;letter-spacing:.4px}
+.step-pills{display:flex;gap:5px;flex:1;flex-wrap:wrap}
+.step-pill{padding:5px 10px;border-radius:8px;border:1px solid var(--border2);background:var(--bg3);color:var(--text2);font-size:.68rem;font-weight:700;cursor:pointer;transition:all .15s;font-family:inherit}
+.step-pill.active{background:var(--accent);color:white;border-color:var(--accent)}
+.step-custom{width:46px;padding:5px 6px;border-radius:8px;border:1px solid var(--border2);background:var(--bg3);color:var(--text);font-size:.68rem;font-weight:700;text-align:center;outline:none;-webkit-appearance:none;font-family:inherit}
+.step-custom:focus{border-color:var(--accent)}
 
 /* COUNTER */
-.sc-counter{padding:0 12px}
+.sc-counter{padding:0 13px}
 .cnt-row{display:flex;align-items:center;gap:8px}
-.cbtn{height:44px;border-radius:50%;width:44px;border:none;background:var(--wa-bg);color:var(--wa-teal-dark);font-weight:700;font-size:1rem;cursor:pointer;transition:all .15s;flex-shrink:0;font-family:inherit; display:flex; align-items:center; justify-content:center;}
-.cbtn:active{background:var(--border-light)}
-.cbtn.step-btn{border-radius:8px; width:auto; min-width:44px;font-size:.8rem;padding:0 8px}
-.cnt-input{flex:1;min-width:0;text-align:center;font-weight:700;font-size:1.3rem;background:var(--wa-card);color:var(--text-main);border:1px solid var(--border);border-radius:8px;padding:8px 4px;outline:none;-webkit-appearance:none;appearance:none;font-family:inherit}
-.cnt-input:focus{border-color:var(--wa-teal-light);}
+.cbtn{height:44px;border-radius:10px;width:44px;border:1px solid var(--border2);background:var(--bg3);color:var(--text2);font-weight:800;font-size:1.1rem;cursor:pointer;flex-shrink:0;font-family:inherit;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.cbtn:active{background:var(--card2);color:var(--accent)}
+.cbtn.step-btn{width:auto;min-width:44px;font-size:.75rem;padding:0 10px;border-radius:8px}
+.cnt-input{flex:1;min-width:0;text-align:center;font-weight:800;font-size:1.3rem;background:var(--bg3);color:var(--text);border:1px solid var(--border2);border-radius:10px;padding:9px 4px;outline:none;-webkit-appearance:none;font-family:inherit}
+.cnt-input:focus{border-color:var(--accent)}
 
-/* PROG BAR mini */
-.cnt-bar-wrap{padding:12px 12px 0}
-.cnt-bar-bg{background:var(--border-light);border-radius:10px;height:5px;overflow:hidden}
-.cnt-bar-fill{height:100%;border-radius:10px;transition:width .25s}
-.cnt-pct{font-size:.65rem;font-weight:600;text-align:right;margin-top:4px}
+/* BAR MINI */
+.cnt-bar-wrap{padding:10px 13px 0}
+.cnt-bar-bg{background:var(--bg3);border-radius:10px;height:5px;overflow:hidden}
+.cnt-bar-fill{height:100%;border-radius:10px;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .25s}
+.cnt-pct{font-size:.62rem;font-weight:700;text-align:right;margin-top:4px}
 
 /* DONE */
-.sc-done{display:flex;align-items:center;gap:8px;padding:12px 12px 14px}
-.done-toggle{display:flex;align-items:center;gap:10px;cursor:pointer;flex:1;-webkit-tap-highlight-color:transparent}
-.done-box{width:22px;height:22px;border-radius:4px;flex-shrink:0;border:2px solid var(--border);background:var(--wa-card);display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;color:transparent;transition:all .2s}
-.done-toggle.checked .done-box{background:var(--blue-tick);border-color:var(--blue-tick);color:white;}
-.done-lbl{font-size:.85rem;color:var(--text-main);font-weight:500;}
-.done-toggle.checked .done-lbl{color:var(--text-muted);}
-.done-stamp{font-size:.7rem;font-weight:600;color:var(--blue-tick);display:none; align-items:center; gap:4px;}
+.sc-done{display:flex;align-items:center;gap:8px;padding:12px 13px 14px}
+.done-toggle{display:flex;align-items:center;gap:10px;cursor:pointer;flex:1}
+.done-box{width:22px;height:22px;border-radius:6px;flex-shrink:0;border:2px solid var(--border2);background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:800;color:transparent;transition:all .2s}
+.done-toggle.checked .done-box{background:var(--done);border-color:var(--done);color:white}
+.done-lbl{font-size:.82rem;color:var(--text2);font-weight:600}
+.done-toggle.checked .done-lbl{color:var(--text3)}
+.done-stamp{font-size:.7rem;font-weight:700;color:var(--done);display:none;align-items:center;gap:4px}
 .done-stamp.show{display:flex}
 
-/* REKAP TABLE */
+/* REKAP */
 .rekap-wrap{padding:0 14px}
-.rekap{background:var(--wa-card);border-radius:8px;overflow:hidden;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,0.05);}
-.rekap-title{padding:14px;font-size:.8rem;color:var(--wa-teal-dark);font-weight:600;border-bottom:1px solid var(--border-light);background:var(--wa-card)}
-.rekap table{width:100%;border-collapse:collapse;font-size:.75rem}
-.rekap th{padding:12px 8px;text-align:center;color:var(--text-muted);font-weight:500;font-size:.65rem;}
+.rekap{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:12px}
+.rekap-title{padding:14px;font-size:.78rem;color:var(--accent);font-weight:700;border-bottom:1px solid var(--border);letter-spacing:.3px}
+.rekap table{width:100%;border-collapse:collapse;font-size:.72rem}
+.rekap th{padding:10px 8px;text-align:center;color:var(--text3);font-weight:700;font-size:.6rem;text-transform:uppercase;letter-spacing:.4px}
 .rekap th:first-child{text-align:left}
-.rekap td{padding:12px 8px;border-top:1px solid var(--border-light);text-align:center;vertical-align:middle;color:var(--text-main);}
-.rekap td:first-child{text-align:left;font-weight:500;color:var(--text-main)}
-.rekap tfoot td{border-top:1px solid var(--border);font-weight:600;font-size:.8rem;background:var(--wa-bg)}
+.rekap td{padding:10px 8px;border-top:1px solid var(--border);text-align:center;vertical-align:middle;color:var(--text)}
+.rekap td:first-child{text-align:left;font-weight:600;color:var(--text)}
+.rekap tfoot td{border-top:1px solid var(--border2);font-weight:800;font-size:.78rem;background:var(--bg3);color:var(--text)}
 
-/* GRAND TOTAL */
-.grand{background:var(--wa-card);border-radius:8px;padding:16px;margin-bottom:10px;box-shadow:0 1px 2px rgba(0,0,0,0.05);}
-.grand-title{font-size:.8rem;color:var(--wa-teal-dark);font-weight:600;margin-bottom:14px; text-align:center;}
+/* GRAND */
+.grand{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:10px}
+.grand-title{font-size:.78rem;color:var(--text2);font-weight:700;margin-bottom:14px;text-align:center;text-transform:uppercase;letter-spacing:.5px}
 .grand-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.grand-box{background:var(--wa-bg);border-radius:8px;padding:14px 6px;text-align:center}
-.grand-box .gl{font-size:.6rem;color:var(--text-muted);margin-bottom:4px;font-weight:500}
-.grand-box .gv{font-weight:700;font-size:1.3rem;line-height:1;color:var(--text-main)}
-.grand-box .gs{font-size:.65rem;color:var(--text-muted);margin-top:6px;}
-.grand-info{margin-top:14px;padding:12px;border-radius:8px;background:var(--wa-bubble-out);color:var(--text-main);font-size:.8rem;text-align:center;font-weight:500}
+.grand-box{background:var(--bg3);border-radius:10px;padding:14px 6px;text-align:center}
+.grand-box .gl{font-size:.6rem;color:var(--text3);margin-bottom:4px;font-weight:700;text-transform:uppercase;letter-spacing:.4px}
+.grand-box .gv{font-weight:800;font-size:1.3rem;line-height:1}
+.grand-box .gs{font-size:.62rem;color:var(--text3);margin-top:5px}
+.grand-info{margin-top:14px;padding:12px;border-radius:10px;background:rgba(108,142,245,0.1);border:1px solid rgba(108,142,245,0.15);color:var(--text2);font-size:.78rem;text-align:center;font-weight:600}
+
+/* POSYANDU SUMMARY */
+.psy-sum{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0 14px 14px}
+.psy-box{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 4px;text-align:center}
+.psy-box .pl{font-size:.58rem;color:var(--text3);margin-bottom:4px;font-weight:700;text-transform:uppercase;letter-spacing:.4px}
+.psy-box .pv{font-weight:800;font-size:1.2rem;line-height:1}
 
 /* RESET */
 .btn-reset-wrap{padding:14px 14px 0}
-.btn-reset{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:14px;border-radius:24px;border:none;background:var(--wa-card);color:var(--danger);font-weight:600;font-size:.9rem;cursor:pointer;font-family:inherit; box-shadow:0 1px 2px rgba(0,0,0,0.05);}
-.btn-reset:active{background:var(--border-light)}
+.btn-reset{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:14px;border-radius:12px;border:1px solid rgba(245,95,108,0.25);background:rgba(245,95,108,0.08);color:var(--danger);font-weight:700;font-size:.88rem;cursor:pointer;font-family:inherit;transition:all .2s}
+.btn-reset:active{background:rgba(245,95,108,0.15)}
 
-/* POSYANDU SUBSUMMARY */
-.psy-sum{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0 14px 14px}
-.psy-box{background:var(--wa-card);border-radius:8px;padding:12px 4px;text-align:center;box-shadow:0 1px 2px rgba(0,0,0,0.05);}
-.psy-box .pl{font-size:.6rem;color:var(--text-muted);margin-bottom:4px;font-weight:600}
-.psy-box .pv{font-weight:700;font-size:1.2rem;line-height:1;color:var(--text-main)}
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:100;align-items:flex-end;justify-content:center}
+.modal-overlay.show{display:flex}
+.modal-box{background:var(--bg2);border:1px solid var(--border2);border-radius:20px 20px 0 0;padding:20px 16px 30px;width:100%;max-width:480px;animation:slideUp .25s ease}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.modal-title{font-size:.9rem;font-weight:800;color:var(--text);margin-bottom:16px;text-align:center}
+.modal-field{margin-bottom:12px}
+.modal-field label{font-size:.7rem;color:var(--text3);font-weight:700;display:block;margin-bottom:6px;text-transform:uppercase;letter-spacing:.4px}
+.modal-inp{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:10px;padding:11px 13px;color:var(--text);font-size:.9rem;font-weight:600;outline:none;font-family:inherit}
+.modal-inp:focus{border-color:var(--accent)}
+.modal-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.modal-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.modal-btn{padding:13px;border-radius:10px;border:none;font-size:.88rem;font-weight:700;cursor:pointer;font-family:inherit;transition:all .2s}
+.modal-btn.cancel{background:var(--bg3);color:var(--text2);border:1px solid var(--border2)}
+.modal-btn.confirm{background:linear-gradient(135deg,var(--accent),var(--accent2));color:white}
+.modal-btn:active{opacity:.8}
+
+/* EMOJI PICKER */
+.emoji-row{display:flex;gap:8px;flex-wrap:wrap}
+.emoji-opt{width:38px;height:38px;border-radius:8px;background:var(--bg3);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:1.1rem;cursor:pointer;transition:all .15s}
+.emoji-opt.sel{border-color:var(--accent);background:rgba(108,142,245,0.15)}
 
 .tab-content{display:none}
 .tab-content.active{display:block}
-
-/* Utility Text Colors */
-.text-success { color: var(--success) !important; }
-.text-danger { color: var(--danger) !important; }
-.text-main { color: var(--text-main) !important; }
-.text-accent { color: var(--wa-teal-light) !important; }
-.text-done { color: var(--blue-tick) !important; }
 </style>
 </head>
 <body>
@@ -185,52 +208,66 @@ body{font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetic
   <div class="hdr-text">
     <h1>Distribusi Ompreng</h1>
     <div class="hdr-sub">Makassar · 1 Ikatan = 10 ompreng</div>
+    <div class="hdr-badge" id="hdr-badge">0 lokasi aktif</div>
   </div>
 </div>
 
 <div class="tabs">
-  <button class="tab-btn active" onclick="switchTab('sekolah',this)">Sekolah (10)</button>
-  <button class="tab-btn" onclick="switchTab('posyandu',this)">Posyandu (4)</button>
+  <button class="tab-btn active" onclick="switchTab('sekolah',this)" id="tab-btn-sekolah">Sekolah</button>
+  <button class="tab-btn" onclick="switchTab('posyandu',this)" id="tab-btn-posyandu">Posyandu</button>
   <button class="tab-btn" onclick="switchTab('rekap',this)">Rekap</button>
 </div>
 
-<div class="chip">💡 <span>Data penerima bisa diedit langsung pada kartu</span></div>
+<div class="chip">✏️ <span>Data penerima bisa diedit langsung pada kartu</span></div>
 
 <div class="sum-row">
-  <div class="sum-card"><div class="lbl">Total</div><div class="val text-accent" id="g-total">—</div><div class="sub">penerima</div></div>
-  <div class="sum-card"><div class="lbl">Ikatan</div><div class="val" id="g-ikat">—</div><div class="sub">ikatan</div></div>
-  <div class="sum-card"><div class="lbl">Sisa</div><div class="val text-danger" id="g-sisa">—</div><div class="sub">pcs</div></div>
-  <div class="sum-card"><div class="lbl">Selesai</div><div class="val" id="g-done">0/14</div><div class="sub">lokasi</div></div>
+  <div class="sum-card"><div class="lbl">Total</div><div class="val ca" id="g-total">—</div><div class="sub">penerima</div></div>
+  <div class="sum-card"><div class="lbl">Ikatan</div><div class="val c3" id="g-ikat">—</div><div class="sub">ikatan</div></div>
+  <div class="sum-card"><div class="lbl">Sisa</div><div class="val cd" id="g-sisa">—</div><div class="sub">pcs</div></div>
+  <div class="sum-card"><div class="lbl">Selesai</div><div class="val c2" id="g-done">0/0</div><div class="sub">lokasi</div></div>
 </div>
 
 <div class="prog-wrap">
   <div class="prog-top">
     <span class="pl">Progres Hari Ini</span>
-    <span class="pc" id="prog-txt">0 / 14</span>
+    <span class="pc" id="prog-txt">0 / 0</span>
   </div>
   <div class="prog-bg"><div class="prog-fill" id="prog-fill"></div></div>
 </div>
 
+<!-- TAB SEKOLAH -->
 <div id="tab-sekolah" class="tab-content active">
-  <div class="sec-title" id="sec-sekolah">Daftar Sekolah / Lembaga</div>
+  <div class="sec-title">
+    <span id="sec-sekolah-label">Daftar Sekolah</span>
+    <div class="sec-title-action">
+      <button class="btn-add-loc" onclick="openAddModal('s')">+ Tambah</button>
+    </div>
+  </div>
   <div class="card-list" id="list-sekolah"></div>
 </div>
 
+<!-- TAB POSYANDU -->
 <div id="tab-posyandu" class="tab-content">
-  <div class="sec-title">Ringkasan Posyandu Asoka</div>
+  <div class="sec-title">
+    <span>Ringkasan Posyandu</span>
+    <div class="sec-title-action">
+      <button class="btn-add-loc" onclick="openAddModal('p')">+ Tambah</button>
+    </div>
+  </div>
   <div class="psy-sum">
-    <div class="psy-box"><div class="pl">Penerima</div><div class="pv text-accent" id="ps-total">—</div></div>
-    <div class="psy-box"><div class="pl">Ikatan</div><div class="pv" id="ps-ikat">—</div></div>
-    <div class="psy-box"><div class="pl">Sisa pcs</div><div class="pv text-danger" id="ps-sisa">—</div></div>
+    <div class="psy-box"><div class="pl">Penerima</div><div class="pv ca" id="ps-total">—</div></div>
+    <div class="psy-box"><div class="pl">Ikatan</div><div class="pv c3" id="ps-ikat">—</div></div>
+    <div class="psy-box"><div class="pl">Sisa pcs</div><div class="pv cd" id="ps-sisa">—</div></div>
   </div>
   <div class="card-list" id="list-posyandu"></div>
 </div>
 
+<!-- TAB REKAP -->
 <div id="tab-rekap" class="tab-content">
   <div style="padding-top:14px"></div>
   <div class="rekap-wrap">
     <div class="rekap">
-      <div class="rekap-title">Rekap Sekolah</div>
+      <div class="rekap-title">📚 Rekap Sekolah</div>
       <table>
         <thead><tr><th>Nama</th><th>Terima</th><th>Ikat</th><th>Sisa</th><th>Status</th></tr></thead>
         <tbody id="rek-sekolah"></tbody>
@@ -244,7 +281,7 @@ body{font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetic
       </table>
     </div>
     <div class="rekap">
-      <div class="rekap-title">Rekap Posyandu</div>
+      <div class="rekap-title">🏥 Rekap Posyandu</div>
       <table>
         <thead><tr><th>Nama</th><th>Terima</th><th>Ikat</th><th>Sisa</th><th>Status</th></tr></thead>
         <tbody id="rek-posyandu"></tbody>
@@ -257,23 +294,58 @@ body{font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetic
         </tr></tfoot>
       </table>
     </div>
-    <div class="grand">
-      <div class="grand-title">Total Keseluruhan</div>
-      <div class="grand-grid">
-        <div class="grand-box"><div class="gl">Penerima</div><div class="gv text-accent" id="gf-total">—</div><div class="gs">orang</div></div>
-        <div class="grand-box"><div class="gl">Ikatan</div><div class="gv" id="gf-ikat">—</div><div class="gs">ikatan</div></div>
-        <div class="grand-box"><div class="gl">Sisa</div><div class="gv text-danger" id="gf-sisa">—</div><div class="gs">pcs</div></div>
+    <div class="rekap-wrap">
+      <div class="grand">
+        <div class="grand-title">Total Keseluruhan</div>
+        <div class="grand-grid">
+          <div class="grand-box"><div class="gl">Penerima</div><div class="gv ca" id="gf-total">—</div><div class="gs">orang</div></div>
+          <div class="grand-box"><div class="gl">Ikatan</div><div class="gv c3" id="gf-ikat">—</div><div class="gs">ikatan</div></div>
+          <div class="grand-box"><div class="gl">Sisa</div><div class="gv cd" id="gf-sisa">—</div><div class="gs">pcs</div></div>
+        </div>
+        <div class="grand-info" id="gf-info">—</div>
       </div>
-      <div class="grand-info" id="gf-info">—</div>
     </div>
   </div>
 </div>
 
 <div class="btn-reset-wrap">
-  <button class="btn-reset" onclick="resetAll()">Mulai Ulang Penghitung</button>
+  <button class="btn-reset" onclick="resetAll()">🔄 Mulai Ulang Penghitung</button>
+</div>
+
+<!-- MODAL TAMBAH LOKASI -->
+<div class="modal-overlay" id="add-modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal-box">
+    <div class="modal-title" id="modal-title">Tambah Lokasi Baru</div>
+    <div class="modal-field">
+      <label>Nama Lokasi</label>
+      <input class="modal-inp" id="inp-name" placeholder="Contoh: SDN 12 Makassar" type="text">
+    </div>
+    <div class="modal-row">
+      <div class="modal-field">
+        <label>Jumlah Penerima</label>
+        <input class="modal-inp" id="inp-n" placeholder="0" type="number" min="1">
+      </div>
+      <div class="modal-field">
+        <label>Kode (Badge)</label>
+        <input class="modal-inp" id="inp-badge" placeholder="SD" maxlength="5" style="text-transform:uppercase">
+      </div>
+    </div>
+    <div class="modal-field">
+      <label>Ikon</label>
+      <div class="emoji-row" id="emoji-row"></div>
+    </div>
+    <div class="modal-btns">
+      <button class="modal-btn cancel" onclick="closeModal()">Batal</button>
+      <button class="modal-btn confirm" onclick="confirmAdd()">Simpan</button>
+    </div>
+  </div>
 </div>
 
 <script>
+// ─── DATA ───────────────────────────────────────────────────────────────────
+const SCHOOL_EMOJIS = ['🏫','🕌','🏛️','📚','🎓','🏗️'];
+const POSYANDU_EMOJIS = ['🏥','💊','🩺','❤️','🌿','🏠'];
+
 const SCHOOLS_DEFAULT = [
   {name:"RA Nurul Hasanah",                    icon:"🏫",badge:"RA",  n:31 },
   {name:"TK Negeri Aba Cabang Parang Tambung", icon:"🏫",badge:"TK",  n:81 },
@@ -299,74 +371,72 @@ let POSYANDU = POSYANDU_DEFAULT.map(s=>({...s}));
 const ik = n => Math.floor(n/10);
 const si = n => n%10;
 
-const LS_KEY = 'distribusi-ompreng-v5-wa';
-function saveState() {
-  try {
-    localStorage.setItem(LS_KEY, JSON.stringify({
-      sN: SCHOOLS.map(s=>s.n), pN: POSYANDU.map(s=>s.n),
-      sCtrs, sDone, sSteps, pCtrs, pDone, pSteps
-    }));
-  } catch(e){}
-}
-function loadState() {
-  try {
-    const raw = localStorage.getItem(LS_KEY);
-    if(!raw) return;
-    const d = JSON.parse(raw);
-    if(d.sN  && d.sN.length  === SCHOOLS.length)  SCHOOLS.forEach((s,i)=>s.n=d.sN[i]);
-    if(d.pN  && d.pN.length  === POSYANDU.length) POSYANDU.forEach((s,i)=>s.n=d.pN[i]);
-    if(d.sCtrs  && d.sCtrs.length  === SCHOOLS.length)  sCtrs  = d.sCtrs;
-    if(d.sDone  && d.sDone.length  === SCHOOLS.length)  sDone  = d.sDone;
-    if(d.sSteps && d.sSteps.length === SCHOOLS.length)  sSteps = d.sSteps;
-    if(d.pCtrs  && d.pCtrs.length  === POSYANDU.length) pCtrs  = d.pCtrs;
-    if(d.pDone  && d.pDone.length  === POSYANDU.length) pDone  = d.pDone;
-    if(d.pSteps && d.pSteps.length === POSYANDU.length) pSteps = d.pSteps;
-  } catch(e){}
+// ─── STATE ───────────────────────────────────────────────────────────────────
+let sCtrs  = [], sDone  = [], sSteps = [];
+let pCtrs  = [], pDone  = [], pSteps = [];
+
+function initArrays(){
+  while(sCtrs.length  < SCHOOLS.length)  { sCtrs.push(0); sDone.push(false); sSteps.push(10); }
+  while(pCtrs.length  < POSYANDU.length) { pCtrs.push(0); pDone.push(false); pSteps.push(10); }
+  sCtrs  = sCtrs.slice(0,SCHOOLS.length);
+  sDone  = sDone.slice(0,SCHOOLS.length);
+  sSteps = sSteps.slice(0,SCHOOLS.length);
+  pCtrs  = pCtrs.slice(0,POSYANDU.length);
+  pDone  = pDone.slice(0,POSYANDU.length);
+  pSteps = pSteps.slice(0,POSYANDU.length);
 }
 
-let sCtrs  = SCHOOLS.map(()=>0);
-let sDone  = SCHOOLS.map(()=>false);
-let sSteps = SCHOOLS.map(()=>10);
-let pCtrs  = POSYANDU.map(()=>0);
-let pDone  = POSYANDU.map(()=>false);
-let pSteps = POSYANDU.map(()=>10);
+// ─── LOCALSTORAGE ─────────────────────────────────────────────────────────
+const LS_KEY = 'distribusi-ompreng-v6';
+function saveState(){
+  try{
+    localStorage.setItem(LS_KEY,JSON.stringify({
+      schools: SCHOOLS, posyandu: POSYANDU,
+      sCtrs,sDone,sSteps,pCtrs,pDone,pSteps
+    }));
+  }catch(e){}
+}
+function loadState(){
+  try{
+    const raw=localStorage.getItem(LS_KEY);
+    if(!raw) return;
+    const d=JSON.parse(raw);
+    if(d.schools  && Array.isArray(d.schools))  SCHOOLS  = d.schools;
+    if(d.posyandu && Array.isArray(d.posyandu)) POSYANDU = d.posyandu;
+    if(d.sCtrs)  sCtrs  = d.sCtrs;
+    if(d.sDone)  sDone  = d.sDone;
+    if(d.sSteps) sSteps = d.sSteps;
+    if(d.pCtrs)  pCtrs  = d.pCtrs;
+    if(d.pDone)  pDone  = d.pDone;
+    if(d.pSteps) pSteps = d.pSteps;
+  }catch(e){}
+}
 
 loadState();
+initArrays();
 
-const PRESET_STEPS = [1,5,10,20,50];
-
+// ─── TABS ─────────────────────────────────────────────────────────────────
 function switchTab(name,btn){
   document.querySelectorAll('.tab-content').forEach(el=>el.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(el=>el.classList.remove('active'));
   document.getElementById('tab-'+name).classList.add('active');
   btn.classList.add('active');
+  if(name==='rekap') renderRekap();
 }
 
-function sisaInfo(cnt,n){
-  const sisa_ompreng=n-cnt;
-  return {
-    sisa_ompreng, sisa_ikat:ik(sisa_ompreng), sisa_pcs:si(sisa_ompreng),
-    done_ikat:ik(cnt), done_pcs:si(cnt)
-  };
-}
+// ─── CARD BUILDER ─────────────────────────────────────────────────────────
+const PRESET_STEPS=[1,5,10,20,50];
 
 function buildCard(item,idx,group){
-  const n      = item.n;
-  const steps  = group==='s'?sSteps:pSteps;
-  const ctrs   = group==='s'?sCtrs:pCtrs;
-  const dones  = group==='s'?sDone:pDone;
-  const cnt    = ctrs[idx];
-  const step   = steps[idx];
-  const isDone = dones[idx];
+  const ctrs=group==='s'?sCtrs:pCtrs;
+  const dones=group==='s'?sDone:pDone;
+  const steps=group==='s'?sSteps:pSteps;
+  const n=item.n, cnt=ctrs[idx], step=steps[idx], isDone=dones[idx];
+  const pct=n>0?Math.min(100,Math.round(cnt/n*100)):0;
+  const pctColor=cnt>=n?'var(--done)':pct>0?'var(--accent)':'var(--text3)';
+  const sisaLeft=n-cnt, sisaOk=sisaLeft===0&&cnt>0;
 
-  const pct      = n>0?Math.min(100,Math.round(cnt/n*100)):0;
-  const barColor = cnt>=n?'var(--blue-tick)':'var(--wa-teal-light)';
-  const pctColor = cnt>=n?'var(--blue-tick)':pct>0?'var(--wa-teal-light)':'var(--text-muted)';
-  const info     = sisaInfo(cnt,n);
-  const sisaLeft = n-cnt;
-  const sisaOk   = sisaLeft===0&&cnt>0;
-
-  const pillsHTML = PRESET_STEPS.map(s=>
+  const pillsHTML=PRESET_STEPS.map(s=>
     `<button class="step-pill${step===s?' active':''}" onclick="setStep('${group}',${idx},${s})">${s}</button>`
   ).join('');
 
@@ -376,300 +446,260 @@ function buildCard(item,idx,group){
       <div class="sc-icon">${item.icon}</div>
       <div class="sc-name">${item.name}</div>
       <span class="sc-badge">${item.badge}</span>
+      <button class="sc-del" onclick="deleteLoc('${group}',${idx})" title="Hapus">✕</button>
     </div>
 
     <div class="info-compact">
       <div class="ic-box">
         <div class="ic-l">Penerima</div>
         <div class="ic-edit">
-          <input class="ic-n-inp" id="n-inp-${group}-${idx}" type="number" inputmode="numeric" min="1"
-            value="${n}" onchange="changeN('${group}',${idx},this.value)" title="Edit">
-          <button class="ic-edit-btn" onclick="document.getElementById('n-inp-${group}-${idx}').focus()">✎</button>
+          <input class="ic-n-inp" id="ninp-${group}-${idx}" value="${n}" type="number" min="0"
+            onchange="updateN('${group}',${idx},this.value)" onclick="this.select()">
         </div>
         <div class="ic-s">orang</div>
       </div>
       <div class="ic-box">
-        <div class="ic-l">Total Ikat</div>
-        <div class="ic-v" id="ic-ikat-${group}-${idx}">${ik(n)}</div>
-        <div class="ic-s">ikatan</div>
+        <div class="ic-l">Ikatan</div>
+        <div class="ic-v">${ik(n)}</div>
+        <div class="ic-s">× 10 pcs</div>
       </div>
       <div class="ic-box">
         <div class="ic-l">Sisa pcs</div>
-        <div class="ic-v ${si(n)===0?'text-done':'text-danger'}" id="ic-sisa-${group}-${idx}">${si(n)===0?'✓✓':si(n)}</div>
-        <div class="ic-s">${si(n)===0?'pas':'pcs'}</div>
+        <div class="ic-v c3">${si(n)}</div>
+        <div class="ic-s">pcs eceran</div>
       </div>
     </div>
 
     <div class="ss-row">
       <div class="ss-box sudah">
-        <div class="ss-lbl">Telah Dibagi</div>
-        <div class="ss-main" id="ss-sudah-${group}-${idx}">${cnt}</div>
+        <div class="ss-lbl">Sudah Dibagi</div>
+        <div class="ss-main">${cnt}</div>
         <div class="ss-sub">ompreng</div>
-        <div class="ss-ikat" id="ss-sudah-ikat-${group}-${idx}">${info.done_ikat} ikat${info.done_pcs>0?' +'+info.done_pcs+'':''}</div>
+        <div class="ss-ikat">${ik(cnt)} ikat + ${si(cnt)} pcs</div>
       </div>
-      <div class="ss-box sisa${sisaOk?' ok':''}" id="ss-sisa-box-${group}-${idx}">
-        <div class="ss-lbl" id="ss-sisa-lbl-${group}-${idx}">${sisaOk?'Lunas':'Sisa'}</div>
-        <div class="ss-main" id="ss-sisa-${group}-${idx}">${sisaOk?'0':sisaLeft}</div>
+      <div class="ss-box sisa${sisaOk?' ok':''}">
+        <div class="ss-lbl">Sisa Bagi</div>
+        <div class="ss-main">${Math.max(0,sisaLeft)}</div>
         <div class="ss-sub">ompreng</div>
-        <div class="ss-ikat" id="ss-sisa-ikat-${group}-${idx}">${sisaOk?'lunas':info.sisa_ikat+' ikat'+(info.sisa_pcs>0?' +'+info.sisa_pcs+'':'')}</div>
+        <div class="ss-ikat">${ik(Math.max(0,sisaLeft))} ikat + ${si(Math.max(0,sisaLeft))} pcs</div>
       </div>
     </div>
 
     <div class="step-row">
-      <span class="step-lbl">Tambah:</span>
-      <div class="step-pills" id="pills-${group}-${idx}">${pillsHTML}</div>
-      <input class="step-custom" type="number" inputmode="numeric" min="1"
-        value="${PRESET_STEPS.includes(step)?'':step}" placeholder="..."
-        id="step-inp-${group}-${idx}"
-        oninput="customStep('${group}',${idx},this.value)">
+      <span class="step-lbl">Step:</span>
+      <div class="step-pills">
+        ${pillsHTML}
+        <input class="step-custom" type="number" min="1" placeholder="lain"
+          onchange="setStep('${group}',${idx},+this.value)" value="">
+      </div>
     </div>
 
     <div class="sc-counter">
       <div class="cnt-row">
-        <button class="cbtn minus step-btn" onclick="adjCtr('${group}',${idx},-1)">−1</button>
-        <button class="cbtn minus step-btn" onclick="adjCtr('${group}',${idx},-${step})">−${step}</button>
-        <input class="cnt-input" type="number" inputmode="numeric" min="0" max="${n}"
-          value="${cnt||''}" placeholder="0"
-          id="inp-${group}-${idx}"
-          oninput="manualCtr('${group}',${idx},this.value)">
-        <button class="cbtn plus step-btn" onclick="adjCtr('${group}',${idx},+${step})">+${step}</button>
-        <button class="cbtn plus step-btn" onclick="adjCtr('${group}',${idx},+1)">+1</button>
+        <button class="cbtn" onclick="adj('${group}',${idx},-step_get('${group}',${idx}))">−</button>
+        <button class="cbtn step-btn" onclick="adj('${group}',${idx},-step_get('${group}',${idx}))">−${step}</button>
+        <input class="cnt-input" type="number" min="0" value="${cnt}"
+          onchange="setCtr('${group}',${idx},+this.value)" onclick="this.select()">
+        <button class="cbtn step-btn" onclick="adj('${group}',${idx},step_get('${group}',${idx}))">+${step}</button>
+        <button class="cbtn" onclick="adj('${group}',${idx},step_get('${group}',${idx}))">+</button>
       </div>
     </div>
 
     <div class="cnt-bar-wrap">
-      <div class="cnt-bar-bg">
-        <div class="cnt-bar-fill" id="bar-${group}-${idx}" style="width:${pct}%;background:${barColor}"></div>
-      </div>
-      <div class="cnt-pct" id="pct-${group}-${idx}" style="color:${pctColor}">${pct}%</div>
+      <div class="cnt-bar-bg"><div class="cnt-bar-fill" style="width:${pct}%;background:${cnt>=n?'var(--done)':''}"></div></div>
+      <div class="cnt-pct" style="color:${pctColor}">${pct}%</div>
     </div>
 
     <div class="sc-done">
-      <div class="done-toggle${isDone?' checked':''}" onclick="toggleDone('${group}',${idx})" id="dt-${group}-${idx}">
+      <label class="done-toggle${isDone?' checked':''}" onclick="toggleDone('${group}',${idx})">
         <div class="done-box">✓</div>
-        <span class="done-lbl">${isDone?'Selesai':'Tandai Selesai'}</span>
-      </div>
-      <span class="done-stamp${isDone?' show':''}" id="ds-${group}-${idx}">✓✓ Selesai</span>
+        <span class="done-lbl">Tandai Selesai</span>
+      </label>
+      <div class="done-stamp${isDone?' show':''}">✓ Selesai</div>
     </div>
   </div>`;
 }
 
-function renderList(group){
-  const data=group==='s'?SCHOOLS:POSYANDU;
-  const el=document.getElementById(group==='s'?'list-sekolah':'list-posyandu');
-  el.innerHTML=data.map((item,i)=>buildCard(item,i,group)).join('');
+// ─── RENDER ───────────────────────────────────────────────────────────────
+function renderAll(){
+  document.getElementById('list-sekolah').innerHTML = SCHOOLS.map((s,i)=>buildCard(s,i,'s')).join('');
+  document.getElementById('list-posyandu').innerHTML = POSYANDU.map((s,i)=>buildCard(s,i,'p')).join('');
+  document.getElementById('tab-btn-sekolah').textContent = `Sekolah (${SCHOOLS.length})`;
+  document.getElementById('tab-btn-posyandu').textContent = `Posyandu (${POSYANDU.length})`;
+  document.getElementById('sec-sekolah-label').textContent = `Daftar Sekolah (${SCHOOLS.length})`;
+  updateGlobals();
 }
 
-function changeN(group,idx,val){
-  let v=parseInt(val)||1;
-  if(v<1) v=1;
-  const data=group==='s'?SCHOOLS:POSYANDU;
-  const ctrs=group==='s'?sCtrs:pCtrs;
-  data[idx].n=v;
-  if(ctrs[idx]>v) ctrs[idx]=v;
-  updateCardDisplay(group,idx);
-  updateGlobal();
-  updateRekap();
-  saveState();
+function updateGlobals(){
+  const allN   = [...SCHOOLS,...POSYANDU].map(s=>s.n);
+  const allCtrs= [...sCtrs,...pCtrs];
+  const allDone= [...sDone,...pDone];
+  const total  = allN.reduce((a,b)=>a+b,0);
+  const doneCount = allDone.filter(Boolean).length;
+  const totalLoc  = SCHOOLS.length + POSYANDU.length;
+
+  document.getElementById('g-total').textContent = total;
+  document.getElementById('g-ikat').textContent  = ik(total);
+  document.getElementById('g-sisa').textContent  = si(total);
+  document.getElementById('g-done').textContent  = `${doneCount}/${totalLoc}`;
+  document.getElementById('hdr-badge').textContent = `${totalLoc} lokasi aktif`;
+
+  const pct = totalLoc>0?Math.round(doneCount/totalLoc*100):0;
+  document.getElementById('prog-fill').style.width = pct+'%';
+  document.getElementById('prog-txt').textContent  = `${doneCount} / ${totalLoc}`;
+
+  // posyandu sub-summary
+  const pTotal = POSYANDU.reduce((a,s)=>a+s.n,0);
+  document.getElementById('ps-total').textContent = pTotal;
+  document.getElementById('ps-ikat').textContent  = ik(pTotal);
+  document.getElementById('ps-sisa').textContent  = si(pTotal);
 }
 
-function setStep(group,idx,step){
-  if(group==='s') sSteps[idx]=step; else pSteps[idx]=step;
-  const pillsEl=document.getElementById(`pills-${group}-${idx}`);
-  if(pillsEl) pillsEl.querySelectorAll('.step-pill').forEach(p=>{
-    p.classList.toggle('active',parseInt(p.textContent)===step);
-  });
-  const ci=document.getElementById(`step-inp-${group}-${idx}`);
-  if(ci&&PRESET_STEPS.includes(step)) ci.value='';
-  rebuildCard(group,idx);
-  saveState();
+// ─── ACTIONS ──────────────────────────────────────────────────────────────
+function step_get(g,i){ return (g==='s'?sSteps:pSteps)[i]||10; }
+
+function adj(g,i,delta){
+  const arr=g==='s'?sCtrs:pCtrs;
+  const n=(g==='s'?SCHOOLS:POSYANDU)[i].n;
+  arr[i]=Math.max(0,Math.min(n,arr[i]+delta));
+  saveState(); renderAll();
+}
+function setCtr(g,i,v){
+  const arr=g==='s'?sCtrs:pCtrs;
+  const n=(g==='s'?SCHOOLS:POSYANDU)[i].n;
+  arr[i]=Math.max(0,Math.min(n,v||0));
+  saveState(); renderAll();
+}
+function setStep(g,i,v){
+  const arr=g==='s'?sSteps:pSteps;
+  arr[i]=Math.max(1,v||1);
+  saveState(); renderAll();
+}
+function toggleDone(g,i){
+  const arr=g==='s'?sDone:pDone;
+  arr[i]=!arr[i];
+  saveState(); renderAll();
+}
+function updateN(g,i,v){
+  const arr=g==='s'?SCHOOLS:POSYANDU;
+  arr[i].n=Math.max(0,+v||0);
+  saveState(); renderAll();
 }
 
-function customStep(group,idx,val){
-  const s=parseInt(val);
-  if(!s||s<1) return;
-  if(group==='s') sSteps[idx]=s; else pSteps[idx]=s;
-  const pillsEl=document.getElementById(`pills-${group}-${idx}`);
-  if(pillsEl) pillsEl.querySelectorAll('.step-pill').forEach(p=>p.classList.remove('active'));
-  rebuildCard(group,idx,true);
-  saveState();
+// ─── DELETE LOKASI ────────────────────────────────────────────────────────
+function deleteLoc(g,i){
+  if(!confirm('Hapus lokasi ini?')) return;
+  if(g==='s'){
+    SCHOOLS.splice(i,1); sCtrs.splice(i,1); sDone.splice(i,1); sSteps.splice(i,1);
+  } else {
+    POSYANDU.splice(i,1); pCtrs.splice(i,1); pDone.splice(i,1); pSteps.splice(i,1);
+  }
+  saveState(); renderAll();
 }
 
-function rebuildCard(group,idx,keepCustom){
-  const data=group==='s'?SCHOOLS:POSYANDU;
-  const el=document.getElementById(`sc-${group}-${idx}`);
-  if(!el) return;
-  const cv=keepCustom?(document.getElementById(`step-inp-${group}-${idx}`)?.value||''):'';
-  el.outerHTML=buildCard(data[idx],idx,group);
-  if(keepCustom){const ci=document.getElementById(`step-inp-${group}-${idx}`);if(ci)ci.value=cv;}
+// ─── TAMBAH LOKASI (MODAL) ────────────────────────────────────────────────
+let _modalGroup = 's';
+let _selEmoji   = '🏫';
+
+function openAddModal(g){
+  _modalGroup = g;
+  _selEmoji   = g==='s'?'🏫':'🏥';
+  document.getElementById('inp-name').value  = '';
+  document.getElementById('inp-n').value     = '';
+  document.getElementById('inp-badge').value = '';
+  document.getElementById('modal-title').textContent = g==='s'?'Tambah Sekolah Baru':'Tambah Posyandu Baru';
+
+  const emojis = g==='s'?SCHOOL_EMOJIS:POSYANDU_EMOJIS;
+  document.getElementById('emoji-row').innerHTML = emojis.map(e=>
+    `<div class="emoji-opt${e===_selEmoji?' sel':''}" onclick="selEmoji(this,'${e}')">${e}</div>`
+  ).join('');
+
+  document.getElementById('add-modal').classList.add('show');
+  setTimeout(()=>document.getElementById('inp-name').focus(),200);
 }
 
-function adjCtr(group,idx,delta){
-  const n=(group==='s'?SCHOOLS:POSYANDU)[idx].n;
-  const ctrs=group==='s'?sCtrs:pCtrs;
-  ctrs[idx]=Math.max(0,Math.min(n,ctrs[idx]+delta));
-  updateCardDisplay(group,idx);
-  updateGlobal();
-  updateRekap();
-  saveState();
+function selEmoji(el,e){
+  _selEmoji=e;
+  document.querySelectorAll('.emoji-opt').forEach(x=>x.classList.remove('sel'));
+  el.classList.add('sel');
 }
 
-function manualCtr(group,idx,val){
-  const n=(group==='s'?SCHOOLS:POSYANDU)[idx].n;
-  let v=parseInt(val)||0;
-  if(v>n){v=n;const el=document.getElementById(`inp-${group}-${idx}`);if(el)el.value=n;}
-  if(v<0) v=0;
-  const ctrs=group==='s'?sCtrs:pCtrs;
-  ctrs[idx]=v;
-  updateCardDisplay(group,idx);
-  updateGlobal();
-  updateRekap();
-  saveState();
+function closeModal(){
+  document.getElementById('add-modal').classList.remove('show');
 }
 
-function updateCardDisplay(group,idx){
-  const data=group==='s'?SCHOOLS:POSYANDU;
-  const ctrs=group==='s'?sCtrs:pCtrs;
-  const n=data[idx].n;
-  const cnt=ctrs[idx];
-  const pct=n>0?Math.min(100,Math.round(cnt/n*100)):0;
-  const info=sisaInfo(cnt,n);
-  const sisaLeft=n-cnt;
-  const sisaOk=sisaLeft===0&&cnt>0;
+function confirmAdd(){
+  const name  = document.getElementById('inp-name').value.trim();
+  const n     = parseInt(document.getElementById('inp-n').value)||0;
+  const badge = document.getElementById('inp-badge').value.trim().toUpperCase();
 
-  const icIkat=document.getElementById(`ic-ikat-${group}-${idx}`);
-  if(icIkat) icIkat.textContent=ik(n);
-  const icSisa=document.getElementById(`ic-sisa-${group}-${idx}`);
-  if(icSisa){ 
-    icSisa.textContent=si(n)===0?'✓✓':si(n); 
-    icSisa.className=si(n)===0?'ic-v text-done':'ic-v text-danger';
+  if(!name){ alert('Nama lokasi wajib diisi!'); return; }
+  if(n<=0)  { alert('Jumlah penerima harus > 0!'); return; }
+
+  const item = {name, icon:_selEmoji, badge:badge||'LOK', n};
+
+  if(_modalGroup==='s'){
+    SCHOOLS.push(item); sCtrs.push(0); sDone.push(false); sSteps.push(10);
+  } else {
+    POSYANDU.push(item); pCtrs.push(0); pDone.push(false); pSteps.push(10);
   }
 
-  const ssSudah=document.getElementById(`ss-sudah-${group}-${idx}`);
-  if(ssSudah) ssSudah.textContent=cnt;
-  const ssSudahIkat=document.getElementById(`ss-sudah-ikat-${group}-${idx}`);
-  if(ssSudahIkat) ssSudahIkat.textContent=info.done_ikat+' ikat'+(info.done_pcs>0?' +'+info.done_pcs+'':'');
-
-  const sisaBox=document.getElementById(`ss-sisa-box-${group}-${idx}`);
-  if(sisaBox) sisaBox.className='ss-box sisa'+(sisaOk?' ok':'');
-  const sisaLbl=document.getElementById(`ss-sisa-lbl-${group}-${idx}`);
-  if(sisaLbl) sisaLbl.textContent=sisaOk?'Lunas':'Sisa';
-  const sisaNum=document.getElementById(`ss-sisa-${group}-${idx}`);
-  if(sisaNum) sisaNum.textContent=sisaOk?'0':sisaLeft;
-  const sisaIkat=document.getElementById(`ss-sisa-ikat-${group}-${idx}`);
-  if(sisaIkat) sisaIkat.textContent=sisaOk?'lunas':info.sisa_ikat+' ikat'+(info.sisa_pcs>0?' +'+info.sisa_pcs+'':'');
-
-  const inpEl=document.getElementById(`inp-${group}-${idx}`);
-  if(inpEl){ inpEl.value=cnt===0?'':cnt; }
-
-  const barColor=cnt>=n?'var(--blue-tick)':'var(--wa-teal-light)';
-  const pctColor=cnt>=n?'var(--blue-tick)':pct>0?'var(--wa-teal-light)':'var(--text-muted)';
-  const barEl=document.getElementById(`bar-${group}-${idx}`);
-  if(barEl){ barEl.style.width=pct+'%'; barEl.style.background=barColor; }
-  const pctEl=document.getElementById(`pct-${group}-${idx}`);
-  if(pctEl){ pctEl.textContent=pct+'%'; pctEl.style.color=pctColor; }
-
-  const nInp=document.getElementById(`n-inp-${group}-${idx}`);
-  if(nInp) nInp.value=n;
-}
-
-function toggleDone(group,idx){
-  if(group==='s') sDone[idx]=!sDone[idx]; else pDone[idx]=!pDone[idx];
-  const isDone=(group==='s'?sDone:pDone)[idx];
-  const sc=document.getElementById(`sc-${group}-${idx}`);
-  const dt=document.getElementById(`dt-${group}-${idx}`);
-  const ds=document.getElementById(`ds-${group}-${idx}`);
-  sc.className='sc'+(isDone?' done':'');
-  sc.querySelector('.sc-name').style.color=isDone?'var(--text-muted)':'var(--text-main)';
-  dt.className='done-toggle'+(isDone?' checked':'');
-  dt.querySelector('.done-lbl').textContent=isDone?'Selesai':'Tandai Selesai';
-  ds.className='done-stamp'+(isDone?' show':'');
-  updateGlobal();
-  updateRekap();
+  closeModal();
   saveState();
+  renderAll();
+
+  // auto-switch ke tab yang relevan
+  const tabName = _modalGroup==='s'?'sekolah':'posyandu';
+  const btn = document.getElementById('tab-btn-'+tabName);
+  switchTab(tabName,btn);
+  setTimeout(()=>{
+    const last=document.querySelectorAll(`#list-${tabName} .sc`);
+    last[last.length-1]?.scrollIntoView({behavior:'smooth',block:'center'});
+  },100);
 }
 
-function updateGlobal(){
-  const totalS=SCHOOLS.reduce((a,s)=>a+s.n,0);
-  const totalP=POSYANDU.reduce((a,s)=>a+s.n,0);
-  const grand=totalS+totalP;
-  const dS=sDone.filter(Boolean).length;
-  const dP=pDone.filter(Boolean).length;
-  const dAll=dS+dP;
-  const total=SCHOOLS.length+POSYANDU.length;
-  const pct=Math.round(dAll/total*100);
+// ─── REKAP ────────────────────────────────────────────────────────────────
+function renderRekap(){
+  let sT=0,sI=0,sS=0,sDn=0;
+  document.getElementById('rek-sekolah').innerHTML = SCHOOLS.map((s,i)=>{
+    const n=s.n; sT+=n; sI+=ik(n); sS+=si(n); if(sDone[i])sDn++;
+    const st=sDone[i]?'<span style="color:var(--done)">✓</span>':'<span style="color:var(--text3)">–</span>';
+    return `<tr><td>${s.name}</td><td>${n}</td><td>${ik(n)}</td><td>${si(n)}</td><td>${st}</td></tr>`;
+  }).join('');
+  document.getElementById('rf-stotal').textContent = sT;
+  document.getElementById('rf-sikat').textContent  = sI;
+  document.getElementById('rf-ssisa').textContent  = sS;
+  document.getElementById('rf-sdone').textContent  = `${sDn}/${SCHOOLS.length}`;
 
-  document.getElementById('g-total').textContent=grand.toLocaleString('id');
-  document.getElementById('g-ikat').textContent=ik(grand);
-  document.getElementById('g-sisa').textContent=si(grand);
-  document.getElementById('g-sisa').className = si(grand)===0?'val text-done':'val text-danger';
-  document.getElementById('g-done').textContent=dAll+'/'+total;
-  document.getElementById('prog-txt').textContent=dAll+' / '+total+' ('+pct+'%)';
-  document.getElementById('prog-fill').style.width=pct+'%';
+  let pT=0,pI=0,pS=0,pDn=0;
+  document.getElementById('rek-posyandu').innerHTML = POSYANDU.map((s,i)=>{
+    const n=s.n; pT+=n; pI+=ik(n); pS+=si(n); if(pDone[i])pDn++;
+    const st=pDone[i]?'<span style="color:var(--done)">✓</span>':'<span style="color:var(--text3)">–</span>';
+    return `<tr><td>${s.name}</td><td>${n}</td><td>${ik(n)}</td><td>${si(n)}</td><td>${st}</td></tr>`;
+  }).join('');
+  document.getElementById('rf-ptotal').textContent = pT;
+  document.getElementById('rf-pikat').textContent  = pI;
+  document.getElementById('rf-psisa').textContent  = pS;
+  document.getElementById('rf-pdone').textContent  = `${pDn}/${POSYANDU.length}`;
 
-  document.getElementById('ps-total').textContent=totalP;
-  document.getElementById('ps-ikat').textContent=ik(totalP);
-  const psEl=document.getElementById('ps-sisa');
-  psEl.textContent=si(totalP)===0?'✓✓ pas':si(totalP)+' pcs';
-  psEl.className = si(totalP)===0?'pv text-done':'pv text-danger';
-
-  document.getElementById('sec-sekolah').textContent='Daftar Sekolah / Lembaga ('+dS+'/'+SCHOOLS.length+' Selesai)';
+  const GT=sT+pT, GI=sI+pI, GS=sS+pS;
+  document.getElementById('gf-total').textContent = GT;
+  document.getElementById('gf-ikat').textContent  = GI;
+  document.getElementById('gf-sisa').textContent  = GS;
+  document.getElementById('gf-info').textContent  =
+    `Butuh ${GI} ikatan + ${GS} pcs eceran untuk semua ${SCHOOLS.length+POSYANDU.length} lokasi`;
 }
 
-function updateRekap(){
-  const sb=document.getElementById('rek-sekolah');
-  let stot=0;
-  sb.innerHTML=SCHOOLS.map((s,i)=>{stot+=s.n;return`<tr>
-    <td>${s.name}</td>
-    <td>${s.n}</td>
-    <td>${ik(s.n)}</td>
-    <td class="${si(s.n)===0?'text-done':'text-danger'}">${si(s.n)===0?'✓✓':'+'+si(s.n)}</td>
-    <td class="${sDone[i]?'text-done':''}">${sDone[i]?'✓✓':'-'}</td></tr>`;}).join('');
-  document.getElementById('rf-stotal').textContent=stot;
-  document.getElementById('rf-sikat').textContent=ik(stot)+' ikat';
-  const rss=document.getElementById('rf-ssisa');
-  rss.textContent=si(stot)===0?'✓✓ pas':'+'+si(stot)+' pcs';
-  rss.className=si(stot)===0?'text-done':'text-danger';
-  document.getElementById('rf-sdone').textContent=sDone.filter(Boolean).length+'/10';
-
-  const pb=document.getElementById('rek-posyandu');
-  let ptot=0;
-  pb.innerHTML=POSYANDU.map((s,i)=>{ptot+=s.n;return`<tr>
-    <td>${s.name}</td>
-    <td>${s.n}</td>
-    <td>${ik(s.n)}</td>
-    <td class="${si(s.n)===0?'text-done':'text-danger'}">${si(s.n)===0?'✓✓':'+'+si(s.n)}</td>
-    <td class="${pDone[i]?'text-done':''}">${pDone[i]?'✓✓':'-'}</td></tr>`;}).join('');
-  document.getElementById('rf-ptotal').textContent=ptot;
-  document.getElementById('rf-pikat').textContent=ik(ptot)+' ikat';
-  const rps=document.getElementById('rf-psisa');
-  rps.textContent=si(ptot)===0?'✓✓ pas':'+'+si(ptot)+' pcs';
-  rps.className=si(ptot)===0?'text-done':'text-danger';
-  document.getElementById('rf-pdone').textContent=pDone.filter(Boolean).length+'/4';
-
-  const grand=stot+ptot;
-  document.getElementById('gf-total').textContent=grand.toLocaleString('id');
-  document.getElementById('gf-ikat').textContent=ik(grand);
-  const gfs=document.getElementById('gf-sisa');
-  gfs.textContent=si(grand);
-  gfs.className = si(grand)===0?'gv text-done':'gv text-danger';
-  document.getElementById('gf-info').textContent=
-    ik(grand)+' ikatan penuh + '+si(grand)+' ompreng sisa = '+grand.toLocaleString('id')+' penerima';
-}
-
+// ─── RESET ────────────────────────────────────────────────────────────────
 function resetAll(){
-  if(!confirm('Reset semua data penghitung? Jumlah penerima yang telah Anda ubah akan tetap tersimpan.')) return;
-  sCtrs=SCHOOLS.map(()=>0);  sDone=SCHOOLS.map(()=>false);  sSteps=SCHOOLS.map(()=>10);
+  if(!confirm('Mulai ulang semua penghitung? Data penerima dan lokasi tetap disimpan.')) return;
+  sCtrs=SCHOOLS.map(()=>0); sDone=SCHOOLS.map(()=>false); sSteps=SCHOOLS.map(()=>10);
   pCtrs=POSYANDU.map(()=>0); pDone=POSYANDU.map(()=>false); pSteps=POSYANDU.map(()=>10);
-  renderList('s'); renderList('p');
-  updateGlobal(); updateRekap();
-  saveState();
+  saveState(); renderAll();
 }
 
-renderList('s');
-renderList('p');
-updateGlobal();
-updateRekap();
+// ─── INIT ─────────────────────────────────────────────────────────────────
+renderAll();
 </script>
 </body>
 </html>
